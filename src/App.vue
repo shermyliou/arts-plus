@@ -1,7 +1,7 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
+import Checker from './view/BootstrapChecker.vue'
 </script>
 
 <template>
-  <HelloWorld />
+  <Checker />
 </template>

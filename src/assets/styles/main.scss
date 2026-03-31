@@ -1,3 +1,4 @@
 @import 'tokens/primitive';
 @import 'tokens/semantic';
-// @import 'tokens/component';    // ← 覆寫 Bootstrap SCSS 變數在這裡完成
+@import 'tokens/component';
+@import '../../../node_modules/bootstrap/scss/bootstrap';
