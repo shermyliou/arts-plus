@@ -3,7 +3,9 @@ import { ref } from 'vue';
 import BootstrapChecker from './BootstrapChecker.vue'
 import EventCard from '../components/ui/EventCard.vue';
 import { Icon } from "@iconify/vue";
-import HorizoltalEventCard from '../components/ui/HorizontalEventCard.vue'
+import HorizoltalEventCard from '../components/ui/HorizontalEventCard.vue';
+import SideBar from '../components/common/SideBar.vue';
+
 
 const events = [
   {
@@ -28,6 +30,7 @@ const events = [
 </script>
 
 <template>
+  <SideBar/>
   <div>
     <Icon icon="ph:finn-the-human"  width="$icon-size-large" height="80px" />
     <HorizoltalEventCard/>
