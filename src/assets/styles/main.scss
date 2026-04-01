@@ -7,5 +7,6 @@
 @import '../../../node_modules/bootstrap/scss/bootstrap';
 
 @import 'overrides/navtabs';
+@import 'overrides/nav';
 
 @include generate-spacing-classes(0, 64, 4);
