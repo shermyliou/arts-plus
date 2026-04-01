@@ -1,0 +1,37 @@
+@mixin generate-spacing-classes($start, $end, $step) {
+  @for $i from $start through $end {
+    @if ($i % $step == 0) {
+      .h#{$i}px {
+        height: #{$i}px;
+      }
+      .p#{$i}px {
+        padding: #{$i}px;
+      }
+      .px#{$i}px {
+        padding-left: #{$i}px;
+        padding-right: #{$i}px;
+      }
+      .py#{$i}px {
+        padding-top: #{$i}px;
+        padding-bottom: #{$i}px;
+      }
+      .m#{$i}px {
+        margin: #{$i}px;
+      }
+      .mx#{$i}px {
+        margin-left: #{$i}px;
+        margin-right: #{$i}px;
+      }
+      .my#{$i}px {
+        margin-top: #{$i}px;
+        margin-bottom: #{$i}px;
+      }
+      .gap#{$i}px {
+        gap: #{$i}px;
+      }
+      .rounded#{$i}px {
+        border-radius: #{$i}px;
+      }
+    }
+  }
+}

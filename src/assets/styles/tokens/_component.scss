@@ -1,7 +1,39 @@
+// 預設顏色
+$green:         $green-400;
+$yellow:        $yellow-400;
+$red:           $red-400;
+
 $primary:       $brand-400;
-$secondary:     $gray-600;
-$success:       $green-400;
-$warning:       $yellow-400;
-$danger:        $red-400;
-$light:         $gray-100;
-$dark:          $gray-900;
+$secondary:     $brand-700;
+$info:          $light-blue-400;
+$light:         $brand-100;
+$dark:          $brand-900;
+
+// 字體
+// $font-family-base:        "Inter", "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+
+// 標題
+$headings-font-weight:        700;
+$headings-line-height:        1.2;
+$h1-font-size:                2.25rem;
+$h2-font-size:                1.5rem;
+$h3-font-size:                1.25rem;
+$h4-font-size:                1rem;
+$h5-font-size:                1rem;
+$h6-font-size:                1rem;
+
+// 圓角
+$border-radius-sm:            $border-radius-0;
+$border-radius:               $border-radius-1;
+$border-radius-lg:            $border-radius-2;
+$border-radius-xl:            $border-radius-3;
+$border-radius-xxl:           $border-radius-4;
+$border-radius-pill:          $border-radius-pill;
+
+// 語意變數
+$component-active-bg:         $background-brand-default;
+
+// 導覽分頁
+$nav-link-color:                    $text-default-default;
+$nav-pills-border-radius:           $border-radius-pill;
+$nav-pills-link-active-color: #000;

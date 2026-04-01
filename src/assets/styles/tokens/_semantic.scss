@@ -110,3 +110,226 @@ $icon-danger-on-danger-secondary: $red-700;
 $icon-danger-on-danger-tertiary: $red-700;
 $icon-disabled-default: $gray-400;
 $icon-disabled-on-disabled: $gray-0;
+
+// 尺寸
+$icon-size-extra-small: 20px;
+$icon-size-small: 24px;
+$icon-size-medium: 32px;
+$icon-size-large: 40px;
+$component-height-small: 32px;
+$component-height-normal: 40px;
+$component-height-large: 48px;
+$component-padding-x-small: 0.5em;
+$component-padding-x-normal: 1em;
+$border-radius-0: 4px;
+$border-radius-1: 8px;
+$border-radius-2: 16px;
+$border-radius-3: 24px;
+$border-radius-4: 48px;
+$border-radius-pill: 1000px;
+$component-padding-y-small: 0.5em;
+$component-padding-y-normal: 1em;
+$component-gap-x-small: 0.25rem;
+$component-gap-x-normal: 0.75rem;
+$component-gap-y-small: 0.25rem;
+$component-gap-y-normal: 0.75rem;
+$component-card-min-width: 224px;
+$component-card-max-width: 320px;
+$aside-left-min-width: 120px;
+$aside-left-max-width: 240px;
+$aside-right-min-width: 160px;
+$aside-right-max-width: 320px;
+$aside-padding-x: 8px;
+$main-padding-x: 24px;
+$responsive-device-width: 1440px;
+$page-min-width: 1280px;
+$page-max-width: 1920px;
+$main-container-max-width: $page-min-width;
+$page-height: 900px;
+$component-navbar-height: 72px;
+$page-padding-top: $component-navbar-height;
+$page-padding-bottom: 16px;
+$main-padding-y: 16px;
+$main-gap-x: 0.75rem;
+$main-gap-x-large: 1.5rem;
+$main-gap-y: 0.75rem;
+$main-gap-y-large: 1.5rem;
+$main-event-width: 960px;
+
+// ─── CSS Variables Output (:root) ─────────────────────────────
+:root {
+  // Background
+  --background-default-default: #{$background-default-default};
+  --background-default-default-hover: #{$background-default-default-hover};
+  --background-default-secondary: #{$background-default-secondary};
+  --background-default-secondary-hover: #{$background-default-secondary-hover};
+  --background-default-tertiary: #{$background-default-tertiary};
+  --background-default-tertiary-hover: #{$background-default-tertiary-hover};
+  --background-brand-default: #{$background-brand-default};
+  --background-brand-hover: #{$background-brand-hover};
+  --background-brand-secondary: #{$background-brand-secondary};
+  --background-brand-secondary-hover: #{$background-brand-secondary-hover};
+  --background-positive-default: #{$background-positive-default};
+  --background-positive-hover: #{$background-positive-hover};
+  --background-positive-secondary: #{$background-positive-secondary};
+  --background-positive-secondary-hover: #{$background-positive-secondary-hover};
+  --background-positive-tertiary: #{$background-positive-tertiary};
+  --background-positive-tertiary-hover: #{$background-positive-tertiary-hover};
+  --background-warning-default: #{$background-warning-default};
+  --background-warning-hover: #{$background-warning-hover};
+  --background-warning-secondary: #{$background-warning-secondary};
+  --background-warning-tertiary: #{$background-warning-tertiary};
+  --background-warning-tertiary-hover: #{$background-warning-tertiary-hover};
+  --background-danger-default: #{$background-danger-default};
+  --background-danger-hover: #{$background-danger-hover};
+  --background-danger-secondary: #{$background-danger-secondary};
+  --background-danger-secondary-hover: #{$background-danger-secondary-hover};
+  --background-danger-tertiary: #{$background-danger-tertiary};
+  --background-danger-tertiary-hover: #{$background-danger-tertiary-hover};
+  --background-disabled-default: #{$background-disabled-default};
+  --background-utilities-scrim: #{$background-utilities-scrim};
+  --background-utilities-blanket: #{$background-utilities-blanket};
+  --background-utilities-overlay: #{$background-utilities-overlay};
+  --background-utilities-measurement: #{$background-utilities-measurement};
+  --background-chart-bar: #{$background-chart-bar};
+  --background-chart-background: #{$background-chart-background};
+ 
+  // Text
+  --text-default-default: #{$text-default-default};
+  --text-default-secondary: #{$text-default-secondary};
+  --text-default-tertiary: #{$text-default-tertiary};
+  --text-brand-default: #{$text-brand-default};
+  --text-brand-secondary: #{$text-brand-secondary};
+  --text-brand-tertiary: #{$text-brand-tertiary};
+  --text-brand-on-brand: #{$text-brand-on-brand};
+  --text-brand-on-brand-secondary: #{$text-brand-on-brand-secondary};
+  --text-brand-on-brand-tertiary: #{$text-brand-on-brand-tertiary};
+  --text-positive-default: #{$text-positive-default};
+  --text-positive-secondary: #{$text-positive-secondary};
+  --text-positive-tertiary: #{$text-positive-tertiary};
+  --text-positive-on-positive: #{$text-positive-on-positive};
+  --text-positive-on-positive-secondary: #{$text-positive-on-positive-secondary};
+  --text-positive-on-positive-tertiary: #{$text-positive-on-positive-tertiary};
+  --text-warning-default: #{$text-warning-default};
+  --text-warning-secondary: #{$text-warning-secondary};
+  --text-warning-tertiary: #{$text-warning-tertiary};
+  --text-warning-on-warning: #{$text-warning-on-warning};
+  --text-warning-on-warning-secondary: #{$text-warning-on-warning-secondary};
+  --text-warning-on-warning-tertiary: #{$text-warning-on-warning-tertiary};
+  --text-danger-default: #{$text-danger-default};
+  --text-danger-secondary: #{$text-danger-secondary};
+  --text-danger-tertiary: #{$text-danger-tertiary};
+  --text-danger-on-danger: #{$text-danger-on-danger};
+  --text-danger-on-danger-secondary: #{$text-danger-on-danger-secondary};
+  --text-danger-on-danger-tertiary: #{$text-danger-on-danger-tertiary};
+  --text-disabled-default: #{$text-disabled-default};
+  --text-button-default: #{$text-button-default};
+  --text-button-hover: #{$text-button-hover};
+  --text-disabled-on-disabled: #{$text-disabled-on-disabled};
+ 
+  // Border
+  --border-default-default: #{$border-default-default};
+  --border-focus-ring-light: #{$border-focus-ring-light};
+  --border-focus-ring-dark: #{$border-focus-ring-dark};
+  --border-default-secondary: #{$border-default-secondary};
+  --border-default-tertiary: #{$border-default-tertiary};
+  --border-brand-default: #{$border-brand-default};
+  --border-brand-secondary: #{$border-brand-secondary};
+  --border-brand-tertiary: #{$border-brand-tertiary};
+  --border-positive-default: #{$border-positive-default};
+  --border-positive-secondary: #{$border-positive-secondary};
+  --border-positive-tertiary: #{$border-positive-tertiary};
+  --border-warning-default: #{$border-warning-default};
+  --border-warning-secondary: #{$border-warning-secondary};
+  --border-warning-tertiary: #{$border-warning-tertiary};
+  --border-danger-default: #{$border-danger-default};
+  --border-danger-secondary: #{$border-danger-secondary};
+  --border-danger-tertiary: #{$border-danger-tertiary};
+  --border-disabled-default: #{$border-disabled-default};
+  --border-utilities-swatch: #{$border-utilities-swatch};
+ 
+  // Icon
+  --icon-default-default: #{$icon-default-default};
+  --icon-default-secondary: #{$icon-default-secondary};
+  --icon-default-tertiary: #{$icon-default-tertiary};
+  --icon-brand-default: #{$icon-brand-default};
+  --icon-brand-secondary: #{$icon-brand-secondary};
+  --icon-brand-on-brand: #{$icon-brand-on-brand};
+  --icon-brand-on-brand-secondary: #{$icon-brand-on-brand-secondary};
+  --icon-brand-on-brand-tertiary: #{$icon-brand-on-brand-tertiary};
+  --icon-positive-default: #{$icon-positive-default};
+  --icon-positive-secondary: #{$icon-positive-secondary};
+  --icon-positive-tertiary: #{$icon-positive-tertiary};
+  --icon-positive-on-positive: #{$icon-positive-on-positive};
+  --icon-positive-on-positive-secondary: #{$icon-positive-on-positive-secondary};
+  --icon-positive-on-positive-tertiary: #{$icon-positive-on-positive-tertiary};
+  --icon-warning-default: #{$icon-warning-default};
+  --icon-warning-secondary: #{$icon-warning-secondary};
+  --icon-warning-tertiary: #{$icon-warning-tertiary};
+  --icon-warning-on-warning: #{$icon-warning-on-warning};
+  --icon-warning-on-warning-secondary: #{$icon-warning-on-warning-secondary};
+  --icon-warning-on-warning-tertiary: #{$icon-warning-on-warning-tertiary};
+  --icon-danger-default: #{$icon-danger-default};
+  --icon-danger-secondary: #{$icon-danger-secondary};
+  --icon-danger-tertiary: #{$icon-danger-tertiary};
+  --icon-danger-on-danger: #{$icon-danger-on-danger};
+  --icon-danger-on-danger-secondary: #{$icon-danger-on-danger-secondary};
+  --icon-danger-on-danger-tertiary: #{$icon-danger-on-danger-tertiary};
+  --icon-disabled-default: #{$icon-disabled-default};
+  --icon-disabled-on-disabled: #{$icon-disabled-on-disabled};
+ 
+  // Icon Size
+  --icon-size-extra-small: #{$icon-size-extra-small};
+  --icon-size-small: #{$icon-size-small};
+  --icon-size-medium: #{$icon-size-medium};
+  --icon-size-large: #{$icon-size-large};
+ 
+  // Component Size
+  --component-height-small: #{$component-height-small};
+  --component-height-normal: #{$component-height-normal};
+  --component-height-large: #{$component-height-large};
+  --component-padding-x-small: #{$component-padding-x-small};
+  --component-padding-x-normal: #{$component-padding-x-normal};
+  --component-padding-y-small: #{$component-padding-y-small};
+  --component-padding-y-normal: #{$component-padding-y-normal};
+  --component-gap-x-small: #{$component-gap-x-small};
+  --component-gap-x-normal: #{$component-gap-x-normal};
+  --component-gap-y-small: #{$component-gap-y-small};
+  --component-gap-y-normal: #{$component-gap-y-normal};
+  --component-card-min-width: #{$component-card-min-width};
+  --component-card-max-width: #{$component-card-max-width};
+ 
+  // Border Radius
+  --border-radius-0: #{$border-radius-0};
+  --border-radius-1: #{$border-radius-1};
+  --border-radius-2: #{$border-radius-2};
+  --border-radius-3: #{$border-radius-3};
+  --border-radius-4: #{$border-radius-4};
+  --border-radius-pill: #{$border-radius-pill};
+ 
+  // Layout
+  --aside-left-min-width: #{$aside-left-min-width};
+  --aside-left-max-width: #{$aside-left-max-width};
+  --aside-right-min-width: #{$aside-right-min-width};
+  --aside-right-max-width: #{$aside-right-max-width};
+  --aside-padding-x: #{$aside-padding-x};
+  --main-padding-x: #{$main-padding-x};
+  --main-padding-y: #{$main-padding-y};
+  --main-gap-x: #{$main-gap-x};
+  --main-gap-x-large: #{$main-gap-x-large};
+  --main-gap-y: #{$main-gap-y};
+  --main-gap-y-large: #{$main-gap-y-large};
+  --main-container-max-width: #{$main-container-max-width};
+  --main-event-width: #{$main-event-width};
+ 
+  // Page
+  --page-min-width: #{$page-min-width};
+  --page-max-width: #{$page-max-width};
+  --page-height: #{$page-height};
+  --page-padding-top: #{$page-padding-top};
+  --page-padding-bottom: #{$page-padding-bottom};
+  --responsive-device-width: #{$responsive-device-width};
+ 
+  // Navbar
+  --component-navbar-height: #{$component-navbar-height};
+}

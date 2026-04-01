@@ -1,7 +1,7 @@
 <script setup>
-import Checker from './view/BootstrapChecker.vue'
+import HomeView from './views/HomeView.vue';
 </script>
 
 <template>
-  <Checker />
+  <HomeView/>
 </template>

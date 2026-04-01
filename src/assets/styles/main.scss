@@ -1,4 +1,11 @@
+@import 'abstracts/mixin';
+
 @import 'tokens/primitive';
 @import 'tokens/semantic';
 @import 'tokens/component';
+
 @import '../../../node_modules/bootstrap/scss/bootstrap';
+
+@import 'overrides/navtabs';
+
+@include generate-spacing-classes(0, 64, 4);
