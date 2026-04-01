@@ -1,3 +1,99 @@
-.btn-primary{
-  background-color: aqua;
+.btn {
+  letter-spacing: 0.12em; 
+  text-indent: 0.12em;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: $btn-font-family;
+  font-weight: $btn-font-weight;
+  line-height: $btn-line-height;
 }
+
+// 1. 處理實心與線框的文字顏色差異
+.btn:not([class*="outline-"]) {
+  --bs-btn-color: #{$text-brand-on-brand};
+  --bs-btn-hover-color: #{$text-brand-on-brand};
+  
+  // 針對 Primary/Secondary 的 Hover色
+  &.btn-primary {
+    --bs-btn-bg: #{$background-brand-default};
+    --bs-btn-hover-bg: #{$background-brand-hover};
+    --bs-btn-active-bg: #{$background-brand-hover}; 
+    --bs-btn-active-color: #{$text-brand-on-brand};
+  }
+
+  &:disabled, &.disabled {
+    --bs-btn-disabled-bg: #{$background-disabled-default};
+    --bs-btn-disabled-color: #{$text-disabled-on-disabled};
+    opacity: 1;
+  }
+}
+
+
+.btn-rect {
+  border-radius: #{$border-radius-1} !important;
+}
+
+// 3. 線框按鈕 (Secondary)
+.btn-outline-secondary {
+  border-width: 1px; 
+  --bs-btn-color: #{$text-brand-default};
+  --bs-btn-border-color: #{$text-brand-default};
+  
+  // Hover 與 Active 同步
+  &:hover, &:active, &.active {
+    --bs-btn-hover-bg: #{$background-brand-secondary-hover};
+    --bs-btn-hover-color: #{$text-brand-on-brand};
+    --bs-btn-hover-border-color: transparent;
+    --bs-btn-active-bg: #{$background-brand-secondary-hover};
+    --bs-btn-active-color: #{$text-brand-on-brand};
+    --bs-btn-active-border-color: transparent;
+  }
+
+  // 線框禁用狀態
+  &:disabled, &.disabled {
+    --bs-btn-disabled-color: #{$text-disabled-default};
+    --bs-btn-disabled-border-color: #{$border-disabled-default};
+    background-color:  #{$background-default-default};
+  }
+}
+
+// --- Link Button 修正 ---
+.btn-link {
+  // 1. 基礎顏色
+  color: #{$text-button-default} !important;
+  text-decoration: none; // 移除預設下劃線
+  
+
+  &:hover, 
+  &:active, 
+  &.active {
+    color: #{$text-button-hover} !important;
+    text-decoration: none; 
+    background-color: transparent !important; // 確保點擊時不會出現灰色背景
+    box-shadow: none !important; // 移除點擊時的外框陰影
+  }
+
+  // 3. 禁用狀態
+  &:disabled, 
+  &.disabled {
+    color: #{$text-disabled-default} !important;
+    text-decoration: none;
+    cursor: not-allowed;
+  }
+}
+
+.btn-lg {
+    --bs-btn-padding-y: 1rem;
+    --bs-btn-padding-x: 1.75rem;
+    --bs-btn-font-size: 1rem;
+}
+
+.btn-sm {
+    --bs-btn-padding-y: 0.375rem;
+    --bs-btn-padding-x: 1rem;
+    --bs-btn-font-size: 0.875rem;
+}
+
+
+
