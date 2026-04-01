@@ -8,7 +8,7 @@ import navbar from '../components/common/navbar.vue'
 <template>
   <div>
     <nav>
-      <navbar/>
+      <div class="box1">123</div>
     </nav>
     <div class="row d-flex">
       <aside>
