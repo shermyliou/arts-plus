@@ -8,4 +8,6 @@
 
 @import 'overrides/navtabs';
 
+@import '../styles/overrides/page';
+
 @include generate-spacing-classes(0, 64, 4);

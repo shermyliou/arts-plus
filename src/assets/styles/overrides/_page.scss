@@ -1,0 +1,29 @@
+.pagination {
+  gap: 16px;
+}
+
+.page-link {
+  border: none;
+  border-radius: $border-radius-pill !important;
+
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: transparent;
+  color: $brand-900;
+
+  &:hover {
+    background-color: $gray-100; 
+    color: $brand-900;    
+  }
+
+}
+
+.page-item.active {
+  .page-link {
+    background-color: $secondary;
+  }
+}
