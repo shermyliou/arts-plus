@@ -17,6 +17,7 @@
 - Use Vue in Composition API and javascript
 - script setup is allowed to use
 - The plugins used in this website are bootstrap, pinia, vue-router, axios
+- Use the Iconify Vue component version of Phosphor Icons as default icons
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets

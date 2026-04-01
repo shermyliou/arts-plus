@@ -4,13 +4,7 @@ import { ref } from 'vue';
 
 <template>
   <div>
-      <nav></nav>
-  <div class="row d-flex">
-    <aside></aside>
-    <main></main>
-    <aside></aside>
-  </div>
-  <footer></footer>
+
   </div>
 </template>
 
