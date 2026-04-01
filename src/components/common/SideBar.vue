@@ -1,5 +1,6 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
+import { Icon } from "@iconify/vue";
 </script>
 
 <template>
@@ -8,6 +9,4 @@ import { ref } from 'vue';
   </div>
 </template>
 
-<style scoped lang="scss">
-  
-</style>
+<style scoped lang="scss"></style>

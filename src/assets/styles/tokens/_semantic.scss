@@ -125,7 +125,8 @@ $border-radius-0: 4px;
 $border-radius-1: 8px;
 $border-radius-2: 16px;
 $border-radius-3: 24px;
-$border-radius-4: 48px;
+$border-radius-4: 32px;
+$border-radius-5: 48px;
 $border-radius-pill: 1000px;
 $component-padding-y-small: 0.5em;
 $component-padding-y-normal: 1em;
@@ -305,6 +306,7 @@ $main-event-width: 960px;
   --border-radius-2: #{$border-radius-2};
   --border-radius-3: #{$border-radius-3};
   --border-radius-4: #{$border-radius-4};
+  --border-radius-5: #{$border-radius-5};
   --border-radius-pill: #{$border-radius-pill};
  
   // Layout
