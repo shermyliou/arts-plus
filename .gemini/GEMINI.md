@@ -37,8 +37,8 @@ These rules define how to translate Figma inputs into code for this project and 
 
 ### Implementation rules
 - Treat the Figma MCP output (React + Tailwind) as a representation of design and behavior, not as final code style.
-- Don't need to apple font family in css as the default fonts are already implemented
-- Replace Tailwind utility classes with the project's preferred utilities/design‑system tokens when applicable.
+- Replace Tailwind utility classes with the project's preferred utilities/design‑system tokens when applicable. Prefer using Bootstrap's classes first before creating new classes.
+- Don't need to apple font family in css as the default fonts are already implemented.
 - Reuse existing components (e.g., buttons, inputs, typography, icon wrappers) instead of duplicating functionality.
 - Use the project's color system, typography scale, and spacing tokens consistently.
 - Respect existing routing, state management, and data‑fetch patterns already adopted in the repo.

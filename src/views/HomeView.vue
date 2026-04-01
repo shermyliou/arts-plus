@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from 'vue';
 import BootstrapChecker from './BootstrapChecker.vue'
-import eventCard from '../components/ui/eventCard.vue';
+import EventCard from '../components/ui/EventCard.vue';
 import { Icon } from "@iconify/vue";
 import HorizoltalEventCard from '../components/ui/HorizontalEventCard.vue'
 
@@ -31,7 +31,7 @@ const events = [
   <div>
     <Icon icon="ph:finn-the-human"  width="$icon-size-large" height="80px" />
     <HorizoltalEventCard/>
-  <eventCard v-for="event in events" v-bind="event" />
+  <EventCard v-for="event in events" v-bind="event" />
   <div class="nav nav-pills">
     <div class="nav-item">
       <div class="nav-link active">123</div>
