@@ -86,7 +86,7 @@ const events = [
     <!-- Calendar Grid -->
     <div class="calendar-grid-container position-relative">
       <!-- Background Headers and Grid -->
-      <div class="calendar-bg-grid">
+      <div class="calendar-bg-grid  position-absolute w-100 h-100">
         <div class="calendar-header-row d-flex border-bottom border-gray-300">
           <div v-for="day in days" :key="day" class="calendar-header-cell flex-fill p-2 border-end border-gray-300 last-child-no-border">
             <span class="day-text">{{ day }}</span>
@@ -106,7 +106,7 @@ const events = [
       </div>
 
       <!-- Events Overlay -->
-      <div class="calendar-events-overlay position-absolute top-0 start-0 w-100 h-100 pt-5 mt-2">
+      <div class="calendar-events-overlay top-0 start-0 w-100">
         <div class="grid-overlay">
           <div 
             v-for="event in events" 
@@ -179,7 +179,10 @@ const events = [
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(5, 48px);
   gap: 4px;
-  padding: 0 4px;
+}
+
+.calendar-events-overlay{
+  padding-top: 5rem;
 }
 
 .calendar-event-item {
