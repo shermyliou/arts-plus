@@ -98,10 +98,6 @@ const events = [
               <span class="date-text">{{ date }}</span>
             </div>
           </div>
-          <!-- Multiple rows for events -->
-          <div v-for="r in 4" :key="r" class="calendar-empty-row flex-fill d-flex border-top border-gray-300">
-            <div v-for="c in 7" :key="c" class="flex-fill border-end border-gray-300 last-child-no-border"></div>
-          </div>
         </div>
       </div>
 
@@ -150,6 +146,7 @@ const events = [
 .calendar-bg-grid {
   display: flex;
   flex-direction: column;
+  z-index: 0;
 }
 
 .calendar-header-cell, .calendar-date-cell {
@@ -183,6 +180,7 @@ const events = [
 
 .calendar-events-overlay{
   padding-top: 5rem;
+  z-index: 2;
 }
 
 .calendar-event-item {
