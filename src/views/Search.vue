@@ -1,5 +1,6 @@
 <script setup>
 import HorizontalEventCard from '@/components/ui/HorizontalEventCard.vue';
+import CalendarView from '@/components/ui/CalendarView.vue';
 import { Icon } from '@iconify/vue';
 import { ref } from 'vue';
 
@@ -40,10 +41,17 @@ const searchQuery = ref('');
       </div>
     </div>
 
+    <!-- Calendar View Section (2830:17660) -->
+    <div class="row mb-4">
+      <div class="col-12">
+        <CalendarView />
+      </div>
+    </div>
+
     <!-- Results Section -->
     <div class="row">
-      <div>
-        <HorizontalEventCard class="my-2 w-100"/>
+      <div class="col-12">
+        <HorizontalEventCard />
       </div>
     </div>
   </div>
