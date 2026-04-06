@@ -104,6 +104,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .hero-event-card {
+  position: relative;
   display: flex;
   gap: 32px;
   align-items: stretch;
@@ -112,12 +113,12 @@ defineProps({
   overflow: hidden;
   padding: 0 56px;
   width: 100%;
-  max-width: 910px;
   margin: 0 auto;
   border: 1px solid var(--border-default-default);
 
   &__header {
-    width: 250px;
+    width: 30%;
+    max-width: 250px;
     flex-shrink: 0;
   }
 
