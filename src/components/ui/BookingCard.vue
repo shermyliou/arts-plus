@@ -24,5 +24,5 @@
 </template>
 
 <script setup>
-
+// 未來可以透過 props 傳入資料
 </script>
