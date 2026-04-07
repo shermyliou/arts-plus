@@ -15,9 +15,7 @@ import Search from './Search.vue';
 
 <template>
   <div>
-    <nav>
-      <navbar/>
-    </nav>
+    
     <div class="d-flex col-12">
       <aside>
         <SideBar/>
@@ -28,12 +26,9 @@ import Search from './Search.vue';
       </main>
       <aside></aside>
     </div>
-
-    
-    <EventDetail></EventDetail>
-
     <footer></footer>
   </div>
+  <EventDetail></EventDetail>
 </template>
 
 <style scoped lang="scss">
