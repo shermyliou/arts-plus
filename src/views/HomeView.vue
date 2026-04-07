@@ -1,15 +1,11 @@
 <script setup>
-//import BootstrapChecker from './BootstrapChecker.vue'
-//import SideBar from '../components/common/SideBar.vue';
-//import navbar from '../components/common/navbar.vue'
-
 import EventDetail from './EventDetail.vue';
-
-//import HeroEventCard from '@/components/ui/HeroEventCard.vue';
-import BootstrapChecker from './BootstrapChecker.vue'
 import SideBar from '../components/common/SideBar.vue';
 import navbar from '../components/common/navbar.vue'
 import Search from './Search.vue';
+import Map from './Map.vue'
+
+import BootstrapChecker from './BootstrapChecker.vue'
 
 </script>
 
@@ -23,14 +19,15 @@ import Search from './Search.vue';
         <SideBar/>
       </aside>
       <main>
+        <Map></Map>
         <Search/>
         <BootstrapChecker />
+        <EventDetail></EventDetail>
       </main>
       <aside></aside>
     </div>
 
     
-    <EventDetail></EventDetail>
 
     <footer></footer>
   </div>
