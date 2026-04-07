@@ -1,7 +1,11 @@
 <script setup>
-import BootstrapChecker from './BootstrapChecker.vue'
-import SideBar from '../components/common/SideBar.vue';
-import navbar from '../components/common/navbar.vue'
+//import BootstrapChecker from './BootstrapChecker.vue'
+//import SideBar from '../components/common/SideBar.vue';
+//import navbar from '../components/common/navbar.vue'
+
+import EventDetail from './EventDetail.vue';
+
+//import HeroEventCard from '@/components/ui/HeroEventCard.vue';
 
 </script>
 
@@ -19,6 +23,10 @@ import navbar from '../components/common/navbar.vue'
       </main>
       <aside></aside>
     </div>
+
+    
+    <EventDetail></EventDetail>
+
     <footer></footer>
   </div>
 </template>

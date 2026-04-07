@@ -17,15 +17,17 @@
 <script setup>
 /**
  * EventLayout 組件提供了一個三欄式的佈局結構。
- * 包含左側側邊欄 (250px)、中間主內容 (1fr) 以及右側側邊欄 (250px)。
+ * 包含左側側邊欄 (200px)、中間主內容 (1fr) 以及右側側邊欄 (200px)。
  */
 </script>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/tokens/_primitive.scss" as *;
+
 .event-layout {
   display: grid;
   grid-template-columns: 200px 1fr 200px;
-  gap: var(--main-gap-x-large, 1.5rem);
+  gap: 0;
   max-width: 1440px;
   margin: 0 auto;
   padding: 0 ;
@@ -34,8 +36,9 @@
 
   &__aside-left,
   &__aside-right {
-    width: 250px;
-    background-color: var(--background-default-secondary);
+    //width: 200px;
+    background-color: $brand-50;
+    //background-color: var(--background-default-secondary);
   }
 
   &__main {
@@ -44,6 +47,8 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    background-color:  var(--background-default-default);
+    padding: 24px;
   }
 
   // 響應式處理：當螢幕寬度不足以容納三欄時

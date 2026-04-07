@@ -60,6 +60,8 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/tokens/_primitive.scss" as *;
+
 .review-card {
   background-color: var(--gray-0);
   border: 1px solid var(--border-default-default);
@@ -149,7 +151,8 @@ defineProps({
 
   &__star-icon {
     font-size: 24px;
-    color: var(--icon-default-tertiary);
+    //color: var(--icon-default-tertiary);
+    color: $yellow-400;
   }
 
   &__comment {

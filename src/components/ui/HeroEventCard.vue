@@ -102,6 +102,8 @@ defineProps({
 </template>
 
 <style lang="scss" scoped>
+@use "@/assets/styles/tokens/_primitive.scss" as *;
+
 .hero-event-card {
   position: relative;
   display: flex;
@@ -191,7 +193,8 @@ defineProps({
   &__star-icon {
     font-size: 20px;
     //color: var(--icon-default-tertiary);
-    color: var(--icon-warning-tertiary);
+    //color: var(--icon-warning-tertiary);
+    color: $yellow-400;
   }
 
   .review-count {
