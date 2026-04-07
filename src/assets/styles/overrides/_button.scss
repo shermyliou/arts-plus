@@ -7,6 +7,9 @@
   font-family: $btn-font-family;
   font-weight: $btn-font-weight;
   line-height: $btn-line-height;
+  .btn-check:checked + & {
+  background-color: $background-brand-default;
+  }
 }
 
 // 1. 處理實心與線框的文字顏色差異

@@ -140,10 +140,15 @@ import navbar from "../components/common/navbar.vue";
         <SideBar />
       </aside>
       <main>
+        <Search/>
         <BootstrapChecker />
       </main>
       <aside></aside>
     </div>
+
+    
+    <EventDetail></EventDetail>
+
     <footer></footer>
   </div>
 </template>
