@@ -28,7 +28,7 @@ defineProps({
   },
   reviewCount: {
     type: Number,
-    default: 1688
+    default: 16
   },
   organizerName: {
     type: String,
@@ -68,14 +68,14 @@ defineProps({
         <div class="hero-event-card__rating">
           <span class="hero-event-card__score">{{ score }}</span>
           <div class="hero-event-card__stars">
-            <iconify-icon 
+            <Icon 
               v-for="i in 5" 
               :key="i"
               :icon="i <= Math.floor(score) ? 'ph:star-fill' : (i - score < 1 ? 'ph:star-half-fill' : 'ph:star')" 
               class="hero-event-card__star-icon"
             />
           </div>
-          <span class="hero-event-card__review-count">({{ reviewCount.toLocaleString() }})</span>
+          <span class="review-count">({{ reviewCount.toLocaleString() }})</span>
         </div>
       </div>
 
@@ -84,7 +84,7 @@ defineProps({
           <div class="hero-event-card__avatar">
             <img :src="organizerAvatar" :alt="organizerName" v-if="organizerAvatar" />
             <div class="hero-event-card__avatar-placeholder" v-else>
-              <iconify-icon icon="ph:user" />
+              <Icon icon="ph:user" />
             </div>
           </div>
           <span class="hero-event-card__organizer-name">{{ organizerName }}</span>
@@ -92,7 +92,6 @@ defineProps({
         
         <div class="hero-event-card__button-group">
           <button class="btn btn-outline-secondary rounded-pill hero-event-card__btn-favorite">
-            <!-- <iconify-icon icon="ph:heart" class="hero-event-card__btn-icon" /> -->
             <Icon icon="ph:heart-bold" width="24"  />
             <span>收藏</span>
           </button>
@@ -178,6 +177,7 @@ defineProps({
   }
 
   &__score {
+    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 400;
     color: var(--text-default-default);
@@ -189,11 +189,12 @@ defineProps({
   }
 
   &__star-icon {
-    font-size: 24px;
-    color: #FFC107; // Star yellow
+    font-size: 20px;
+    //color: var(--icon-default-tertiary);
+    color: var(--icon-warning-tertiary);
   }
 
-  &__review-count {
+  .review-count {
     font-size: 16px;
     color: var(--text-default-secondary);
   }
@@ -236,6 +237,9 @@ defineProps({
   &__avatar-placeholder {
     font-size: 16px;
     color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &__organizer-name {
@@ -254,11 +258,9 @@ defineProps({
     font-size: 14px;
     padding: 0;
     gap: 8px;
-  }
-
-  &__btn-icon {
-    font-size: 18px;
-    color: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 </style>
