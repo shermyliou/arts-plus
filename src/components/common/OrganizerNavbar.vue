@@ -13,7 +13,7 @@ const tabs = ref([
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg custom-navbar brand-50">
+  <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
     <div class="container-fluid p-0 d-flex align-items-center">
       <a class="navbar-brand me-4" href="#">
         <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
