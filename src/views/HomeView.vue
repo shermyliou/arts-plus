@@ -2,6 +2,7 @@
 import BootstrapChecker from './BootstrapChecker.vue'
 import SideBar from '../components/common/SideBar.vue';
 import navbar from '../components/common/navbar.vue'
+import Search from './Search.vue';
 
 </script>
 
@@ -10,11 +11,12 @@ import navbar from '../components/common/navbar.vue'
     <nav>
       <navbar/>
     </nav>
-    <div class="row d-flex">
+    <div class="d-flex col-12">
       <aside>
         <SideBar/>
       </aside>
       <main>
+        <Search/>
         <BootstrapChecker />
       </main>
       <aside></aside>
