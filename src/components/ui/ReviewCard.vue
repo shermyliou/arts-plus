@@ -20,6 +20,10 @@ defineProps({
   score: {
     type: Number,
     default: 4.3
+  },
+  comment: {
+    type: String,
+    default: ''
   }
 })
 </script>
@@ -50,6 +54,7 @@ defineProps({
           />
         </div>
       </div>
+      <p v-if="comment" class="review-card__comment">{{ comment }}</p>
     </div>
   </div>
 </template>
@@ -144,7 +149,15 @@ defineProps({
 
   &__star-icon {
     font-size: 24px;
-    color: var(--icon-default-tertiary); // Use tertiary color as shown in Figma screenshot (gray stars)
+    color: var(--icon-default-tertiary);
+  }
+
+  &__comment {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-default-default);
+    word-break: break-word;
   }
 }
 </style>
