@@ -11,5 +11,5 @@ import OrganizerNavbar from './OrganizerNavbar.vue';
 </template>
 
 <style scoped lang="scss">
-  
+
 </style>
