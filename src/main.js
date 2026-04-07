@@ -1,6 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-// import './assets/styles/main.css'  // 引入編譯好的 css
+import 'bootstrap'
 import './assets/styles/main.scss'
+import { Icon } from '@iconify/vue' 
 
-createApp(App).mount('#app')
+const app = createApp(App)
+app.component('Icon', Icon)
+app.mount('#app')

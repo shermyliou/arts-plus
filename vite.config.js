@@ -10,5 +10,10 @@ export default defineConfig({
         loadPaths: [path.resolve(__dirname, 'node_modules')]
       }
     }
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, './src')
+    }
   }
 })

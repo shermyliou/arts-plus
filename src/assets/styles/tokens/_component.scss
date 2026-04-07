@@ -37,4 +37,18 @@ $component-active-bg:         $background-brand-default;
 // 導覽分頁
 $nav-link-color:                    $text-default-default;
 $nav-pills-border-radius:           $border-radius-pill;
-$nav-pills-link-active-color: #000;
+
+//按鈕
+$btn-border-radius:          $border-radius-pill;
+$btn-border-radius-sm:       $border-radius-pill;
+$btn-border-radius-lg:       $border-radius-pill;
+
+$btn-padding-y:              0.625rem;
+$btn-padding-x:              1.25rem;
+$btn-font-size:              0.875rem;
+$btn-border-width:           0;
+
+$btn-font-family:      "Noto Sans TC";
+$btn-font-weight:      480; 
+$btn-line-height:      140%;   
+$btn-letter-spacing:   0.12em;  
