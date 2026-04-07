@@ -18,6 +18,16 @@ const tabs = ref([
 ]);
 
 const activeTab = ref("藝文演出");
+
+const sortOptions = ref([
+  '日期：近到遠',
+  '日期：遠到近',
+  '價格：低到高',
+  '價格：高到低',
+  '最新'
+]);
+
+const currentSort = ref('日期：近到遠');
 </script>
 
 <template>
@@ -71,12 +81,37 @@ const activeTab = ref("藝文演出");
       <!-- Filter/Sort Section (3004:18637) -->
       <div class="row mb-4">
         <div class="col-12">
-          <button class="btn btn-sort rounded-pill d-inline-flex align-items-center gap-2">
-            <div class="sort-icon-wrapper">
-              <Icon icon="ph:funnel-simple" width="16" height="16" />
-            </div>
-            <span class="sort-text">排序</span>
-          </button>
+          <div class="dropdown">
+            <button 
+              class="btn btn-sort-dropdown dropdown-toggle" 
+              type="button" 
+              id="sortDropdown" 
+              data-bs-toggle="dropdown" 
+              aria-expanded="false"
+            >
+              <div class="sort-header">
+                <div class="sort-title-area">
+                  <div class="sort-icon-wrapper">
+                    <Icon icon="ph:sort-ascending" width="20" height="20" class="sort-icon" />
+                  </div>
+                  <span class="sort-text">排序</span>
+                </div>
+                <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" />
+              </div>
+            </button>
+            <ul class="dropdown-menu sort-dropdown-menu" aria-labelledby="sortDropdown">
+              <li v-for="option in sortOptions" :key="option">
+                <a 
+                  class="dropdown-item" 
+                  href="#" 
+                  @click.prevent="currentSort = option"
+                  :class="{ active: currentSort === option }"
+                >
+                  {{ option }}
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -175,6 +210,110 @@ const activeTab = ref("藝文演出");
 
   &:hover {
     background-color: var(--background-default-default-hover);
+  }
+}
+
+// Sort Dropdown Button (3437:28340)
+.btn-sort-dropdown {
+  border: 1px solid var(--border-default-default) !important;
+  background-color: transparent;
+  border-radius: var(--border-radius-1);
+  padding: 0 !important;
+  width: 136px;
+  min-height: 40px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: var(--background-default-secondary-hover);
+  }
+
+  &::after {
+    display: none; // Remove bootstrap default arrow
+  }
+
+  .sort-header {
+    width: 100%;
+    height: 40px;
+    padding: 8px 8px 8px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .sort-title-area {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      
+      .sort-icon-wrapper {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .sort-icon {
+        color: var(--text-default-default);
+      }
+
+      .sort-text {
+        font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.4;
+        letter-spacing: 0.14px;
+        color: var(--text-default-default);
+      }
+    }
+
+    .caret-icon {
+      color: var(--text-default-default);
+      margin-left: 12px;
+    }
+  }
+}
+
+.sort-dropdown-menu {
+  width: 136px;
+  padding: 0;
+  border: 1px solid var(--border-default-default);
+  border-radius: var(--border-radius-1);
+  margin-top: 4px;
+  box-shadow: none;
+  background-color: var(--background-default-default);
+
+  .dropdown-item {
+    height: 28px;
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: 0.14px;
+    color: var(--text-default-default);
+    
+    // Space for check icon if we want to add it later, matching Figma "filter item long"
+    &::before {
+      content: '';
+      width: 24px;
+      height: 24px;
+      margin-right: 4px;
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    &:hover {
+      background-color: var(--background-default-secondary-hover);
+    }
+
+    &.active {
+      background-color: var(--background-default-secondary-hover);
+      color: var(--text-default-default);
+    }
   }
 }
 </style>
