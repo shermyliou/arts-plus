@@ -1,7 +1,4 @@
 <script setup>
-import { ref } from 'vue';
-import navbar from '../components/common/navbar.vue'
-//import SideBar from '@/components/common/SideBar.vue';
 import HeroEventCard from '@/components/ui/HeroEventCard.vue';
 import EventLayout from '@/components/common/EventLayout.vue';
 import BookingCard from '@/components/ui/BookingCard.vue';

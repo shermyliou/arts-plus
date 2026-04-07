@@ -1,14 +1,25 @@
 <script setup>
 import SideBar from "../components/common/SideBar.vue";
-import navbar from "../components/common/navbar.vue";
-import { ref } from "vue";
+import { ref, onBeforeUnmount } from "vue";
 import { Icon } from "@iconify/vue";
-import { QuillEditor } from "@vueup/vue-quill";
-import "@vueup/vue-quill/dist/vue-quill.snow.css";
+import { useEditor, EditorContent } from "@tiptap/vue-3";
+import StarterKit from "@tiptap/starter-kit";
 
 const eventDescription = ref(
   '<p style="text-align: center;">改編自東野圭吾最感動人心的作品</p><p style="text-align: center;">在內心有破洞的時候，我收到了穿越時空的來信</p><p style="text-align: center;">即使想決定目的地，也不知道路在哪裡</p><p style="text-align: center;">即使擁有選擇，卻無法做出決定</p><p style="text-align: center;">如果有個地方，能指引迷途的我們</p><p style="text-align: center;">如果有個地方，可以聆聽我們的煩惱…</p><p><br></p><p style="text-align: center;"><strong style="color: rgb(82, 37, 4); font-size: 20px;">日本正式授權改編 東野圭吾暖心經典</strong></p><p style="text-align: center;"><strong style="color: rgb(82, 37, 4); font-size: 20px;">《解憂雜貨店》歡迎再次來信！</strong></p><p><br></p><p style="text-align: center;"><img src="https://www.figma.com/api/mcp/asset/4e36bf74-b9ec-45c9-874e-1156fe5dd3e7" width="380"></p><p><br></p><p><strong>｜劇情簡介｜</strong></p><p>三個闖空門的少年意外躲進了一間歇業多年、相傳能消煩解憂的雜貨店，過去只要在晚上將寫了煩惱的信丟進雜貨店鐵捲門的投遞口，隔天就可以在店後方的牛奶箱拿到回信解答！在看似廢棄的店裡，他們發現店內的時間似乎與外界不同，彷彿從未經歷時光流逝？此時，一封來自過去的信突然出現，他們發現自己和他人的命運似乎被一條無形的線連結了起來？</p><p>在愛情與夢想之間痛苦不已的月亮兔；搖擺於理想和繼承家業的魚店音樂人； 在道德與至親家人間難以抉擇的保羅藍儂；徘迴於報恩與生計，迷惘的汪汪該如何改變自己的人生？當自認毫無用處的少年開始擔任助人的角色，意外收到困惑之人的來信，因緣際會持筆寫下屬於他們純粹的回覆，然而在回信的同時，竟奇妙的改變了他們的人生？</p>',
 );
+
+const editor = useEditor({
+  content: eventDescription.value,
+  extensions: [StarterKit],
+  onUpdate: ({ editor }) => {
+    eventDescription.value = editor.getHTML();
+  },
+});
+
+onBeforeUnmount(() => {
+  editor.value.destroy();
+});
 
 const bannerImageInput = ref(null);
 const bannerImageUrl = ref(
@@ -338,16 +349,90 @@ const scrollToSection = (id) => {
                 <h3 class="fs-5 fw-normal mb-0">活動介紹</h3>
                 <span class="text-danger">*</span>
               </div>
-              <div
-                class="quill-editor-wrapper border rounded-3 overflow-hidden"
-              >
-                <QuillEditor
-                  v-model:content="eventDescription"
-                  contentType="html"
-                  theme="snow"
-                  toolbar="full"
-                  style="min-height: 400px; border: none"
-                />
+              <div class="tiptap-editor-wrapper border rounded-3">
+                <!-- Tiptap Toolbar -->
+                <div v-if="editor" class="editor-toolbar d-flex flex-wrap gap-1 p-2 border-bottom bg-light">
+                  <button 
+                    @click="editor.chain().focus().toggleBold().run()" 
+                    :disabled="!editor.can().chain().focus().toggleBold().run()"
+                    :class="{ 'is-active': editor.isActive('bold') }"
+                    class="btn btn-sm btn-light border-0"
+                    title="加粗"
+                  >
+                    <Icon icon="ph:text-b" />
+                  </button>
+                  <button 
+                    @click="editor.chain().focus().toggleItalic().run()" 
+                    :disabled="!editor.can().chain().focus().toggleItalic().run()"
+                    :class="{ 'is-active': editor.isActive('italic') }"
+                    class="btn btn-sm btn-light border-0"
+                    title="斜體"
+                  >
+                    <Icon icon="ph:text-italic" />
+                  </button>
+                  <button 
+                    @click="editor.chain().focus().toggleStrike().run()" 
+                    :disabled="!editor.can().chain().focus().toggleStrike().run()"
+                    :class="{ 'is-active': editor.isActive('strike') }"
+                    class="btn btn-sm btn-light border-0"
+                    title="刪除線"
+                  >
+                    <Icon icon="ph:text-strikethrough" />
+                  </button>
+                  <div class="vr mx-1"></div>
+                  <button 
+                    @click="editor.chain().focus().toggleBulletList().run()" 
+                    :class="{ 'is-active': editor.isActive('bulletList') }"
+                    class="btn btn-sm btn-light border-0"
+                    title="無序列表"
+                  >
+                    <Icon icon="ph:list-bullets" />
+                  </button>
+                  <button 
+                    @click="editor.chain().focus().toggleOrderedList().run()" 
+                    :class="{ 'is-active': editor.isActive('orderedList') }"
+                    class="btn btn-sm btn-light border-0"
+                    title="有序列表"
+                  >
+                    <Icon icon="ph:list-numbers" />
+                  </button>
+                  <div class="vr mx-1"></div>
+                  <button 
+                    @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" 
+                    :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+                    class="btn btn-sm btn-light border-0"
+                    title="標題 1"
+                  >
+                    H1
+                  </button>
+                  <button 
+                    @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" 
+                    :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+                    class="btn btn-sm btn-light border-0"
+                    title="標題 2"
+                  >
+                    H2
+                  </button>
+                  <div class="vr mx-1"></div>
+                  <button 
+                    @click="editor.chain().focus().undo().run()" 
+                    :disabled="!editor.can().chain().focus().undo().run()"
+                    class="btn btn-sm btn-light border-0"
+                    title="復原"
+                  >
+                    <Icon icon="ph:arrow-u-up-left" />
+                  </button>
+                  <button 
+                    @click="editor.chain().focus().redo().run()" 
+                    :disabled="!editor.can().chain().focus().redo().run()"
+                    class="btn btn-sm btn-light border-0"
+                    title="重做"
+                  >
+                    <Icon icon="ph:arrow-u-up-right" />
+                  </button>
+                </div>
+                <!-- Tiptap Content -->
+                <editor-content :editor="editor" class="tiptap-content p-3" />
               </div>
             </section>
           </div>
@@ -433,16 +518,47 @@ const scrollToSection = (id) => {
   color: var(--text-brand-default) !important;
 }
 
-.quill-editor-wrapper {
+.tiptap-editor-wrapper {
   background-color: #fff;
-  :deep(.ql-toolbar.ql-snow) {
-    border: none;
-    border-bottom: 1px solid var(--bs-border-color);
-    padding: 0.75rem;
+  
+  .editor-toolbar {
+    .btn {
+      color: #666;
+      &:hover {
+        background-color: #eee;
+      }
+      &.is-active {
+        background-color: var(--background-brand-default);
+        color: white;
+      }
+    }
   }
-  :deep(.ql-container.ql-snow) {
-    border: none;
-    font-family: inherit;
+
+  .tiptap-content {
+    min-height: 400px;
+    
+    :deep(.ProseMirror) {
+      outline: none;
+      min-height: 400px;
+      
+      p {
+        margin-bottom: 1rem;
+      }
+
+      ul, ol {
+        padding-left: 1.5rem;
+      }
+
+      img {
+        max-width: 100%;
+        height: auto;
+        display: block;
+        margin: 1rem auto;
+      }
+
+      h1 { font-size: 2rem; margin-bottom: 1rem; }
+      h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+    }
   }
 }
 
