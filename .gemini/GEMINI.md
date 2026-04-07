@@ -6,6 +6,47 @@
 - Prefer functional programming paradigms where appropriate.
 - If Figma data is missing or ambiguous, ask for clarification before generating code.
 
+## Project Structure
+ART-PLUS/
+src
+ ┣ assets
+ ┃ ┣ images
+ ┃ ┃ ┣ event-1.jpg
+ ┃ ┃ ┗ event-2.jpg
+ ┃ ┗ styles
+ ┃ ┃ ┣ abstracts
+ ┃ ┃ ┃ ┗ _mixin.scss
+ ┃ ┃ ┣ overrides
+ ┃ ┃ ┃ ┣ _button.scss
+ ┃ ┃ ┃ ┣ _nav.scss
+ ┃ ┃ ┃ ┣ _navtabs.scss
+ ┃ ┃ ┃ ┗ _page.scss
+ ┃ ┃ ┣ tokens
+ ┃ ┃ ┃ ┣ _component.scss
+ ┃ ┃ ┃ ┣ _primitive.scss
+ ┃ ┃ ┃ ┗ _semantic.scss
+ ┃ ┃ ┗ main.scss
+ ┣ components
+ ┃ ┣ common
+ ┃ ┃ ┣ navbar.vue
+ ┃ ┃ ┗ SideBar.vue
+ ┃ ┗ ui
+ ┃ ┃ ┣ CalendarView.vue
+ ┃ ┃ ┣ EventCard.vue
+ ┃ ┃ ┣ FilterSidebar.vue
+ ┃ ┃ ┗ HorizontalEventCard.vue
+ ┣ router
+ ┃ ┗ index.js
+ ┣ stores
+ ┃ ┗ useUserStore.js
+ ┣ views
+ ┃ ┣ Basic.vue
+ ┃ ┣ BootstrapChecker.vue
+ ┃ ┣ HomeView.vue
+ ┃ ┗ Search.vue
+ ┣ App.vue
+ ┗ main.js
+
 ## Coding Style
 - Use 2 spaces for indentation.
 - Prefix interface names with `my` (for example, `myUserService`).
@@ -18,6 +59,12 @@
 - script setup is allowed to use
 - The plugins used in this website are bootstrap, pinia, vue-router, axios
 - Use the Iconify Vue component version of Phosphor Icons as default icons
+
+## Already Known (skip re-reading these)
+- Bootstrap is globally imported via main.js, do NOT re-check
+- Phosphor Icons are used via Iconify: `<Icon icon="ph:icon-name" />`
+- Color tokens are defined in src/assets/styles/_variables.scss
+- App.vue only import HomeView.vue
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets

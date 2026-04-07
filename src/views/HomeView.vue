@@ -6,6 +6,10 @@
 import EventDetail from './EventDetail.vue';
 
 //import HeroEventCard from '@/components/ui/HeroEventCard.vue';
+import BootstrapChecker from './BootstrapChecker.vue'
+import SideBar from '../components/common/SideBar.vue';
+import navbar from '../components/common/navbar.vue'
+import Search from './Search.vue';
 
 </script>
 
@@ -14,11 +18,12 @@ import EventDetail from './EventDetail.vue';
     <nav>
       <navbar/>
     </nav>
-    <div class="row d-flex">
+    <div class="d-flex col-12">
       <aside>
         <SideBar/>
       </aside>
       <main>
+        <Search/>
         <BootstrapChecker />
       </main>
       <aside></aside>
