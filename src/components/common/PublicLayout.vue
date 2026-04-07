@@ -5,7 +5,7 @@ import PublicNavbar from './PublicNavbar.vue';
 <template>
   <div>
     <PublicNavbar />
-    <RouterView />
+    <RouterView class="pt72px"/>
   </div>
 </template>
 

@@ -11,10 +11,9 @@ const routes = [
     { 
       path: '/',
       component: PublicLayout,
-      name: "home",
       meta: { title: "Art+" },
       children: [
-        { path: '', component: HomeView },
+        { path: '', component: HomeView, name: 'home' },
         { path: 'search', component: Search },
         { path: 'event/:id', component: EventDetail },
         { path: 'bootstrap', component: BootstrapChecker },

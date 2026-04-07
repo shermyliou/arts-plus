@@ -6,10 +6,10 @@ import OrganizerNavbar from './OrganizerNavbar.vue';
 <template>
   <div>
     <OrganizerNavbar />
-    <RouterView />
+    <RouterView class="pt72px"></RouterView>
   </div>
 </template>
 
 <style scoped lang="scss">
-  
+
 </style>

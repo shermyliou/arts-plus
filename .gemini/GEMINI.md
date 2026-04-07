@@ -7,7 +7,8 @@
 - If Figma data is missing or ambiguous, ask for clarification before generating code.
 
 ## Project Structure
-ART-PLUS/src
+ART-PLUS
+/src
  ┣ assets
  ┃ ┣ images
  ┃ ┃ ┣ event-1.jpg
@@ -42,9 +43,12 @@ ART-PLUS/src
  ┃ ┃ ┣ HeroEventCard.vue
  ┃ ┃ ┣ HorizontalEventCard.vue
  ┃ ┃ ┗ ReviewCard.vue
+ ┣ data
+ ┃ ┗ events.json
  ┣ router
  ┃ ┗ index.js
  ┣ stores
+ ┃ ┣ useEventStore.js
  ┃ ┗ useUserStore.js
  ┣ views
  ┃ ┣ Basic.vue
@@ -73,7 +77,7 @@ ART-PLUS/src
 - Bootstrap is globally imported via main.js, do NOT re-check
 - Phosphor Icons are used via Iconify: `<Icon icon="ph:icon-name" />`
 - Color tokens are defined in src/assets/styles/_variables.scss
-- App.vue only import HomeView.vue
+- Don't need to apple font family in css as the default fonts are already implemented.
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets
@@ -95,7 +99,6 @@ These rules define how to translate Figma inputs into code for this project and 
 ### Implementation rules
 - Treat the Figma MCP output (React + Tailwind) as a representation of design and behavior, not as final code style.
 - Replace Tailwind utility classes with the project's preferred utilities/design‑system tokens when applicable. Prefer using Bootstrap's classes first before creating new classes.
-- Don't need to apple font family in css as the default fonts are already implemented.
 - Reuse existing components (e.g., buttons, inputs, typography, icon wrappers) instead of duplicating functionality.
 - Use the project's color system, typography scale, and spacing tokens consistently.
 - Respect existing routing, state management, and data‑fetch patterns already adopted in the repo.
