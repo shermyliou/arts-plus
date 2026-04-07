@@ -70,38 +70,44 @@ const formatDateRange = (start, end) => {
 </script>
 
 <template>
-  <div class="search-page-container d-flex h-100 overflow-hidden">
+  <div class="search-page-container d-flex">
     <!-- Left Sidebar: Filters -->
     <FilterSidebar />
 
     <!-- Main Content Area -->
-    <div class="search-content flex-grow-1 d-flex flex-column py-4 px-4 h-100">
+    <div class="search-content flex-grow-1 d-flex flex-column py-4 px-4 overflow-y-auto col-9">
+
+      <!-- Calendar View Section -->
+      <div class="position-fixed winherit">
+        <!-- <CalendarView /> -->
+      </div>
+
       <!-- Fixed Header Section -->
       <div class="fixed-header-section flex-shrink-0">
         <!-- Search Bar Section -->
-        <div class="row mb-4 justify-content-center">
-          <div class="col-12 d-flex gap-2 align-items-center">
+        <!-- <div class="row mb-4 justify-content-center sticky-top topnav"> -->
+          <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
             <!-- Search Input Container -->
-            <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2">
-              <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" />
-              <input 
+            <!-- <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2"> -->
+              <!-- <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" /> -->
+              <!-- <input 
                 v-model="searchQuery"
                 type="text" 
                 class="search-input border-0 bg-transparent flex-grow-1 ms-2" 
                 placeholder="搜尋" 
-              />
-            </div>
+              /> -->
+            <!-- </div> -->
             <!-- Search Button -->
-            <button class="btn btn-search rounded-pill px-4 py-2">
-              搜尋
-            </button>
-          </div>
-        </div>
+            <!-- <button class="btn btn-search rounded-pill px-4 py-2"> -->
+              <!-- 搜尋 -->
+            <!-- </button> -->
+          <!-- </div> -->
+        <!-- </div> -->
 
         <!-- Nav Tabs Section -->
         <div class="row mb-4">
-          <div class="col-12">
-            <ul class="nav nav-pills custom-nav-pills">
+          <div class="col-10">
+            <ul class="nav nav-pills custom-nav-pills overflow-x-auto">
               <li v-for="tab in tabs" :key="tab.name" class="nav-item">
                 <a
                   class="nav-link d-flex align-items-center justify-content-center gap-1"
@@ -117,11 +123,8 @@ const formatDateRange = (start, end) => {
               </li>
             </ul>
           </div>
-        </div>
-
-        <!-- Filter/Sort Section -->
-        <div class="row mb-4">
-          <div class="col-12">
+          <!-- Filter/Sort Section -->
+          <div class="col-2">
             <div class="dropdown">
               <button 
                 class="btn btn-sort-dropdown dropdown-toggle" 
@@ -155,19 +158,12 @@ const formatDateRange = (start, end) => {
             </div>
           </div>
         </div>
-
-        <!-- Calendar View Section -->
-        <div class="row mb-4">
-          <div class="col-12">
-            <CalendarView />
-          </div>
-        </div>
       </div>
 
       <!-- Results Section (Scrollable Area) -->
       <div class="results-scroll-area flex-grow-1 overflow-y-auto mt-2">
         <div class="row g-4 pb-4">
-          <div v-for="event in filteredEvents" :key="event.id" class="col-lg-6">
+          <div v-for="event in filteredEvents" :key="event.id" class="col-12">
             <HorizontalEventCard 
               :title="event.title"
               :category="event.category"
@@ -186,9 +182,9 @@ const formatDateRange = (start, end) => {
 </template>
 
 <style scoped lang="scss">
+
 .search-page-container {
-  height: calc(100vh - var(--component-navbar-height));
-  overflow: hidden;
+  height: 100vh;
 }
 
 .search-content {
@@ -355,5 +351,9 @@ const formatDateRange = (start, end) => {
       color: var(--text-default-default);
     }
   }
+}
+
+.winherit{
+  width: inherit;
 }
 </style>

@@ -52,3 +52,7 @@ $btn-font-family:      "Noto Sans TC";
 $btn-font-weight:      480; 
 $btn-line-height:      140%;   
 $btn-letter-spacing:   0.12em;  
+
+.topnav{
+  top: $component-navbar-height;
+}
