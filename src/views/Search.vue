@@ -6,6 +6,18 @@ import { Icon } from '@iconify/vue';
 import { ref } from 'vue';
 
 const searchQuery = ref('');
+
+const tabs = ref([
+  { name: "全部", badgeCount: 0 },
+  { name: "藝文展覽", badgeCount: 0 },
+  { name: "藝文演出", badgeCount: 0 },
+  { name: "藝文體驗", badgeCount: 0 },
+  { name: "藝文講座", badgeCount: 0 },
+  { name: "藝文小旅遊", badgeCount: 0 },
+  { name: "線上展覽", badgeCount: 0 },
+]);
+
+const activeTab = ref("藝文演出");
 </script>
 
 <template>
@@ -32,6 +44,27 @@ const searchQuery = ref('');
           <button class="btn btn-search rounded-pill px-4 py-2">
             搜尋
           </button>
+        </div>
+      </div>
+
+      <!-- Nav Tabs Section (3437:23052) -->
+      <div class="row mb-4">
+        <div class="col-12">
+          <ul class="nav nav-pills custom-nav-pills">
+            <li v-for="tab in tabs" :key="tab.name" class="nav-item">
+              <a
+                class="nav-link d-flex align-items-center justify-content-center gap-1"
+                :class="{ active: activeTab === tab.name }"
+                href="#"
+                @click.prevent="activeTab = tab.name"
+              >
+                <span class="tab-text">{{ tab.name }}</span>
+                <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
+                  {{ tab.badgeCount }}
+                </span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
 
