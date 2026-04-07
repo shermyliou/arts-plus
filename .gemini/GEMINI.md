@@ -7,12 +7,12 @@
 - If Figma data is missing or ambiguous, ask for clarification before generating code.
 
 ## Project Structure
-ART-PLUS/
-src
+ART-PLUS/src
  ┣ assets
  ┃ ┣ images
  ┃ ┃ ┣ event-1.jpg
- ┃ ┃ ┗ event-2.jpg
+ ┃ ┃ ┣ event-2.jpg
+ ┃ ┃ ┗ 解憂雜貨店_橫式Banner(台中歌劇院).jpg
  ┃ ┗ styles
  ┃ ┃ ┣ abstracts
  ┃ ┃ ┃ ┗ _mixin.scss
@@ -28,13 +28,20 @@ src
  ┃ ┃ ┗ main.scss
  ┣ components
  ┃ ┣ common
- ┃ ┃ ┣ navbar.vue
+ ┃ ┃ ┣ EventLayout.vue
+ ┃ ┃ ┣ OrganizerLayout.vue
+ ┃ ┃ ┣ OrganizerNavbar.vue
+ ┃ ┃ ┣ PublicLayout.vue
+ ┃ ┃ ┣ PublicNavbar.vue
  ┃ ┃ ┗ SideBar.vue
  ┃ ┗ ui
+ ┃ ┃ ┣ BookingCard.vue
  ┃ ┃ ┣ CalendarView.vue
  ┃ ┃ ┣ EventCard.vue
  ┃ ┃ ┣ FilterSidebar.vue
- ┃ ┃ ┗ HorizontalEventCard.vue
+ ┃ ┃ ┣ HeroEventCard.vue
+ ┃ ┃ ┣ HorizontalEventCard.vue
+ ┃ ┃ ┗ ReviewCard.vue
  ┣ router
  ┃ ┗ index.js
  ┣ stores
@@ -42,6 +49,8 @@ src
  ┣ views
  ┃ ┣ Basic.vue
  ┃ ┣ BootstrapChecker.vue
+ ┃ ┣ EventDetail.vue
+ ┃ ┣ EventEdit.vue
  ┃ ┣ HomeView.vue
  ┃ ┗ Search.vue
  ┣ App.vue

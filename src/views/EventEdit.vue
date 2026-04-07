@@ -1,6 +1,5 @@
 <script setup>
 import SideBar from "../components/common/SideBar.vue";
-import navbar from "../components/common/navbar.vue";
 import { ref, onBeforeUnmount } from "vue";
 import { Icon } from "@iconify/vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
