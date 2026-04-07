@@ -13,6 +13,6 @@
 
 <style lang="scss" scoped>
     .map-img{
-        height: 200px;
+        height: 1080px;
     }
 </style>
