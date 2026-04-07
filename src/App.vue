@@ -4,6 +4,6 @@ import EventEdit from './views/EventEdit.vue';
 </script>
 
 <template>
-  <!-- <HomeView/> -->
-  <EventEdit/>
+  <HomeView/>
+  <!-- <EventEdit/> -->
 </template>

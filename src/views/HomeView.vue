@@ -5,11 +5,12 @@
 
 import EventDetail from './EventDetail.vue';
 
-//import HeroEventCard from '@/components/ui/HeroEventCard.vue';
-import BootstrapChecker from './BootstrapChecker.vue'
-import SideBar from '../components/common/SideBar.vue';
-import navbar from '../components/common/navbar.vue'
-import Search from './Search.vue';
+//import HorizontalEventCard from '@/components/ui/HorizontalEventCard.vue';
+
+//import BootstrapChecker from './BootstrapChecker.vue'
+// import SideBar from '../components/common/SideBar.vue';
+// import navbar from '../components/common/navbar.vue'
+//import Search from './Search.vue';
 
 </script>
 
@@ -29,10 +30,12 @@ import Search from './Search.vue';
       <aside></aside>
     </div>
 
-    
     <EventDetail></EventDetail>
+    
 
+    <HorizontalEventCard />
     <footer></footer>
+
   </div>
 </template>
 

@@ -115,7 +115,7 @@ defineProps({
   padding: 0 56px;
   width: 100%;
   margin: 0 auto;
-  border: 1px solid var(--border-default-default);
+  // border: 1px solid var(--border-default-default);
 
   &__header {
     width: 30%;

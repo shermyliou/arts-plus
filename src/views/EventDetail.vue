@@ -10,6 +10,18 @@ import ReviewCard from '@/components/ui/ReviewCard.vue';
 // 引入活動海報圖片 
 const eventPoster = '/images/event-dog.jpeg'
 
+// 選中的分頁名稱
+const activeTab = ref('購票資訊');
+
+// 分頁資料與對應的 section id
+const tabs = [
+  { name: '購票資訊', id: '#booking' },
+  { name: '活動資訊', id: '#info' },
+  { name: '藝文地圖', id: '#map' },
+  { name: '重要須知', id: '#notice' },
+  { name: '心得評論', id: '#review' } 
+];
+
 //評論資料
 const reviews = [
   { id: 1, name: 'Diana Campos', score: 4.3, text: '' },
@@ -21,6 +33,7 @@ const reviews = [
 <template>
   <div class="event-detail-page">
     <navbar/>
+
     <EventLayout>
       <template #aside-left>
         <div class="aside-left"></div>
@@ -36,16 +49,21 @@ const reviews = [
             :reviewCount="16"
           />
           
+          <!-- Navtabs -->
           <div class="nav-wrapper">
-            <p class="item-desc"></p>
-            <ul class="nav nav-pills">
-              <li class="nav-item"><a class="nav-link active" href="#booking">購票資訊</a></li>
-              <li class="nav-item"><a class="nav-link" href="#info">活動資訊</a></li>
-              <li class="nav-item"><a class="nav-link" href="#map">藝文地圖</a></li>
-              <li class="nav-item"><a class="nav-link" href="#notice">重要須知</a></li>
-              <li class="nav-item"><a class="nav-link" href="#reviews">心得評論</a></li>
+            <ul class="nav nav-pills custom-nav-pills">
+              <li class="nav-item" v-for="tab in tabs" :key="tab.name">
+                <a 
+                  class="nav-link"
+                  :class="{ active: activeTab === tab.name }"
+                  :href="tab.id"
+                  @click="activeTab = tab.name"
+                >
+                  {{ tab.name }}
+                </a>
+              </li>
             </ul>
-          </div>
+          </div>          
 
           <section id="booking" class="mt-4">
             <!-- <BookingCard /> -->
@@ -87,12 +105,65 @@ const reviews = [
 </template>
 
 <style lang="scss" scoped>
+// .event-detail-content {
+//   width: 100%;
+//   padding: 24px 16px;
+  
+//   .nav-wrapper {
+//     margin: 20px 0;
+//     position: sticky; // 可選：讓選單在捲動時固定在頂部
+//     top: 0;
+//     background: #fff;
+//     z-index: 10;
+//   }
+// }
+
 .event-detail-content {
   width: 100%;
   padding: 24px 16px;
-  
+
   .nav-wrapper {
     margin: 20px 0;
+    position: sticky; // 可選：讓選單在捲動時固定在頂部
+    top: 0;
+    background: #fff;
+    z-index: 10;
+
+    .custom-nav-pills {
+
+      .nav-item {
+        position: relative;
+        // 中間分割線
+        &:not(:last-child)::after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 25%;
+          height: 50%;
+          width: 1px;
+          background-color: var(--border-default-default);
+        }
+      }
+
+      .nav-link {
+        // border-radius: 6px;
+        // color: var(--text-default-default);
+        // padding: 8px 16px;
+        border: none;
+        transition: all 0.2s ease;
+
+        &.active {
+          // background-color: #fff !important;
+          // color: var(--text-default-default) !important;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+      }
+    }
   }
+}
+
+// 讓捲動更平滑
+:deep(html) {
+  scroll-behavior: smooth;
 }
 </style>
