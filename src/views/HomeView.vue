@@ -1,14 +1,8 @@
 <script setup>
-import BootstrapChecker from "./BootstrapChecker.vue";
-import SideBar from "../components/common/SideBar.vue";
-import navbar from "../components/common/navbar.vue";
 </script>
 
 <template>
   <div>
-    <nav>
-      <navbar />
-    </nav>
     <div class="container">
 
       <div class="category-nav d-flex justify-content-between py-5">
@@ -134,20 +128,7 @@ import navbar from "../components/common/navbar.vue";
         </div>
       </div>
     </div>
-
-    <div class="row d-flex">
-      <aside>
-        <SideBar />
-      </aside>
-      <main>
-        <Search/>
-        <BootstrapChecker />
-      </main>
-      <aside></aside>
-    </div>
-    <footer></footer>
   </div>
-  <EventDetail></EventDetail>
 </template>
 
 <style scoped lang="scss">

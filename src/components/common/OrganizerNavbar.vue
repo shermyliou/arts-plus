@@ -2,16 +2,14 @@
 import { ref } from "vue";
 
 const tabs = ref([
-  { name: "全部", badgeCount: 0 },
-  { name: "藝文展覽", badgeCount: 0 },
-  { name: "藝文演出", badgeCount: 0 },
-  { name: "藝文體驗", badgeCount: 0 },
-  { name: "藝文講座", badgeCount: 0 },
-  { name: "藝文小旅遊", badgeCount: 0 },
-  { name: "線上展覽", badgeCount: 0 },
+  { name: "首頁", badgeCount: 0, path: "/" },
+  { name: "搜尋結果", badgeCount: 0, path: "/search" },
+  { name: "活動介紹", badgeCount: 0, path: "/event/:id" },
+  { name: "藝文地圖", badgeCount: 0, path: "/map" },
+  { name: "主辦方_活動編輯", badgeCount: 0, path: "/organizer" },
+  { name: "Bootstrap檢查器", badgeCount: 0, path: "/bootstrap" },
 ]);
 
-const activeTab = ref("藝文演出");
 </script>
 
 <template>
@@ -21,24 +19,23 @@ const activeTab = ref("藝文演出");
         <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
       </a>
 
-      <!-- Centered Nav Tabs
+      <!-- Centered Nav Tabs -->
       <div class="flex-grow-1 d-flex justify-content-center">
         <ul class="nav nav-pills custom-nav-pills">
           <li v-for="tab in tabs" :key="tab.name" class="nav-item">
-            <a
+            <RouterLink
               class="nav-link d-flex align-items-center justify-content-center gap-1"
-              :class="{ active: activeTab === tab.name }"
-              href="#"
-              @click.prevent="activeTab = tab.name"
+              exact-active-class="active"
+              :to="tab.path"
             >
               <span class="tab-text">{{ tab.name }}</span>
               <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
                 {{ tab.badgeCount }}
               </span>
-            </a>
+            </RouterLink>
           </li>
         </ul>
-      </div> -->
+      </div>
 
       <div class="d-flex align-items-center gap-4 ms-4">
         <div class="search-wrapper">
