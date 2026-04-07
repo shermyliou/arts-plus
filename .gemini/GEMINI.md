@@ -8,49 +8,44 @@
 
 ## Project Structure
 ART-PLUS/
-├── public/
-│   └── images/
-│       ├── ArtPlusLogo.png
-│       ├── event-1.jpg
-│       └── event-2.jpg
-├── src/
-│   ├── assets/
-│   │   ├── images/
-│   │   └── styles/
-│   │       ├── abstracts/
-│   │       ├── overrides/
-│   │       │   ├── _button.scss
-│   │       │   ├── _nav.scss
-│   │       │   ├── _navtabs.scss
-│   │       │   └── _page.scss
-│   │       ├── tokens/
-│   │       │   ├── _component.scss
-│   │       │   ├── _primitive.scss
-│   │       │   └── _semantic.scss
-│   │       └── main.scss
-│   ├── components/
-│   │   ├── common/
-│   │   │   ├── navbar.vue
-│   │   │   └── SideBar.vue
-│   │   └── ui/
-│   │       ├── CalendarView.vue
-│   │       ├── EventCard.vue
-│   │       ├── FilterSidebar.vue
-│   │       └── HorizontalEventCard.vue
-│   ├── views/
-│   │   ├── Basic.vue
-│   │   ├── BootstrapChecker.vue
-│   │   ├── HomeView.vue
-│   │   └── Search.vue
-│   ├── App.vue
-│   └── main.js
-├── .gitignore
-├── index.html
-├── jsconfig.json
-├── package-lock.json
-├── package.json
-├── README.md
-└── vite.config.js
+src
+ ┣ assets
+ ┃ ┣ images
+ ┃ ┃ ┣ event-1.jpg
+ ┃ ┃ ┗ event-2.jpg
+ ┃ ┗ styles
+ ┃ ┃ ┣ abstracts
+ ┃ ┃ ┃ ┗ _mixin.scss
+ ┃ ┃ ┣ overrides
+ ┃ ┃ ┃ ┣ _button.scss
+ ┃ ┃ ┃ ┣ _nav.scss
+ ┃ ┃ ┃ ┣ _navtabs.scss
+ ┃ ┃ ┃ ┗ _page.scss
+ ┃ ┃ ┣ tokens
+ ┃ ┃ ┃ ┣ _component.scss
+ ┃ ┃ ┃ ┣ _primitive.scss
+ ┃ ┃ ┃ ┗ _semantic.scss
+ ┃ ┃ ┗ main.scss
+ ┣ components
+ ┃ ┣ common
+ ┃ ┃ ┣ navbar.vue
+ ┃ ┃ ┗ SideBar.vue
+ ┃ ┗ ui
+ ┃ ┃ ┣ CalendarView.vue
+ ┃ ┃ ┣ EventCard.vue
+ ┃ ┃ ┣ FilterSidebar.vue
+ ┃ ┃ ┗ HorizontalEventCard.vue
+ ┣ router
+ ┃ ┗ index.js
+ ┣ stores
+ ┃ ┗ useUserStore.js
+ ┣ views
+ ┃ ┣ Basic.vue
+ ┃ ┣ BootstrapChecker.vue
+ ┃ ┣ HomeView.vue
+ ┃ ┗ Search.vue
+ ┣ App.vue
+ ┗ main.js
 
 ## Coding Style
 - Use 2 spaces for indentation.
