@@ -208,7 +208,7 @@ const scrollToSection = (id) => {
                   class="position-absolute bottom-0 start-50 translate-middle-x mb-3"
                 >
                   <button
-                    class="btn btn-outline-light btn-rect btn-sm d-inline-flex align-items-center justify-content-center gap-2 rounded-3 px-3 py-2 text-white shadow-sm"
+                    class="btn btn-outline-light btn-rect btn-sm d-inline-flex align-items-center justify-content-center gap-2 rounded-3 px-3 py-2 "
                     style="width: 156px"
                     @click="triggerPosterFileInput"
                   >
