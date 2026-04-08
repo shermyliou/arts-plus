@@ -122,7 +122,7 @@ const formatDateRange = (start, end) => {
         <!-- </div> -->
 
         <!-- Nav Tabs Section -->
-        <ul class="nav nav-pills custom-nav-pills overflow-x-auto flex-shrink-1">
+        <ul class="nav nav-pills overflow-x-auto flex-shrink-1">
           <li v-for="tab in tabs" :key="tab.name" class="nav-item">
             <a class="nav-link d-flex align-items-center justify-content-center gap-1"
               :class="{ active: activeTab === tab.name }" href="#" @click.prevent="activeTab = tab.name">
