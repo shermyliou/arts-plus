@@ -4,6 +4,11 @@ import { ref, onBeforeUnmount } from "vue";
 import { Icon } from "@iconify/vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { Color } from "@tiptap/extension-color";
+import { TextAlign } from "@tiptap/extension-text-align";
+import { Image } from "@tiptap/extension-image";
+import { Underline } from "@tiptap/extension-underline";
 
 const eventDescription = ref(
   '<p style="text-align: center;">改編自東野圭吾最感動人心的作品</p><p style="text-align: center;">在內心有破洞的時候，我收到了穿越時空的來信</p><p style="text-align: center;">即使想決定目的地，也不知道路在哪裡</p><p style="text-align: center;">即使擁有選擇，卻無法做出決定</p><p style="text-align: center;">如果有個地方，能指引迷途的我們</p><p style="text-align: center;">如果有個地方，可以聆聽我們的煩惱…</p><p><br></p><p style="text-align: center;"><strong style="color: rgb(82, 37, 4); font-size: 20px;">日本正式授權改編 東野圭吾暖心經典</strong></p><p style="text-align: center;"><strong style="color: rgb(82, 37, 4); font-size: 20px;">《解憂雜貨店》歡迎再次來信！</strong></p><p><br></p><p style="text-align: center;"><img src="https://www.figma.com/api/mcp/asset/4e36bf74-b9ec-45c9-874e-1156fe5dd3e7" width="380"></p><p><br></p><p><strong>｜劇情簡介｜</strong></p><p>三個闖空門的少年意外躲進了一間歇業多年、相傳能消煩解憂的雜貨店，過去只要在晚上將寫了煩惱的信丟進雜貨店鐵捲門的投遞口，隔天就可以在店後方的牛奶箱拿到回信解答！在看似廢棄的店裡，他們發現店內的時間似乎與外界不同，彷彿從未經歷時光流逝？此時，一封來自過去的信突然出現，他們發現自己和他人的命運似乎被一條無形的線連結了起來？</p><p>在愛情與夢想之間痛苦不已的月亮兔；搖擺於理想和繼承家業的魚店音樂人； 在道德與至親家人間難以抉擇的保羅藍儂；徘迴於報恩與生計，迷惘的汪汪該如何改變自己的人生？當自認毫無用處的少年開始擔任助人的角色，意外收到困惑之人的來信，因緣際會持筆寫下屬於他們純粹的回覆，然而在回信的同時，竟奇妙的改變了他們的人生？</p>',
@@ -11,7 +16,16 @@ const eventDescription = ref(
 
 const editor = useEditor({
   content: eventDescription.value,
-  extensions: [StarterKit],
+  extensions: [
+    StarterKit,
+    TextStyle,
+    Color,
+    Underline,
+    Image,
+    TextAlign.configure({
+      types: ["heading", "paragraph"],
+    }),
+  ],
   onUpdate: ({ editor }) => {
     eventDescription.value = editor.getHTML();
   },
@@ -351,9 +365,12 @@ const scrollToSection = (id) => {
               </div>
               <div class="tiptap-editor-wrapper border rounded-3">
                 <!-- Tiptap Toolbar -->
-                <div v-if="editor" class="editor-toolbar d-flex flex-wrap gap-1 p-2 border-bottom bg-light">
-                  <button 
-                    @click="editor.chain().focus().toggleBold().run()" 
+                <div
+                  v-if="editor"
+                  class="editor-toolbar d-flex flex-wrap gap-1 p-2 border-bottom bg-light"
+                >
+                  <button
+                    @click="editor.chain().focus().toggleBold().run()"
                     :disabled="!editor.can().chain().focus().toggleBold().run()"
                     :class="{ 'is-active': editor.isActive('bold') }"
                     class="btn btn-sm btn-light border-0"
@@ -361,18 +378,22 @@ const scrollToSection = (id) => {
                   >
                     <Icon icon="ph:text-b" />
                   </button>
-                  <button 
-                    @click="editor.chain().focus().toggleItalic().run()" 
-                    :disabled="!editor.can().chain().focus().toggleItalic().run()"
+                  <button
+                    @click="editor.chain().focus().toggleItalic().run()"
+                    :disabled="
+                      !editor.can().chain().focus().toggleItalic().run()
+                    "
                     :class="{ 'is-active': editor.isActive('italic') }"
                     class="btn btn-sm btn-light border-0"
                     title="斜體"
                   >
                     <Icon icon="ph:text-italic" />
                   </button>
-                  <button 
-                    @click="editor.chain().focus().toggleStrike().run()" 
-                    :disabled="!editor.can().chain().focus().toggleStrike().run()"
+                  <button
+                    @click="editor.chain().focus().toggleStrike().run()"
+                    :disabled="
+                      !editor.can().chain().focus().toggleStrike().run()
+                    "
                     :class="{ 'is-active': editor.isActive('strike') }"
                     class="btn btn-sm btn-light border-0"
                     title="刪除線"
@@ -380,16 +401,69 @@ const scrollToSection = (id) => {
                     <Icon icon="ph:text-strikethrough" />
                   </button>
                   <div class="vr mx-1"></div>
-                  <button 
-                    @click="editor.chain().focus().toggleBulletList().run()" 
+                  <!-- 對齊功能 -->
+                  <button
+                    @click="editor.chain().focus().setTextAlign('left').run()"
+                    :class="{
+                      'is-active': editor.isActive({ textAlign: 'left' }),
+                    }"
+                    class="btn btn-sm btn-light border-0"
+                    title="靠左對齊"
+                  >
+                    <Icon icon="ph:text-align-left" />
+                  </button>
+                  <button
+                    @click="editor.chain().focus().setTextAlign('center').run()"
+                    :class="{
+                      'is-active': editor.isActive({ textAlign: 'center' }),
+                    }"
+                    class="btn btn-sm btn-light border-0"
+                    title="置中對齊"
+                  >
+                    <Icon icon="ph:text-align-center" />
+                  </button>
+                  <button
+                    @click="editor.chain().focus().setTextAlign('right').run()"
+                    :class="{
+                      'is-active': editor.isActive({ textAlign: 'right' }),
+                    }"
+                    class="btn btn-sm btn-light border-0"
+                    title="靠右對齊"
+                  >
+                    <Icon icon="ph:text-align-right" />
+                  </button>
+                  <div class="vr mx-1"></div>
+                  <!-- 顏色功能 -->
+                  <div class="d-flex align-items-center px-2 gap-2">
+                    <Icon icon="ph:palette" class="text-secondary" />
+                    <input
+                      type="color"
+                      @input="
+                        editor
+                          .chain()
+                          .focus()
+                          .setColor($event.target.value)
+                          .run()
+                      "
+                      :value="
+                        editor.getAttributes('textStyle').color || '#000000'
+                      "
+                      class="form-control form-control-color border-0 p-0"
+                      style="width: 24px; height: 24px; cursor: pointer"
+                      title="更改文字顏色"
+                    />
+                  </div>
+                  <div class="vr mx-1"></div>
+                  <button
+                    @click="editor.chain().focus().toggleBulletList().run()"
                     :class="{ 'is-active': editor.isActive('bulletList') }"
                     class="btn btn-sm btn-light border-0"
                     title="無序列表"
                   >
                     <Icon icon="ph:list-bullets" />
                   </button>
-                  <button 
-                    @click="editor.chain().focus().toggleOrderedList().run()" 
+                  <button
+                    @click="editor.chain().focus().toggleOrderedList().run()"
                     :class="{ 'is-active': editor.isActive('orderedList') }"
                     class="btn btn-sm btn-light border-0"
                     title="有序列表"
@@ -397,33 +471,41 @@ const scrollToSection = (id) => {
                     <Icon icon="ph:list-numbers" />
                   </button>
                   <div class="vr mx-1"></div>
-                  <button 
-                    @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" 
-                    :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }"
+                  <button
+                    @click="
+                      editor.chain().focus().toggleHeading({ level: 1 }).run()
+                    "
+                    :class="{
+                      'is-active': editor.isActive('heading', { level: 1 }),
+                    }"
                     class="btn btn-sm btn-light border-0"
                     title="標題 1"
                   >
                     H1
                   </button>
-                  <button 
-                    @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" 
-                    :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }"
+                  <button
+                    @click="
+                      editor.chain().focus().toggleHeading({ level: 2 }).run()
+                    "
+                    :class="{
+                      'is-active': editor.isActive('heading', { level: 2 }),
+                    }"
                     class="btn btn-sm btn-light border-0"
                     title="標題 2"
                   >
                     H2
                   </button>
                   <div class="vr mx-1"></div>
-                  <button 
-                    @click="editor.chain().focus().undo().run()" 
+                  <button
+                    @click="editor.chain().focus().undo().run()"
                     :disabled="!editor.can().chain().focus().undo().run()"
                     class="btn btn-sm btn-light border-0"
                     title="復原"
                   >
                     <Icon icon="ph:arrow-u-up-left" />
                   </button>
-                  <button 
-                    @click="editor.chain().focus().redo().run()" 
+                  <button
+                    @click="editor.chain().focus().redo().run()"
                     :disabled="!editor.can().chain().focus().redo().run()"
                     class="btn btn-sm btn-light border-0"
                     title="重做"
@@ -520,7 +602,8 @@ const scrollToSection = (id) => {
 
 .tiptap-editor-wrapper {
   background-color: #fff;
-  
+  overflow: hidden; /* 確保內部的工具列背景不會超出父層的圓角 */
+
   .editor-toolbar {
     .btn {
       color: #666;
@@ -532,20 +615,25 @@ const scrollToSection = (id) => {
         color: white;
       }
     }
+    .form-control-color::-webkit-color-swatch {
+      border: none;
+      border-radius: 4px;
+    }
   }
 
   .tiptap-content {
     min-height: 400px;
-    
+
     :deep(.ProseMirror) {
       outline: none;
       min-height: 400px;
-      
+
       p {
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
       }
 
-      ul, ol {
+      ul,
+      ol {
         padding-left: 1.5rem;
       }
 
@@ -556,8 +644,14 @@ const scrollToSection = (id) => {
         margin: 1rem auto;
       }
 
-      h1 { font-size: 2rem; margin-bottom: 1rem; }
-      h2 { font-size: 1.5rem; margin-bottom: 1rem; }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
     }
   }
 }
