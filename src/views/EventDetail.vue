@@ -3,7 +3,10 @@ import { ref } from 'vue';
 import HeroEventCard from '@/components/ui/HeroEventCard.vue';
 import EventLayout from '@/components/common/EventLayout.vue';
 import BookingCard from '@/components/ui/BookingCard.vue';
-import ReviewCard from '@/components/ui/ReviewCard.vue';
+import ReviewCard from '@/components/ui/ReviewCard.vue'; 
+import EventNavTabs from '@/components/ui/EventNavTabs.vue';
+import VenueSelector from '@/components/ui/VenueSelector.vue';
+import NewsMarquee from '@/components/ui/NewsMarquee.vue';
 
 // 引入活動海報圖片 
 const eventPoster = '/images/event-dog.jpeg'
@@ -19,6 +22,17 @@ const tabs = [
   { name: '重要須知', id: '#notice' },
   { name: '心得評論', id: '#review' } 
 ];
+
+//場館
+const venueOptions = [
+  { id: 'v1', name: '臺北市藝文推廣處城市舞台' },
+  { id: 'v2', name: '衛武營國家藝術文化中心戲劇院' },
+  { id: 'v3', name: '臺中市中山堂' },
+  { id: 'v4', name: '桃園展演中心展演廳' }
+];
+
+// 定義選中的狀態 (對應 v-model)
+const selectedVenueId = ref('v1');
 
 //評論資料
 const reviews = [
@@ -39,7 +53,7 @@ const reviews = [
 
       <template #default>
         <div class="event-detail-content">
-          <!-- <HeroEventCard /> -->
+          <!-- HeroEventCard  -->
           <HeroEventCard 
             :image="eventPoster" 
             title="果陀劇場《深夜小狗神秘習題》"
@@ -48,24 +62,32 @@ const reviews = [
           />
           
           <!-- Navtabs -->
-          <div class="nav-wrapper">
-            <ul class="nav nav-pills custom-nav-pills">
-              <li class="nav-item" v-for="tab in tabs" :key="tab.name">
-                <a 
-                  class="nav-link"
-                  :class="{ active: activeTab === tab.name }"
-                  :href="tab.id"
-                  @click="activeTab = tab.name"
-                >
-                  {{ tab.name }}
-                </a>
-              </li>
-            </ul>
-          </div>          
+          <EventNavTabs 
+            :tabs="tabs" 
+            v-model:activeTab="activeTab" 
+          />
 
-          <section id="booking" class="mt-4">
+          <!-- 最新消息跑馬燈 -->
+          <NewsMarquee />
+
+
+          <section id="booking" class="d-flex flex-column gap-4 py-5">
+            <h2>購票資訊</h2>
+
+            <!-- </VenueSelector> -->
+            <div class="venue-selector">
+              <h3>選擇場館</h3>
+              <VenueSelector 
+                :venues="venueOptions" 
+                v-model="selectedVenueId" 
+              />
+              <!-- <p class="mt-2">當前選中 ID: {{ selectedVenueId }}</p> -->
+            </div>
+
             <!-- <BookingCard /> -->
-            <BookingCard 
+            <div class="booking">
+              <h3>選擇場次</h3>
+              <BookingCard 
               date="2026/3/28 (六) 10:00"
               location="衛武營國家藝術文化中心"
               stock="253"
@@ -78,10 +100,25 @@ const reviews = [
               stock="12"
               price="750 、 1,000"
               class="mt-3" 
-            />
+            />    
+            </div>
           </section>
 
-          <section id="review" class="mt-4">
+          <section id="info" class="d-flex flex-column gap-4 py-5">
+            <h2>活動資訊</h2>
+          </section>
+
+          <section id="map" class="d-flex flex-column gap-4 py-5">
+            <h2>藝文地圖</h2>
+          </section>
+
+          <section id="notice" class="d-flex flex-column gap-4 py-5">
+            <h2>重要須知</h2>
+          </section>
+
+
+          <section id="review" class="d-flex flex-column gap-4 py-5">
+            <h2>心得評論</h2>
             <!-- <ReviewCard/> -->
             <ReviewCard 
               v-for="item in reviews" 
@@ -89,8 +126,14 @@ const reviews = [
               :userName="item.name"
               :score="item.score"
               :comment="item.text"
-              class="mb-3"
             />
+
+            <!-- 發表評論btn -->
+            <button class="btn btn-primary rounded-2" >
+              <Icon icon="ph:pencil-line-fill" width="20" height="20" />
+              發表評論
+            </button>
+
           </section>
         </div>
       </template>
@@ -103,52 +146,25 @@ const reviews = [
 </template>
 
 <style lang="scss" scoped>
-.event-detail-content {
+.event-detail-content{
   width: 100%;
-  padding: 24px 16px;
+  padding: 0 24px;
 
-  .nav-wrapper {
-    margin: 20px 0;
-    position: sticky; // 可選：讓選單在捲動時固定在頂部
-    top: 0;
-    background: #fff;
-    z-index: 10;
-
-    .custom-nav-pills {
-
-      .nav-item {
-        position: relative;
-        // 中間分割線
-        &:not(:last-child)::after {
-          content: "";
-          position: absolute;
-          right: 0;
-          top: 25%;
-          height: 50%;
-          width: 1px;
-          background-color: var(--border-default-default);
-        }
-      }
-
-      .nav-link {
-        // border-radius: 6px;
-        // color: var(--text-default-default);
-        // padding: 8px 16px;
-        border: none;
-        transition: all 0.2s ease;
-
-        &.active {
-          // background-color: #fff !important;
-          // color: var(--text-default-default) !important;
-          box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-      }
-    }
+  h3{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-default-secondary);
+    margin-bottom: 16px;
   }
+
+  .venue-selector{
+    margin-bottom: 8px;
+  }
+
+  // #review{
+  //   background-color: ;
+  // }
+
 }
 
-// 讓捲動更平滑
-:deep(html) {
-  scroll-behavior: smooth;
-}
 </style>

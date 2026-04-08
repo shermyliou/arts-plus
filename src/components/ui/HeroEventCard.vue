@@ -55,7 +55,7 @@ defineProps({
     <div class="hero-event-card__body">
       <div class="hero-event-card__content">
         <div class="hero-event-card__title-group">
-          <h3 class="hero-event-card__title">{{ title }}</h3>
+          <h1 class="hero-event-card__title">{{ title }}</h1>
         </div>
         
         <div class="hero-event-card__info">
@@ -112,7 +112,7 @@ defineProps({
   background: var(--background-default-default);
   border-radius: var(--border-radius-2);
   overflow: hidden;
-  padding: 0 56px;
+  padding: 16px 56px;
   width: 100%;
   margin: 0 auto;
   // border: 1px solid var(--border-default-default);
@@ -127,6 +127,7 @@ defineProps({
     height: 100%;
     width: 100%;
     position: relative;
+    padding: 16px 0;
   }
 
   &__image {
@@ -148,10 +149,11 @@ defineProps({
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 16px 0px;
   }
 
   &__title {
-    font-size: 20px;
+    font-size: 24px;
     font-weight: 700;
     line-height: 1.2;
     color: var(--text-default-default);
@@ -180,7 +182,7 @@ defineProps({
 
   &__score {
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+
     font-weight: 400;
     color: var(--text-default-default);
   }
@@ -193,7 +195,6 @@ defineProps({
   &__star-icon {
     font-size: 20px;
     //color: var(--icon-default-tertiary);
-    //color: var(--icon-warning-tertiary);
     color: $yellow-400;
   }
 

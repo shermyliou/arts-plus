@@ -40,9 +40,9 @@ const emit = defineEmits(['buy'])
         <p class="booking-card__text">票價：{{ price }}</p>
       </div>
     </div>
-    <button class="booking-card__button" @click="emit('buy')">
-      購買
-    </button>
+
+    <button class="btn btn-primary rounded-2">購買</button>
+
   </div>
 </template>
 
@@ -52,18 +52,29 @@ const emit = defineEmits(['buy'])
 @import "@/assets/styles/tokens/_semantic.scss";
 
 .booking-card {
-  background-color: var(--gray-0);
-  border: 1px solid var(--border-default-default);
-  border-radius: $border-radius-2; // 圓角設定為 $border-radius-2
+  background-color: #fff; // 基礎設定為純白背景
+  border: 1px solid #eee; // 基礎設定為較淺的邊框
+  border-radius: $border-radius-2;
   padding: 12px 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  transition: all 0.3s ease; // 確保所有變化都具有流暢轉場
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-3px); // 懸浮時向上浮動 3px
+    box-shadow: var(--bs-shadow-lg); // 增加 Bootstrap 大陰影
+    background-color: $gray-50; // 懸浮時背景設為 $gray-50
+    border-color: transparent; // 隱藏邊框以凸顯陰影效果
+    border: 1px solid $gray-300 !important;
+  }
 
   &__body {
     display: flex;
     flex-direction: column;
+    justify-content: center; // 確保文字垂直置中
     gap: 16px;
     padding: 12px 0;
   }
@@ -99,29 +110,9 @@ const emit = defineEmits(['buy'])
     }
   }
 
-  &__button {
-    width: 100%;
-    height: 40px;
-    border-radius: var(--border-radius-1);
-    font-weight: 700;
-    font-size: 14px;
-    letter-spacing: 1.68px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: var(--background-brand-default);
-    color: var(--text-brand-on-brand);
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: var(--background-brand-hover);
-    }
-
-    &:active {
-      transform: scale(0.98);
-    }
+  // 確保購買按鈕不受外層 hover 背景影響
+  .btn-primary {
+    z-index: 1;
   }
 }
 </style>
