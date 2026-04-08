@@ -281,12 +281,35 @@ const toggleOption = (filterIndex, option) => {
 </template>
 
 <style scoped lang="scss">
+@use 'bootstrap' as *;
+
 .filter-sidebar {
   width: 100%;
   max-width: var(--aside-left-max-width);
-  padding-top: 16px;
+  padding: var(--aside-padding-x) var(--main-padding-y);
   padding-bottom: 16px;
   top: var(--component-navbar-height);
+    &::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    }
+
+    /* 滑動時（hover 容器）才顯示 */
+    &:hover::-webkit-scrollbar-thumb {
+    background: var(--text-default-tertiary);
+    }
+}
+
+@include media-breakpoint-down(md) {
+  .filter-sidebar {
+    max-width: none;
+    padding: 0;
+  }
 }
 
 .filter-header {

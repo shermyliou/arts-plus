@@ -7,7 +7,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        loadPaths: [path.resolve(__dirname, 'node_modules')]
+        loadPaths: [path.resolve(__dirname, 'node_modules')],
       }
     }
   },
