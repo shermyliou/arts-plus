@@ -1,4 +1,6 @@
 .btn {
+  height: var(--component-height-normal);
+  font-size: 1rem;
   letter-spacing: 0.12em; 
   text-indent: 0.12em;
   display: inline-flex;
@@ -87,15 +89,14 @@
 }
 
 .btn-lg {
-    --bs-btn-padding-y: 1rem;
-    --bs-btn-padding-x: 1.75rem;
-    --bs-btn-font-size: 1rem;
+    height: var(--component-height-large);
+    padding-left: var(--component-padding-x-large);
+    padding-right: var(--component-padding-x-large);
 }
 
 .btn-sm {
-    --bs-btn-padding-y: 0.375rem;
-    --bs-btn-padding-x: 1rem;
-    --bs-btn-font-size: 0.875rem;
+    height: var(--component-height-small);
+    --bs-btn-padding-x: 1.5em;
 }
 
 
