@@ -8,6 +8,13 @@
   display: flex;
   list-style: none;
 
+  overflow-x: auto;  /* 或 overflow-y: auto，依你的滾動方向 */
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .nav-item {
     flex: 1;
     &:not(:last-child) {

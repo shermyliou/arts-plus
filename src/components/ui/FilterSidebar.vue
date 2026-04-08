@@ -281,6 +281,8 @@ const toggleOption = (filterIndex, option) => {
 </template>
 
 <style scoped lang="scss">
+@use 'bootstrap' as *;
+
 .filter-sidebar {
   width: 100%;
   max-width: var(--aside-left-max-width);
@@ -301,6 +303,13 @@ const toggleOption = (filterIndex, option) => {
     &:hover::-webkit-scrollbar-thumb {
     background: var(--text-default-tertiary);
     }
+}
+
+@include media-breakpoint-down(md) {
+  .filter-sidebar {
+    max-width: none;
+    padding: 0;
+  }
 }
 
 .filter-header {
