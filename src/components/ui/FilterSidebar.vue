@@ -215,7 +215,7 @@ const toggleOption = (filterIndex, option) => {
 </script>
 
 <template>
-  <aside class="filter-sidebar h-100">
+  <aside class="filter-sidebar h-100 overflow-y-auto">
     <div v-for="(filter, index) in filters" :key="filter.label" class="filter-group">
       <div v-if="index > 0" class="filter-divider mx-3"></div>
       <button 
@@ -282,12 +282,11 @@ const toggleOption = (filterIndex, option) => {
 
 <style scoped lang="scss">
 .filter-sidebar {
-  background-color: var(--background-default-secondary);
-  width: 280px;
-  min-width: 280px;
-  overflow-y: auto;
+  width: 100%;
+  max-width: var(--aside-left-max-width);
   padding-top: 16px;
   padding-bottom: 16px;
+  top: var(--component-navbar-height);
 }
 
 .filter-header {
