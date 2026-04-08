@@ -127,7 +127,7 @@ const formatDateRange = (start, end) => {
             <a class="nav-link d-flex align-items-center justify-content-center gap-1"
               :class="{ active: activeTab === tab.name }" href="#" @click.prevent="activeTab = tab.name">
               <span class="tab-text">{{ tab.name }}</span>
-              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
+              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger">
                 {{ tab.badgeCount }}
               </span>
             </a>
