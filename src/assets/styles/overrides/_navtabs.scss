@@ -26,6 +26,8 @@
   }
   
   .nav-link {
+    padding-top: 0.1em; //針對中文高度調整
+
     width: 100%;
     padding: 0 var(--component-padding-x-small);
     border-radius: var(--border-radius-pill);
