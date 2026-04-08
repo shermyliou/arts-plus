@@ -75,7 +75,7 @@ const formatDateRange = (start, end) => {
     <FilterSidebar />
 
     <!-- Main Content Area -->
-    <div class="search-content flex-grow-1 d-flex flex-column py-4 px-4 overflow-y-auto col-9">
+    <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3">
 
       <!-- Calendar View Section -->
       <div class="position-fixed winherit">
@@ -83,7 +83,7 @@ const formatDateRange = (start, end) => {
       </div>
 
       <!-- Fixed Header Section -->
-      <div class="fixed-header-section flex-shrink-0">
+      <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center">
         <!-- Search Bar Section -->
         <!-- <div class="row mb-4 justify-content-center sticky-top topnav"> -->
           <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
@@ -105,26 +105,23 @@ const formatDateRange = (start, end) => {
         <!-- </div> -->
 
         <!-- Nav Tabs Section -->
-        <div class="row mb-4">
-          <div class="col-10">
-            <ul class="nav nav-pills custom-nav-pills overflow-x-auto">
-              <li v-for="tab in tabs" :key="tab.name" class="nav-item">
-                <a
-                  class="nav-link d-flex align-items-center justify-content-center gap-1"
-                  :class="{ active: activeTab === tab.name }"
-                  href="#"
-                  @click.prevent="activeTab = tab.name"
-                >
-                  <span class="tab-text">{{ tab.name }}</span>
-                  <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
-                    {{ tab.badgeCount }}
-                  </span>
-                </a>
-              </li>
-            </ul>
-          </div>
+        <ul class="nav nav-pills custom-nav-pills overflow-x-auto flex-shrink-1">
+          <li v-for="tab in tabs" :key="tab.name" class="nav-item">
+            <a
+              class="nav-link d-flex align-items-center justify-content-center gap-1"
+              :class="{ active: activeTab === tab.name }"
+              href="#"
+              @click.prevent="activeTab = tab.name"
+            >
+              <span class="tab-text">{{ tab.name }}</span>
+              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
+                {{ tab.badgeCount }}
+              </span>
+            </a>
+          </li>
+        </ul>
           <!-- Filter/Sort Section -->
-          <div class="col-2">
+          <div class="col-2 d-flex justify-content-end">
             <div class="dropdown">
               <button 
                 class="btn btn-sort-dropdown dropdown-toggle" 
@@ -157,24 +154,21 @@ const formatDateRange = (start, end) => {
               </ul>
             </div>
           </div>
-        </div>
       </div>
 
       <!-- Results Section (Scrollable Area) -->
-      <div class="results-scroll-area flex-grow-1 overflow-y-auto mt-2">
-        <div class="row g-4 pb-4">
-          <div v-for="event in filteredEvents" :key="event.id" class="col-12">
-            <HorizontalEventCard 
-              :title="event.title"
-              :category="event.category"
-              :rating="event.rating"
-              :ticket-status="event.ticketStatus"
-              :time="formatDateRange(event.startDate, event.endDate)"
-              :location="`${event.city} ${event.venue}`"
-              :price-range="formatPrice(event.price)"
-              :image="event.imageUrl"
-            />
-          </div>
+      <div class="results-scroll-area d-flex flex-column overflow-y-auto">
+        <div v-for="event in filteredEvents" :key="event.id">
+          <HorizontalEventCard 
+            :title="event.title"
+            :category="event.category"
+            :rating="event.rating"
+            :ticket-status="event.ticketStatus"
+            :time="formatDateRange(event.startDate, event.endDate)"
+            :location="`${event.city} ${event.venue}`"
+            :price-range="formatPrice(event.price)"
+            :image="event.imageUrl"
+          />
         </div>
       </div>
     </div>
@@ -184,26 +178,31 @@ const formatDateRange = (start, end) => {
 <style scoped lang="scss">
 
 .search-page-container {
+  // max-width: var(--main-container-max-width);
   height: 100vh;
 }
 
 .search-content {
-  max-width: var(--main-container-max-width);
   height: 100%;
+  gap: var(--main-gap-y-large);
 }
 
 .results-scroll-area {
   min-height: 0; // Essential for flex-grow with overflow
+  gap: var(--main-gap-x);
   
   &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
+    width: 4px;
     background: transparent;
   }
+
   &::-webkit-scrollbar-thumb {
-    background: var(--border-default-default);
-    border-radius: 10px;
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: var(--text-default-tertiary);
   }
 }
 
@@ -320,6 +319,10 @@ const formatDateRange = (start, end) => {
   margin-top: 4px;
   box-shadow: none;
   background-color: var(--background-default-default);
+
+  &.show {
+    inset: 0px 0px auto auto !important;
+  }
 
   .dropdown-item {
     height: 28px;

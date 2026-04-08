@@ -42,7 +42,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="horizontal-event-card col-6">
+  <div class="horizontal-event-card">
     <div class="horizontal-event-card__image">
       <img :src="image" :alt="title" />
     </div>
