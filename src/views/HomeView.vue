@@ -1,14 +1,9 @@
 <script setup>
-//import BootstrapChecker from './BootstrapChecker.vue'
-//import SideBar from '../components/common/SideBar.vue';
-//import navbar from '../components/common/navbar.vue'
-
-import EventDetail from './EventDetail.vue';
-
-//import HeroEventCard from '@/components/ui/HeroEventCard.vue';
-import BootstrapChecker from './BootstrapChecker.vue'
 import SideBar from '../components/common/SideBar.vue';
-import navbar from '../components/common/navbar.vue'
+import PublicNavbar from '../components/common/PublicNavbar.vue';
+
+import BootstrapChecker from './BootstrapChecker.vue';
+import EventDetail from './EventDetail.vue';
 import Search from './Search.vue';
 
 </script>
@@ -141,12 +136,7 @@ import Search from './Search.vue';
       </div>
     </div>
 
-    <EventDetail></EventDetail>
-    
-
-    <HorizontalEventCard />
     <footer></footer>
-
   </div>
 </template>
 

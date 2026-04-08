@@ -1,4 +1,5 @@
 <script setup>
+import { ref } from 'vue'; 
 import HeroEventCard from '@/components/ui/HeroEventCard.vue';
 import EventLayout from '@/components/common/EventLayout.vue';
 import BookingCard from '@/components/ui/BookingCard.vue';
@@ -102,19 +103,6 @@ const reviews = [
 </template>
 
 <style lang="scss" scoped>
-// .event-detail-content {
-//   width: 100%;
-//   padding: 24px 16px;
-  
-//   .nav-wrapper {
-//     margin: 20px 0;
-//     position: sticky; // 可選：讓選單在捲動時固定在頂部
-//     top: 0;
-//     background: #fff;
-//     z-index: 10;
-//   }
-// }
-
 .event-detail-content {
   width: 100%;
   padding: 24px 16px;

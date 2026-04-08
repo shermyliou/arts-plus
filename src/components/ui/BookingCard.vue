@@ -54,24 +54,24 @@ const emit = defineEmits(['buy'])
 .booking-card {
   background-color: var(--gray-0);
   border: 1px solid var(--border-default-default);
-  border-radius: $border-radius-3; // 圓角設定為 24px
-  padding: 16px 32px;
+  border-radius: $border-radius-2; // 圓角設定為 $border-radius-2
+  padding: 12px 24px;
   width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 24px;
-    padding: 16px 0;
+    gap: 16px;
+    padding: 12px 0;
   }
 
   &__info-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   &__info-item {
@@ -82,18 +82,18 @@ const emit = defineEmits(['buy'])
   &__detail-group {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   &__text {
     margin: 0;
     font-family: 'Roboto', 'Noto Sans JP', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.5;
     color: #000;
 
     &--large {
-      font-size: 20px;
+      font-size: 16px;
       line-height: 1.2;
       color: var(--text-default-default);
     }
@@ -101,7 +101,7 @@ const emit = defineEmits(['buy'])
 
   &__button {
     width: 100%;
-    height: 56px;
+    height: 40px;
     border-radius: var(--border-radius-1);
     font-weight: 700;
     font-size: 14px;
