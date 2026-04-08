@@ -1,14 +1,16 @@
 .btn {
   height: var(--component-height-normal);
   font-size: 1rem;
-  letter-spacing: 0.12em; 
   text-indent: 0.12em;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-family: $btn-font-family;
   font-weight: $btn-font-weight;
-  line-height: $btn-line-height;
+  letter-spacing: $btn-letter-spacing;
+
+  padding-top: 0.1em;
+  padding-bottom: 0;
+
   .btn-check:checked + & {
   background-color: $background-brand-default;
   }
