@@ -60,6 +60,10 @@
     }
 }
 
+.nav-link:first-child {
+  border-left: none;
+}
+
 .nav-item:has(.nav-link.active) + .nav-item .nav-link {
   border-left: none;
 }
