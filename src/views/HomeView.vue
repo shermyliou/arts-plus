@@ -1,4 +1,11 @@
 <script setup>
+import SideBar from '../components/common/SideBar.vue';
+import PublicNavbar from '../components/common/PublicNavbar.vue';
+
+import BootstrapChecker from './BootstrapChecker.vue';
+import EventDetail from './EventDetail.vue';
+import Search from './Search.vue';
+
 </script>
 
 <template>
@@ -128,6 +135,8 @@
         </div>
       </div>
     </div>
+
+    <footer></footer>
   </div>
 </template>
 
