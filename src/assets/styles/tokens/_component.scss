@@ -4,13 +4,14 @@ $yellow:        $yellow-400;
 $red:           $red-400;
 
 $primary:       $brand-400;
-$secondary:     $brand-700;
 $info:          $light-blue-400;
 $light:         $brand-100;
 $dark:          $brand-900;
 
 // 字體
-$font-family-base:        "Helvetica Neue", "Inter", "Noto Sans TC", system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";;
+$font-family-base:        "Helvetica Neue", "Quattrocento Sans", -apple-system, "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Arial, "Noto Sans TC", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+$headings-font-family:    "Merriweather", -apple-system, "Helvetica Neue", "Segoe UI", Roboto, "Noto Sans", "Liberation Sans", Arial, "Noto Sans TC", system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 
 // 標題
 $headings-font-weight:        700;
@@ -44,13 +45,11 @@ $btn-border-radius-sm:       $border-radius-pill;
 $btn-border-radius-lg:       $border-radius-pill;
 
 $btn-padding-y:              0.625rem;
-$btn-padding-x:              1.25rem;
+$btn-padding-x:              1.5em;
 $btn-font-size:              0.875rem;
 $btn-border-width:           0;
 
-$btn-font-family:      "Noto Sans TC";
-$btn-font-weight:      480; 
-$btn-line-height:      140%;   
+$btn-font-weight:      700; 
 $btn-letter-spacing:   0.12em;  
 
 .topnav{

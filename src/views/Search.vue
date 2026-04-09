@@ -23,15 +23,15 @@ const activeTab = ref("全部");
 
 const filteredEvents = computed(() => {
   let results = eventStore.events;
-  
+
   if (activeTab.value !== '全部') {
     results = results.filter(e => e.category === activeTab.value);
   }
-  
+
   if (searchQuery.value) {
     results = results.filter(e => e.title.includes(searchQuery.value));
   }
-  
+
   return results;
 });
 
@@ -72,109 +72,101 @@ const formatDateRange = (start, end) => {
 <template>
   <div class="search-page-container d-flex">
     <!-- Left Sidebar: Filters -->
-    <FilterSidebar />
+    <FilterSidebar class="sidebar"></FilterSidebar>
 
     <!-- Main Content Area -->
-    <div class="search-content flex-grow-1 d-flex flex-column py-4 px-4 overflow-y-auto col-9">
+    <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3">
 
       <!-- Calendar View Section -->
-      <div class="position-fixed winherit">
-        <!-- <CalendarView /> -->
-      </div>
+      <!-- <div class="position-fixed winherit"> -->
+      <!-- <CalendarView /> -->
+      <!-- </div> -->
 
       <!-- Fixed Header Section -->
-      <div class="fixed-header-section flex-shrink-0">
+      <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center">
+
+        <button class="btn btn-outline-secondary w-auto text-nowrap sidebar-toggle" type="button" data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+          <Icon icon="ph:funnel" width="1em" height="1em" />
+          篩選
+        </button>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">篩選器</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <FilterSidebar />
+          </div>
+        </div>
         <!-- Search Bar Section -->
         <!-- <div class="row mb-4 justify-content-center sticky-top topnav"> -->
-          <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
-            <!-- Search Input Container -->
-            <!-- <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2"> -->
-              <!-- <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" /> -->
-              <!-- <input 
+        <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
+        <!-- Search Input Container -->
+        <!-- <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2"> -->
+        <!-- <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" /> -->
+        <!-- <input 
                 v-model="searchQuery"
                 type="text" 
                 class="search-input border-0 bg-transparent flex-grow-1 ms-2" 
                 placeholder="搜尋" 
               /> -->
-            <!-- </div> -->
-            <!-- Search Button -->
-            <!-- <button class="btn btn-search rounded-pill px-4 py-2"> -->
-              <!-- 搜尋 -->
-            <!-- </button> -->
-          <!-- </div> -->
+        <!-- </div> -->
+        <!-- Search Button -->
+        <!-- <button class="btn btn-search rounded-pill px-4 py-2"> -->
+        <!-- 搜尋 -->
+        <!-- </button> -->
+        <!-- </div> -->
         <!-- </div> -->
 
         <!-- Nav Tabs Section -->
-        <div class="row mb-4">
-          <div class="col-10">
-            <ul class="nav nav-pills custom-nav-pills overflow-x-auto">
-              <li v-for="tab in tabs" :key="tab.name" class="nav-item">
-                <a
-                  class="nav-link d-flex align-items-center justify-content-center gap-1"
-                  :class="{ active: activeTab === tab.name }"
-                  href="#"
-                  @click.prevent="activeTab = tab.name"
-                >
-                  <span class="tab-text">{{ tab.name }}</span>
-                  <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
-                    {{ tab.badgeCount }}
-                  </span>
+        <ul class="nav nav-pills overflow-x-auto flex-shrink-1">
+          <li v-for="tab in tabs" :key="tab.name" class="nav-item">
+            <a class="nav-link d-flex align-items-center justify-content-center gap-1"
+              :class="{ active: activeTab === tab.name }" href="#" @click.prevent="activeTab = tab.name">
+              <span class="tab-text">{{ tab.name }}</span>
+              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger">
+                {{ tab.badgeCount }}
+              </span>
+            </a>
+          </li>
+        </ul>
+        <!-- Filter/Sort Section -->
+        <div class="col-2 d-flex justify-content-end">
+          <div class="dropdown">
+            <button class="btn btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="sort-header">
+                <div class="sort-title-area">
+                  <div class="sort-icon-wrapper">
+                    <Icon icon="ph:sort-ascending" width="20" height="20" class="sort-icon" />
+                  </div>
+                  <span class="sort-text">排序</span>
+                </div>
+                <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" />
+              </div>
+            </button>
+            <ul class="dropdown-menu sort-dropdown-menu" aria-labelledby="sortDropdown">
+              <li v-for="option in sortOptions" :key="option">
+                <a class="dropdown-item" href="#" @click.prevent="currentSort = option"
+                  :class="{ active: currentSort === option }">
+                  {{ option }}
                 </a>
               </li>
             </ul>
-          </div>
-          <!-- Filter/Sort Section -->
-          <div class="col-2">
-            <div class="dropdown">
-              <button 
-                class="btn btn-sort-dropdown dropdown-toggle" 
-                type="button" 
-                id="sortDropdown" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false"
-              >
-                <div class="sort-header">
-                  <div class="sort-title-area">
-                    <div class="sort-icon-wrapper">
-                      <Icon icon="ph:sort-ascending" width="20" height="20" class="sort-icon" />
-                    </div>
-                    <span class="sort-text">排序</span>
-                  </div>
-                  <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" />
-                </div>
-              </button>
-              <ul class="dropdown-menu sort-dropdown-menu" aria-labelledby="sortDropdown">
-                <li v-for="option in sortOptions" :key="option">
-                  <a 
-                    class="dropdown-item" 
-                    href="#" 
-                    @click.prevent="currentSort = option"
-                    :class="{ active: currentSort === option }"
-                  >
-                    {{ option }}
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </div>
 
       <!-- Results Section (Scrollable Area) -->
-      <div class="results-scroll-area flex-grow-1 overflow-y-auto mt-2">
-        <div class="row g-4 pb-4">
-          <div v-for="event in filteredEvents" :key="event.id" class="col-12">
-            <HorizontalEventCard 
-              :title="event.title"
-              :category="event.category"
-              :rating="event.rating"
-              :ticket-status="event.ticketStatus"
-              :time="formatDateRange(event.startDate, event.endDate)"
-              :location="`${event.city} ${event.venue}`"
-              :price-range="formatPrice(event.price)"
-              :image="event.imageUrl"
-            />
-          </div>
+      <div class="results-scroll-area d-flex flex-column overflow-y-auto">
+        <div v-for="event in filteredEvents" :key="event.id">
+          <HorizontalEventCard :title="event.title" :category="event.category" :rating="event.rating"
+            :ticket-status="event.ticketStatus" :time="formatDateRange(event.startDate, event.endDate)"
+            :location="`${event.city} ${event.venue}`" :price-range="formatPrice(event.price)"
+            :image="event.imageUrl" />
         </div>
       </div>
     </div>
@@ -182,28 +174,57 @@ const formatDateRange = (start, end) => {
 </template>
 
 <style scoped lang="scss">
+.sidebar-toggle {
+    display: none; 
+  }
+
+.fixed-header-section {
+  gap: var(--main-gap-x);
+}
+  
+@media (max-width: 768px) {
+  .sidebar{
+    display: none;
+  }
+
+  .sidebar-toggle {
+    display: flex;
+    align-items: center;
+    flex-shrink: 1;
+  }
+}
+
+  .custom-nav-pills>.nav-item>.nav-link.active {
+    background-color: var(--background-brand-hover);
+    color: var(--text-brand-on-brand);
+  }
 
 .search-page-container {
+  // max-width: var(--main-container-max-width);
   height: 100vh;
 }
 
 .search-content {
-  max-width: var(--main-container-max-width);
   height: 100%;
+  gap: var(--main-gap-y-large);
 }
 
 .results-scroll-area {
   min-height: 0; // Essential for flex-grow with overflow
-  
+  gap: var(--main-gap-x);
+
   &::-webkit-scrollbar {
-    width: 6px;
-  }
-  &::-webkit-scrollbar-track {
+    width: 4px;
     background: transparent;
   }
+
   &::-webkit-scrollbar-thumb {
-    background: var(--border-default-default);
-    border-radius: 10px;
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  &:hover::-webkit-scrollbar-thumb {
+    background: var(--text-default-tertiary);
   }
 }
 
@@ -284,7 +305,7 @@ const formatDateRange = (start, end) => {
       display: flex;
       align-items: center;
       gap: 6px;
-      
+
       .sort-icon-wrapper {
         display: flex;
         align-items: center;
@@ -321,6 +342,10 @@ const formatDateRange = (start, end) => {
   box-shadow: none;
   background-color: var(--background-default-default);
 
+  &.show {
+    inset: 0px 0px auto auto !important;
+  }
+
   .dropdown-item {
     height: 28px;
     padding: 0 8px;
@@ -332,7 +357,7 @@ const formatDateRange = (start, end) => {
     line-height: 1.4;
     letter-spacing: 0.14px;
     color: var(--text-default-default);
-    
+
     &::before {
       content: '';
       width: 24px;
@@ -353,7 +378,7 @@ const formatDateRange = (start, end) => {
   }
 }
 
-.winherit{
+.winherit {
   width: inherit;
 }
 </style>
