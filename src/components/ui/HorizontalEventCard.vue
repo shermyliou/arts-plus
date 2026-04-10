@@ -42,7 +42,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="horizontal-event-card col-6">
+  <div class="horizontal-event-card">
     <div class="horizontal-event-card__image">
       <img :src="image" :alt="title" />
     </div>
@@ -181,7 +181,6 @@ defineProps({
     gap: var(--component-gap-x-small);
     color: var(--text-warning-tertiary);
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
     
     &-icon {
       font-size: 20px;
@@ -227,8 +226,7 @@ defineProps({
   &__price {
     font-size: 20px;
     font-weight: 700;
-    color: var(--text-brand-tertiary); // Matches $brand-500 (#978F87)
-    font-family: 'Inter', sans-serif;
+    color: var(--text-brand-tertiary);
   }
 }
 </style>
