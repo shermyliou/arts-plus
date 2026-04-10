@@ -1,8 +1,5 @@
 <script setup>
 import { onMounted } from "vue"; // 必須引入 onMounted
-import BootstrapChecker from "./BootstrapChecker.vue";
-import SideBar from "../components/common/SideBar.vue";
-import navbar from "../components/common/navbar.vue";
 
 onMounted(() => {
   // 確保在 DOM 渲染完成後才抓取元素
@@ -29,9 +26,6 @@ onMounted(() => {
 
 <template>
   <div>
-    <nav>
-      <navbar />
-    </nav>
     <main class="main-container">
       <div class="character-grid">
         <div class="character-card">
@@ -340,21 +334,6 @@ onMounted(() => {
         <p class="m-0">© Copyright 2026. ART+ All Right Reserved</p>
       </div>
     </footer>
-
-    <div class="row d-flex">
-      <aside>
-        <SideBar />
-      </aside>
-      <main>
-        <Search />
-        <BootstrapChecker />
-      </main>
-      <aside></aside>
-    </div>
-
-    <EventDetail></EventDetail>
-
-    <footer></footer>
   </div>
 </template>
 
