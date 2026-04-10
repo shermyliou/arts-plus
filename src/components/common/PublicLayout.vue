@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from 'vue';
+import PublicNavbar from './PublicNavbar.vue';
 </script>
 
 <template>
   <div>
-
+    <PublicNavbar />
+    <RouterView class="pt72px"/>
   </div>
 </template>
 

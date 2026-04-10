@@ -1,4 +1,5 @@
 <script setup>
+import { Icon } from '@iconify/vue';
 defineProps({
   title: {
     type: String,
@@ -49,19 +50,19 @@ defineProps({
       <div class="horizontal-event-card__header">
         <div v-if="category" class="horizontal-event-card__category-badge">{{ category }}</div>
         <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }">
-          <iconify-icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
+          <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
         </button>
       </div>
       
       <h3 class="horizontal-event-card__title" :title="title">{{ title }}</h3>
       
       <div class="horizontal-event-card__status">
-        <div class="horizontal-event-card__rating">
-          <iconify-icon icon="ph:star-fill" class="horizontal-event-card__rating-icon" />
+        <div class="horizontal-event-card__rating" v-show="rating">
+          <Icon icon="ph:star-fill" class="horizontal-event-card__rating-icon" />
           <span>{{ rating }}</span>
         </div>
         <div class="horizontal-event-card__ticket-status">
-          <iconify-icon icon="ph:users" class="horizontal-event-card__ticket-icon" />
+          <Icon icon="ph:users" class="horizontal-event-card__ticket-icon" />
           <span>{{ ticketStatus }}</span>
         </div>
       </div>
@@ -93,7 +94,6 @@ defineProps({
   background: var(--background-default-default);
   border: 1px solid var(--border-default-default);
   border-radius: var(--border-radius-1);
-  max-width: 781px;
   width: 100%;
   position: relative;
   box-sizing: border-box;
@@ -181,7 +181,6 @@ defineProps({
     gap: var(--component-gap-x-small);
     color: var(--text-warning-tertiary);
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
     
     &-icon {
       font-size: 20px;
@@ -227,8 +226,7 @@ defineProps({
   &__price {
     font-size: 20px;
     font-weight: 700;
-    color: var(--text-brand-tertiary); // Matches $brand-500 (#978F87)
-    font-family: 'Inter', sans-serif;
+    color: var(--text-brand-tertiary);
   }
 }
 </style>

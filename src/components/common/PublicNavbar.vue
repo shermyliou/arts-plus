@@ -1,15 +1,44 @@
 <script setup>
 import { ref } from "vue";
+import { RouterLink } from "vue-router";
+
+const tabs = ref([
+  { name: "首頁", badgeCount: 0, path: "/" },
+  { name: "搜尋結果", badgeCount: 0, path: "/search" },
+  { name: "活動介紹", badgeCount: 0, path: "/event/:id" },
+  { name: "藝文地圖", badgeCount: 0, path: "/map" },
+  { name: "主辦方_活動編輯", badgeCount: 0, path: "/organizer" },
+  { name: "Bootstrap檢查器", badgeCount: 0, path: "/bootstrap" },
+]);
+
 </script>
 
 <template>
-  <nav class="navbar navbar-expand-lg custom-navbar brand-50">
-    <div class="container-fluid p-0">
-      <a class="navbar-brand me-0" href="#">
+  <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
+    <div class="container-fluid p-0 d-flex align-items-center">
+      <a class="navbar-brand me-4" href="#">
         <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
       </a>
 
-      <div class="d-flex ms-auto gap-5">
+      <!-- Centered Nav Tabs -->
+      <div class="flex-grow-1 d-flex justify-content-center">
+        <ul class="nav nav-pills custom-nav-pills">
+          <li v-for="tab in tabs" :key="tab.name" class="nav-item">
+            <RouterLink
+              class="nav-link d-flex align-items-center justify-content-center gap-1"
+              exact-active-class="active"
+              :to="tab.path"
+            >
+              <span class="tab-text">{{ tab.name }}</span>
+              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
+                {{ tab.badgeCount }}
+              </span>
+            </RouterLink>
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex align-items-center gap-4 ms-4">
         <div class="search-wrapper">
           <div class="search-bar-placeholder gap-2">
             <span class="bitcoin-icons--search-outline"></span>
@@ -18,16 +47,16 @@ import { ref } from "vue";
         </div>
 
         <div class="navbar-actions">
-          <div class="nav-item">
+          <div class="nav-item-icon">
             <span class="ion--cart-outline"></span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item-icon">
             <span class="ph--ticket"></span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item-icon">
             <span class="ph--bell-light"></span>
           </div>
-          <div class="nav-item">
+          <div class="nav-item-icon">
             <span class="ph--user"></span>
           </div>
         </div>
@@ -41,18 +70,14 @@ import { ref } from "vue";
   background-color: var(--background-brand-secondary);
   height: 72px;
   border-bottom: 1px solid #eeeeee;
-
   padding: 0 60px !important;
-  display: flex;
-  align-items: center;
 
-  @media (max-width: 768px) {
-    padding: 0 20px !important; // 手機版縮小間距
+  @media (max-width: 1200px) {
+    padding: 0 20px !important;
   }
 }
 
 .search-wrapper {
-  flex: 1; // 佔滿剩餘空間
   display: flex;
 }
 
@@ -60,24 +85,28 @@ import { ref } from "vue";
   background-color: #eeeeee;
   border-radius: 50px;
   border: #000000 1px solid;
-  padding: 8px 24px;
-  width: 300px;
+  padding: 8px 16px;
+  width: 200px;
   color: #888888;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
+
+  @media (max-width: 1400px) {
+    width: 150px;
+  }
 }
 
-// 右側圖示容器
 .navbar-actions {
   display: flex;
   align-items: center;
   gap: 16px;
 }
 
-.nav-item {
+.nav-item-icon {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 /* Icon 顯示邏輯 */

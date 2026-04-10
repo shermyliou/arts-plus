@@ -6,6 +6,60 @@
 - Prefer functional programming paradigms where appropriate.
 - If Figma data is missing or ambiguous, ask for clarification before generating code.
 
+## Project Structure
+ART-PLUS
+/src
+ ┣ assets
+ ┃ ┣ images
+ ┃ ┃ ┣ event-1.jpg
+ ┃ ┃ ┣ event-2.jpg
+ ┃ ┃ ┗ 解憂雜貨店_橫式Banner(台中歌劇院).jpg
+ ┃ ┗ styles
+ ┃ ┃ ┣ abstracts
+ ┃ ┃ ┃ ┗ _mixin.scss
+ ┃ ┃ ┣ overrides
+ ┃ ┃ ┃ ┣ _button.scss
+ ┃ ┃ ┃ ┣ _nav.scss
+ ┃ ┃ ┃ ┣ _navtabs.scss
+ ┃ ┃ ┃ ┗ _page.scss
+ ┃ ┃ ┣ tokens
+ ┃ ┃ ┃ ┣ _component.scss
+ ┃ ┃ ┃ ┣ _primitive.scss
+ ┃ ┃ ┃ ┗ _semantic.scss
+ ┃ ┃ ┗ main.scss
+ ┣ components
+ ┃ ┣ common
+ ┃ ┃ ┣ EventLayout.vue
+ ┃ ┃ ┣ OrganizerLayout.vue
+ ┃ ┃ ┣ OrganizerNavbar.vue
+ ┃ ┃ ┣ PublicLayout.vue
+ ┃ ┃ ┣ PublicNavbar.vue
+ ┃ ┃ ┗ SideBar.vue
+ ┃ ┗ ui
+ ┃ ┃ ┣ BookingCard.vue
+ ┃ ┃ ┣ CalendarView.vue
+ ┃ ┃ ┣ EventCard.vue
+ ┃ ┃ ┣ FilterSidebar.vue
+ ┃ ┃ ┣ HeroEventCard.vue
+ ┃ ┃ ┣ HorizontalEventCard.vue
+ ┃ ┃ ┗ ReviewCard.vue
+ ┣ data
+ ┃ ┗ events.json
+ ┣ router
+ ┃ ┗ index.js
+ ┣ stores
+ ┃ ┣ useEventStore.js
+ ┃ ┗ useUserStore.js
+ ┣ views
+ ┃ ┣ Basic.vue
+ ┃ ┣ BootstrapChecker.vue
+ ┃ ┣ EventDetail.vue
+ ┃ ┣ EventEdit.vue
+ ┃ ┣ HomeView.vue
+ ┃ ┗ Search.vue
+ ┣ App.vue
+ ┗ main.js
+
 ## Coding Style
 - Use 2 spaces for indentation.
 - Prefix interface names with `my` (for example, `myUserService`).
@@ -18,6 +72,12 @@
 - script setup is allowed to use
 - The plugins used in this website are bootstrap, pinia, vue-router, axios
 - Use the Iconify Vue component version of Phosphor Icons as default icons
+
+## Already Known (skip re-reading these)
+- Bootstrap is globally imported via main.js, do NOT re-check
+- Phosphor Icons are used via Iconify: `<Icon icon="ph:icon-name" />`
+- Color tokens are defined in src/assets/styles/_variables.scss
+- Don't need to apple font family in css as the default fonts are already implemented.
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets
@@ -39,7 +99,6 @@ These rules define how to translate Figma inputs into code for this project and 
 ### Implementation rules
 - Treat the Figma MCP output (React + Tailwind) as a representation of design and behavior, not as final code style.
 - Replace Tailwind utility classes with the project's preferred utilities/design‑system tokens when applicable. Prefer using Bootstrap's classes first before creating new classes.
-- Don't need to apple font family in css as the default fonts are already implemented.
 - Reuse existing components (e.g., buttons, inputs, typography, icon wrappers) instead of duplicating functionality.
 - Use the project's color system, typography scale, and spacing tokens consistently.
 - Respect existing routing, state management, and data‑fetch patterns already adopted in the repo.

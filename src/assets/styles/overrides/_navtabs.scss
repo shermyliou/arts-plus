@@ -1,19 +1,78 @@
 .nav-pills {
-  background-color: $background-default-tertiary;
-  height: $component-height-large;
+  background-color: var(--background-default-tertiary);
+  border: 1px solid var(--border-default-default);
+  border-radius: var(--border-radius-pill);
+  padding: 2px;
+  height: calc(var(--component-height-normal) - 2px);
+  flex-wrap: nowrap;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 0 4px;
-  border-radius: $border-radius-pill;
-  text-align: center;
-  border: 1px solid $border-default-default;
+  list-style: none;
+
+  overflow-x: auto;  /* 或 overflow-y: auto，依你的滾動方向 */
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-item {
+    height: 100%;
+    border-radius: var(--border-radius-pill);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+  }
+  
+  .nav-link {
+    padding-top: 0.1em; //針對中文高度調整
+
+    width: 100%;
+    padding: 0 var(--component-padding-x-small);
+    border-radius: var(--border-radius-pill);
+    color: var(--text-default-default);
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 0;
+  
+    &:hover:not(.active) {
+      background-color: var(--background-default-secondary-hover);
+    }
+
+    &.active {
+      background-color: var(--background-brand-hover);
+      color: var(--text-brand-on-brand);
+      font-weight: 700;
+      letter-spacing: 0.32px;
+      height: 100%;
+    border-radius: var(--border-radius-pill);
+    }
+  }
 }
 
-.nav-item {
-  flex: 1;
+// 處理灰色border
+.nav-link{
+    &:not(.active) {
+      border-left: 1px solid var(--border-default-default);
+    }
 }
 
-.nav-link.active{
-  font-weight: bold;
+.nav-item:first-child .nav-link {
+  border-left: none;
+}
+
+.nav-item:has(.nav-link.active) + .nav-item .nav-link {
+  border-left: none;
+}
+
+.badge-sm {
+  font-size: 14px;
+  padding: 2px 8px;
+  font-weight: 400;
+  line-height: 1.4;
 }
