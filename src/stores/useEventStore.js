@@ -10,6 +10,13 @@ import { useUserStore } from './useUserStore'
 function initializeEvents(rawData) {
   const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
   const ageLimits = ['普遍級', '保護級', '輔導12級', '輔導15級', '限制級', '不適用'];
+  const counties = [
+    '臺北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣',
+    '苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣',
+    '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣',
+    '花蓮縣', '臺東縣',
+    '澎湖縣', '金門縣', '連江縣'
+  ];
 
   return rawData.map(event => {
     // --- 1. 處理 Sessions 與 星期 ---
@@ -55,9 +62,16 @@ function initializeEvents(rawData) {
 
     // 隨機分配分級 (若原始資料已有則保留)
     const ageLimit = event.ageLimit || ageLimits[Math.floor(Math.random() * ageLimits.length)];
+    // 隨機分配縣市 (若原始資料已有則保留)
+    const city = event.city || counties[Math.floor(Math.random() * counties.length)];
+
+    // 抓取第一個場次的場館作為代表
+    const venue = fixedSessions.length > 0 ? fixedSessions[0].venue : '暫無場館資訊';
 
     return {
       ...event,
+      city,
+      venue,
       ageLimit,
       startDate,
       endDate,
