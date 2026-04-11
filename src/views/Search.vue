@@ -11,12 +11,12 @@ const searchQuery = ref('');
 
 const tabs = computed(() => [
   { name: "全部", badgeCount: eventStore.events.length },
-  { name: "藝文展覽", badgeCount: eventStore.events.filter(e => e.category === '藝文展覽').length },
-  { name: "藝文演出", badgeCount: eventStore.events.filter(e => e.category === '藝文演出').length },
-  { name: "藝文體驗", badgeCount: eventStore.events.filter(e => e.category === '藝文體驗').length },
-  { name: "藝文講座", badgeCount: eventStore.events.filter(e => e.category === '藝文講座').length },
-  { name: "藝文小旅遊", badgeCount: eventStore.events.filter(e => e.category === '藝文小旅遊').length },
-  { name: "線上展覽", badgeCount: eventStore.events.filter(e => e.category === '線上展覽').length },
+  { name: "藝文展覽", badgeCount: eventStore.events.filter(e => e.majorCategory === '藝文展覽').length },
+  { name: "藝文演出", badgeCount: eventStore.events.filter(e => e.majorCategory === '藝文演出').length },
+  { name: "藝文體驗", badgeCount: eventStore.events.filter(e => e.majorCategory === '藝文體驗').length },
+  { name: "藝文講座", badgeCount: eventStore.events.filter(e => e.majorCategory === '藝文講座').length },
+  { name: "藝文小旅遊", badgeCount: eventStore.events.filter(e => e.majorCategory === '藝文小旅遊').length },
+  { name: "線上展覽", badgeCount: eventStore.events.filter(e => e.majorCategory === '線上展覽').length },
 ]);
 
 const activeTab = ref("全部");
@@ -25,7 +25,7 @@ const filteredEvents = computed(() => {
   let results = eventStore.events;
 
   if (activeTab.value !== '全部') {
-    results = results.filter(e => e.category === activeTab.value);
+    results = results.filter(e => e.majorCategory === activeTab.value);
   }
 
   if (searchQuery.value) {
