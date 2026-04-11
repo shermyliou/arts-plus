@@ -2,182 +2,112 @@
   {
     "id": 1,
     "title": "果陀劇場《深夜小狗神秘習題》",
+    "majorCategory": "藝文演出",
     "category": "戲劇",
     "ageLimit": "普遍級",
     "organizer": { "name": "果陀百娛股份有限公司", "phone": "(02)8772-1867", "link": "/organizer/1" },
     "image": "https://picsum.photos/id/1/400/300",
     "sessions": [
-      { "id": 101, "date": "2026-03-28", "time": "14:00", "venue": "衛武營國家藝術文化中心", "remainingTickets": 253, "prices": [750, 2000] },
-      { "id": 102, "date": "2026-03-29", "time": "14:00", "venue": "衛武營國家藝術文化中心", "remainingTickets": 120, "prices": [750, 2000] }
+      { 
+        "id": 101, 
+        "date": "2026-03-28", 
+        "time": "14:00", 
+        "venue": "衛武營國家藝術文化中心",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "學生", "price": 1500, "status": "available", "remaining": 80 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 },
+          { "type": "輪椅陪同席", "price": 750, "status": "available", "remaining": 10 }
+        ]
+      },
+      { 
+        "id": 102, 
+        "date": "2026-03-29", 
+        "time": "14:00", 
+        "venue": "衛武營國家藝術文化中心",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "sold_out", "remaining": 0 },
+          { "type": "學生", "price": 1500, "status": "limited", "remaining": 5 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 2 },
+          { "type": "輪椅陪同席", "price": 750, "status": "available", "remaining": 2 }
+        ]
+      }
     ],
     "comments": [{ "id": 1, "user": "John", "content": "敘事手法非常特別！" }, { "id": 2, "user": "Alice", "content": "舞台設計令人驚艷。" }]
   },
   {
     "id": 2,
     "title": "2026 達文西天才特展",
+    "majorCategory": "藝文展覽",
     "category": "展覽",
     "ageLimit": "普遍級",
     "organizer": { "name": "時藝多媒體", "phone": "(02)2322-2128", "link": "/organizer/2" },
     "image": "https://picsum.photos/id/2/400/300",
     "sessions": [
-      { "id": 201, "date": "2026-04-01", "time": "09:00", "venue": "華山1914文創園區", "remainingTickets": 500, "prices": [350] }
+      { 
+        "id": 201, "date": "2026-04-01", "time": "09:00", "venue": "華山1914文創園區",
+        "tickets": [
+          { "type": "一般", "price": 350, "status": "available", "remaining": 400 },
+          { "type": "學生", "price": 300, "status": "available", "remaining": 100 }
+        ]
+      }
     ],
     "comments": [{ "id": 3, "user": "Bob", "content": "手稿非常詳盡，值得一去。" }]
   },
   {
     "id": 3,
     "title": "維也納愛樂：仲夏夜之夢",
+    "majorCategory": "藝文演出",
     "category": "音樂",
     "ageLimit": "普遍級",
     "organizer": { "name": "牛耳藝術", "phone": "(02)6636-5168", "link": "/organizer/3" },
     "image": "https://picsum.photos/id/3/400/300",
     "sessions": [
-      { "id": 301, "date": "2026-05-15", "time": "19:30", "venue": "國家音樂廳", "remainingTickets": 45, "prices": [1800, 4800] }
+      { 
+        "id": 301, "date": "2026-05-15", "time": "19:30", "venue": "國家音樂廳",
+        "tickets": [
+          { "type": "一般", "price": 4800, "status": "limited", "remaining": 20 },
+          { "type": "學生", "price": 2400, "status": "available", "remaining": 20 },
+          { "type": "輪椅", "price": 1800, "status": "limited", "remaining": 5 }
+        ]
+      }
     ],
     "comments": [{ "id": 4, "user": "Carol", "content": "音響效果世界一流。" }]
   },
   {
     "id": 4,
     "title": "AI 時代的創意生存指南",
+    "majorCategory": "藝文講座",
     "category": "講座",
     "ageLimit": "普遍級",
     "organizer": { "name": "TEDxTaipei", "phone": "(02)2700-1234", "link": "/organizer/4" },
     "image": "https://picsum.photos/id/4/400/300",
     "sessions": [
-      { "id": 401, "date": "2026-03-20", "time": "13:00", "venue": "台北國際會議中心", "remainingTickets": 300, "prices": [0] }
+      { 
+        "id": 401, "date": "2026-03-20", "time": "13:00", "venue": "台北國際會議中心",
+        "tickets": [
+          { "type": "一般", "price": 0, "status": "available", "remaining": 300 }
+        ]
+      }
     ],
     "comments": [{ "id": 5, "user": "Dave", "content": "收穫滿滿的乾貨。" }]
   },
   {
     "id": 5,
     "title": "大稻埕巷弄老建築巡禮",
+    "majorCategory": "藝文小旅遊",
     "category": "小旅行",
     "ageLimit": "普遍級",
     "organizer": { "name": "島內散步", "phone": "(02)2556-1798", "link": "/organizer/5" },
     "image": "https://picsum.photos/id/5/400/300",
     "sessions": [
-      { "id": 501, "date": "2026-04-10", "time": "15:00", "venue": "大稻埕遊客中心", "remainingTickets": 12, "prices": [600] }
+      { 
+        "id": 501, "date": "2026-04-10", "time": "15:00", "venue": "大稻埕遊客中心",
+        "tickets": [
+          { "type": "一般", "price": 600, "status": "available", "remaining": 12 }
+        ]
+      }
     ],
     "comments": [{ "id": 6, "user": "Eve", "content": "導覽老師講得很生動。" }]
-  },
-  {
-    "id": 6,
-    "title": "百老匯音樂劇《貓》台灣巡演",
-    "category": "戲劇",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "寬宏藝術", "phone": "(07)780-9900", "link": "/organizer/6" },
-    "image": "https://picsum.photos/id/6/400/300",
-    "sessions": [
-      { "id": 601, "date": "2026-06-01", "time": "19:30", "venue": "高雄衛武營", "remainingTickets": 80, "prices": [800, 5800] }
-    ],
-    "comments": []
-  },
-  {
-    "id": 7,
-    "title": "印象派 150 週年光影藝術展",
-    "category": "展覽",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "翡冷翠文創", "phone": "(02)2771-8868", "link": "/organizer/7" },
-    "image": "https://picsum.photos/id/7/400/300",
-    "sessions": [
-      { "id": 701, "date": "2026-04-15", "time": "10:00", "venue": "松山文創園區", "remainingTickets": 1000, "prices": [450] }
-    ],
-    "comments": [{ "id": 7, "user": "Frank", "content": "適合帶小朋友去拍照。" }]
-  },
-  {
-    "id": 8,
-    "title": "宮崎駿動畫配樂交響之夜",
-    "category": "音樂",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "聯合數位文創", "phone": "(02)2649-1688", "link": "/organizer/8" },
-    "image": "https://picsum.photos/id/8/400/300",
-    "sessions": [
-      { "id": 801, "date": "2026-05-20", "time": "19:00", "venue": "台北小巨蛋", "remainingTickets": 300, "prices": [1200, 3200] }
-    ],
-    "comments": [{ "id": 8, "user": "Grace", "content": "主題曲響起眼眶都濕了。" }]
-  },
-  {
-    "id": 9,
-    "title": "未來城市：永續生活講座",
-    "category": "講座",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "天下雜誌", "phone": "(02)2507-6868", "link": "/organizer/9" },
-    "image": "https://picsum.photos/id/9/400/300",
-    "sessions": [
-      { "id": 901, "date": "2026-03-12", "time": "14:00", "venue": "誠品信義店", "remainingTickets": 50, "prices": [200] }
-    ],
-    "comments": []
-  },
-  {
-    "id": 10,
-    "title": "淡水河夕陽手作小旅行",
-    "category": "小旅行",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "新北市觀光局", "phone": "(02)2960-3456", "link": "/organizer/10" },
-    "image": "https://picsum.photos/id/10/400/300",
-    "sessions": [
-      { "id": 1001, "date": "2026-03-15", "time": "16:00", "venue": "淡水捷運站", "remainingTickets": 8, "prices": [1200] }
-    ],
-    "comments": [{ "id": 9, "user": "Hank", "content": "手工皂課程很有趣。" }]
-  },
-  {
-    "id": 11,
-    "title": "綠光劇團《人間條件八》",
-    "category": "戲劇",
-    "ageLimit": "輔導十二歲級",
-    "organizer": { "name": "綠光劇團", "phone": "(02)2395-6838", "link": "/organizer/11" },
-    "image": "https://picsum.photos/id/11/400/300",
-    "sessions": [
-      { "id": 1101, "date": "2026-07-10", "time": "19:30", "venue": "國家戲劇院", "remainingTickets": 0, "prices": [500, 3000] }
-    ],
-    "comments": [{ "id": 10, "user": "Ivy", "content": "吳念真導演的作品從不失望。" }]
-  },
-  {
-    "id": 12,
-    "title": "台南古蹟美食深度之旅",
-    "category": "小旅行",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "府城導覽協會", "phone": "(06)222-1234", "link": "/organizer/12" },
-    "image": "https://picsum.photos/id/12/400/300",
-    "sessions": [
-      { "id": 1201, "date": "2026-04-18", "time": "09:00", "venue": "台南火車站", "remainingTickets": 15, "prices": [1500] }
-    ],
-    "comments": []
-  },
-  {
-    "id": 13,
-    "title": "2026 台北爵士音樂節",
-    "category": "音樂",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "台北市文化局", "phone": "(02)2720-8889", "link": "/organizer/13" },
-    "image": "https://picsum.photos/id/13/400/300",
-    "sessions": [
-      { "id": 1301, "date": "2026-05-01", "time": "15:00", "venue": "大安森林公園", "remainingTickets": 9999, "prices": [0] }
-    ],
-    "comments": [{ "id": 11, "user": "Jack", "content": "草地爵士真的太 Chill 了。" }]
-  },
-  {
-    "id": 14,
-    "title": "數位藝術與加密貨幣展",
-    "category": "展覽",
-    "ageLimit": "保護級",
-    "organizer": { "name": "北美館", "phone": "(02)2595-7656", "link": "/organizer/14" },
-    "image": "https://picsum.photos/id/14/400/300",
-    "sessions": [
-      { "id": 1401, "date": "2026-03-30", "time": "10:00", "venue": "台北市立美術館", "remainingTickets": 150, "prices": [30] }
-    ],
-    "comments": []
-  },
-  {
-    "id": 15,
-    "title": "心理學：情緒自癒講座",
-    "category": "講座",
-    "ageLimit": "普遍級",
-    "organizer": { "name": "心理學學會", "phone": "(02)2233-4455", "link": "/organizer/15" },
-    "image": "https://picsum.photos/id/15/400/300",
-    "sessions": [
-      { "id": 1501, "date": "2026-03-25", "time": "19:00", "venue": "線上直播", "remainingTickets": 500, "prices": [300] }
-    ],
-    "comments": [{ "id": 12, "user": "Kelly", "content": "這對我的焦慮很有幫助。" }]
   }
 ]
