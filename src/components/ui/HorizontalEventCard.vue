@@ -49,8 +49,8 @@ defineProps({
     <div class="horizontal-event-card__body">
       <div class="horizontal-event-card__header align-items-start">
         <div>
-          <div v-if="category" class="horizontal-event-card__category-badge">{{ category }}</div>
-          <h3 class="horizontal-event-card__title" :title="title">{{ title }}</h3>
+          <span v-if="category" class="badge rounded-pill border fw-light horizontal-event-card__category-badge">{{ category }}</span>
+          <h3 class="horizontal-event-card__title mt-2" :title="title">{{ title }}</h3>
         </div>
         <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }">
           <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
@@ -129,16 +129,8 @@ defineProps({
   }
   
   &__category-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    height: 22px;
-    padding: 0 8px;
-    background: var(--background-default-default);
-    border-radius: var(--border-radius-pill);
-    color: var(--text-brand-secondary);
-    font-size: 12px;
-    line-height: 1;
+    color: var(--text-brand-primary);
+    padding-top: 0.5em;
   }
   
   &__favorite-btn {
