@@ -75,7 +75,7 @@ const formatDateRange = (start, end) => {
     <FilterSidebar class="sidebar"></FilterSidebar>
 
     <!-- Main Content Area -->
-    <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3">
+    <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3 container-md ms-0">
 
       <!-- Calendar View Section -->
       <!-- <div class="position-fixed winherit"> -->
