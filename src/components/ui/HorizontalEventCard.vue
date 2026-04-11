@@ -47,14 +47,16 @@ defineProps({
       <img :src="image" :alt="title" />
     </div>
     <div class="horizontal-event-card__body">
-      <div class="horizontal-event-card__header">
-        <div v-if="category" class="horizontal-event-card__category-badge">{{ category }}</div>
+      <div class="horizontal-event-card__header align-items-start">
+        <div>
+          <div v-if="category" class="horizontal-event-card__category-badge">{{ category }}</div>
+          <h3 class="horizontal-event-card__title" :title="title">{{ title }}</h3>
+        </div>
         <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }">
           <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
         </button>
       </div>
       
-      <h3 class="horizontal-event-card__title" :title="title">{{ title }}</h3>
       
       <div class="horizontal-event-card__status">
         <div class="horizontal-event-card__rating" v-show="rating">
@@ -127,13 +129,16 @@ defineProps({
   }
   
   &__category-badge {
-    padding: 4px 12px;
-    background: var(--background-default-default); // Figma: #FAFAF9, which matches $gray-50
-    border: 1px solid var(--border-default-default);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 22px;
+    padding: 0 8px;
+    background: var(--background-default-default);
     border-radius: var(--border-radius-pill);
+    color: var(--text-brand-secondary);
     font-size: 12px;
-    color: var(--text-default-default);
-    line-height: 1.5;
+    line-height: 1;
   }
   
   &__favorite-btn {
@@ -159,6 +164,7 @@ defineProps({
   
   &__title {
     margin: 4px 0;
+    color: var(--text-default-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -174,24 +180,36 @@ defineProps({
   &__rating {
     display: flex;
     align-items: center;
-    gap: var(--component-gap-x-small);
+    gap: 4px;
     color: var(--text-warning-tertiary);
     font-size: 14px;
+    height: 20px;
     
     &-icon {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    span {
+      line-height: 1;
+      transform: translateY(0.0625em); // 視覺補償，使文字中線與圖示中心對齊
     }
   }
   
   &__ticket-status {
     display: flex;
     align-items: center;
-    gap: var(--component-gap-x-small);
+    gap: 4px;
     color: var(--text-positive-default);
     font-size: 14px;
+    height: 20px;
     
     .horizontal-event-card__ticket-icon {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    span {
+      line-height: 1;
+      transform: translateY(1px); // 視覺補償
     }
   }
   
