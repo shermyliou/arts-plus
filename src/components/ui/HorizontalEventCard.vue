@@ -158,11 +158,7 @@ defineProps({
   }
   
   &__title {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
     margin: 4px 0;
-    color: var(--text-default-default);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
