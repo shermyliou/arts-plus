@@ -9,6 +9,7 @@ import { useUserStore } from './useUserStore'
  */
 function initializeEvents(rawData) {
   const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+  const ageLimits = ['普遍級', '保護級', '輔導12級', '輔導15級', '限制級', '不適用'];
 
   return rawData.map(event => {
     // --- 1. 處理 Sessions 與 星期 ---
@@ -52,8 +53,12 @@ function initializeEvents(rawData) {
     }, 0);
     const ticketStatus = totalRemaining > 0 ? (totalRemaining < 50 ? '最後搶購' : '熱烈販售中') : '已售完';
 
+    // 隨機分配分級 (若原始資料已有則保留)
+    const ageLimit = event.ageLimit || ageLimits[Math.floor(Math.random() * ageLimits.length)];
+
     return {
       ...event,
+      ageLimit,
       startDate,
       endDate,
       price: { min: minPrice, max: maxPrice },
