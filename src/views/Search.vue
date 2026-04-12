@@ -163,10 +163,17 @@ const formatDateRange = (start, end) => {
       <!-- Results Section (Scrollable Area) -->
       <div class="results-scroll-area d-flex flex-column overflow-y-auto">
         <div v-for="event in filteredEvents" :key="event.id">
-          <HorizontalEventCard :title="event.title" :category="event.category" :rating="event.rating"
-            :ticket-status="event.ticketStatus" :time="formatDateRange(event.startDate, event.endDate)"
-            :location="`${event.city} ${event.venue}`" :price-range="formatPrice(event.price)"
-            :image="event.imageUrl" />
+          <HorizontalEventCard 
+            :id="event.id"
+            :title="event.title" 
+            :category="event.category" 
+            :rating="event.rating"
+            :ticket-status="event.ticketStatus" 
+            :time="formatDateRange(event.startDate, event.endDate)"
+            :location="`${event.city} ${event.venue}`" 
+            :price-range="formatPrice(event.price)"
+            :image="event.imageUrl" 
+          />
         </div>
       </div>
     </div>

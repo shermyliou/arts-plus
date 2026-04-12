@@ -91,6 +91,35 @@ export const useUserStore = defineStore('user', {
           this.currentUser.points = newPoints
         }
       }
+    },
+
+    /**
+     * 切換收藏狀態
+     * @param {number} eventId 
+     */
+    toggleFavorite(eventId) {
+      if (!this.currentUser) return;
+
+      // 取得目前的收藏列表副本
+      const favorites = [...(this.currentUser.favoriteEvents || [])];
+      
+      const index = favorites.indexOf(eventId);
+      if (index === -1) {
+        // 加入收藏
+        favorites.push(eventId);
+      } else {
+        // 移除收藏
+        favorites.splice(index, 1);
+      }
+
+      // 重新指派陣列以觸發 Vue 的響應式更新
+      this.currentUser.favoriteEvents = favorites;
+
+      // 同步更新全體 users 列表中的對應資料
+      const user = this.users.find(u => u.id === this.currentUser.id);
+      if (user) {
+        user.favoriteEvents = [...favorites];
+      }
     }
   }
 })

@@ -1,6 +1,13 @@
 <script setup>
+import { computed } from 'vue';
 import { Icon } from '@iconify/vue';
-defineProps({
+import { useUserStore } from '@/stores/useUserStore';
+
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true
+  },
   title: {
     type: String,
     required: true,
@@ -33,12 +40,24 @@ defineProps({
   image: {
     type: String,
     default: 'test'
-  },
-  isFavorite: {
-    type: Boolean,
-    default: false
   }
-})
+});
+
+const userStore = useUserStore();
+
+// 從 userStore 讀取目前使用者是否收藏了這個活動
+const isFavorite = computed(() => {
+  if (!userStore.currentUser || !userStore.currentUser.favoriteEvents) return false;
+  return userStore.currentUser.favoriteEvents.includes(props.id);
+});
+
+const handleFavoriteClick = () => {
+  if (!userStore.isLoggedIn) {
+    alert('請先登入才能收藏活動！');
+    return;
+  }
+  userStore.toggleFavorite(props.id);
+};
 </script>
 
 <template>
@@ -52,7 +71,12 @@ defineProps({
           <span v-if="category" class="badge rounded-pill border fw-light horizontal-event-card__category-badge">{{ category }}</span>
           <h3 class="horizontal-event-card__title mt-2" :title="title">{{ title }}</h3>
         </div>
-        <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }">
+        <button 
+          class="horizontal-event-card__favorite-btn" 
+          :class="{ 'is-favorite': isFavorite }"
+          @click.stop="handleFavoriteClick"
+          aria-label="收藏活動"
+        >
           <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
         </button>
       </div>
@@ -150,7 +174,7 @@ defineProps({
     }
     
     &.is-favorite {
-      color: var(--icon-danger-default);
+      color: var(--icon-danger-secondary);
     }
   }
   
