@@ -99,18 +99,6 @@ onUnmounted(() => {
 </template>
 
 <style scoped lang="scss">
-// 動態過渡動畫 (由父組件 Transition name="fade-slide" 觸發)
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0 !important;
-  transform: translateY(-10px) !important;
-}
-
 .search-overlay-container {
   position: absolute;
   top: 48px;

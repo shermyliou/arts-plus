@@ -218,15 +218,5 @@ onUnmounted(() => {
   letter-spacing: 0.16px;
 }
 
-/* Animations (Reuse from SearchOverlay style if possible, or define here) */
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0 !important;
-  transform: translateY(-10px) !important;
-}
-</style>
+/* 其他樣式 */
+.notification-overlay-container {

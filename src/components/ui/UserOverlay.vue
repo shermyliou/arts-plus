@@ -124,14 +124,4 @@ onUnmounted(() => {
 }
 
 /* Animations (Reuse from SearchOverlay style) */
-.fade-slide-enter-active,
-.fade-slide-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease !important;
-}
-
-.fade-slide-enter-from,
-.fade-slide-leave-to {
-  opacity: 0 !important;
-  transform: translateY(-10px) !important;
-}
 </style>

@@ -99,8 +99,12 @@ const handleSearch = (query) => {
           <div class="nav-item-icon">
             <Icon icon="ph:ticket" />
           </div>
+          
           <div class="nav-item-icon position-relative bell-trigger" @click="isNotificationVisible = !isNotificationVisible">
-            <Icon :icon="isNotificationVisible ? 'ph:bell-fill' : 'ph:bell'" />
+            <Transition name="icon-fade" mode="out-in">
+              <Icon :key="isNotificationVisible" :icon="isNotificationVisible ? 'ph:bell-fill' : 'ph:bell'" />
+            </Transition>
+            
             <Transition name="fade-slide">
               <NotificationOverlay 
                 v-if="isNotificationVisible" 
@@ -108,8 +112,12 @@ const handleSearch = (query) => {
               />
             </Transition>
           </div>
+
           <div class="nav-item-icon position-relative user-trigger" @click="isUserVisible = !isUserVisible">
-            <Icon :icon="isUserVisible ? 'ph:user-fill' : 'ph:user'" />
+            <Transition name="icon-fade" mode="out-in">
+              <Icon :key="isUserVisible" :icon="isUserVisible ? 'ph:user-fill' : 'ph:user'" />
+            </Transition>
+            
             <Transition name="fade-slide">
               <UserOverlay 
                 v-if="isUserVisible" 
