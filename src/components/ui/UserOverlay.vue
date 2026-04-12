@@ -75,6 +75,7 @@ onUnmounted(() => {
         </div>
       </div>
       <div class="btn btn-text mb-2 ps-1">會員中心</div>
+      <div class="btn btn-text mb-2 ps-1" v-if="userStore.currentUser?.role === 'organizer'">主辦方後台</div>
       <!-- Actions -->
       <div class="actions-row d-flex align-items-center justify-content-center">
         <button v-if="!userStore.isLoggedIn" class="btn btn-primary rounded-pill text-nowrap">登入</button>
