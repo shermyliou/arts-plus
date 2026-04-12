@@ -78,6 +78,11 @@ ART-PLUS
 - Phosphor Icons are used via Iconify: `<Icon icon="ph:icon-name" />`
 - Color tokens are defined in src/assets/styles/_variables.scss
 - Don't need to apple font family in css as the default fonts are already implemented.
+- Iconify was imported in main.js in following codes:
+```js
+import { Icon } from '@iconify/vue'
+app.component('Icon', Icon)
+```
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets

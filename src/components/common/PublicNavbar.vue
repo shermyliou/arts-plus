@@ -1,6 +1,10 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
+import SearchOverlay from "@/components/ui/SearchOverlay.vue";
+
+const router = useRouter();
+const isSearchVisible = ref(false);
 
 const tabs = ref([
   { name: "首頁", badgeCount: 0, path: "/" },
@@ -10,6 +14,13 @@ const tabs = ref([
   { name: "主辦方_活動編輯", badgeCount: 0, path: "/organizer" },
   { name: "Bootstrap檢查器", badgeCount: 0, path: "/bootstrap" },
 ]);
+
+const searchQuery = ref("");
+
+const handleSearch = (query) => {
+  isSearchVisible.value = false;
+  router.push({ path: '/search', query: { q: query || searchQuery.value } });
+};
 
 </script>
 
@@ -39,11 +50,40 @@ const tabs = ref([
       </div>
 
       <div class="d-flex align-items-center gap-4 ms-4">
-        <div class="search-wrapper">
-          <div class="search-bar-placeholder gap-2">
-            <span class="bitcoin-icons--search-outline"></span>
-            <span>搜尋</span>
+        <div class="position-relative">
+          <div 
+            class="search-wrapper" 
+            :class="{ 'expanded': isSearchVisible }"
+            @click="isSearchVisible = true"
+          >
+            <div class="search-bar-inner d-flex align-items-center gap-2 px-3 py-2">
+              <Icon icon="ph:magnifying-glass" class="search-icon" />
+              <input 
+                v-if="isSearchVisible"
+                v-model="searchQuery"
+                type="text" 
+                placeholder="搜尋" 
+                class="search-input-field flex-grow-1"
+                @keyup.enter="handleSearch(searchQuery)"
+                ref="searchInput"
+              />
+              <span v-else class="search-placeholder-text">搜尋</span>
+              <button 
+                v-if="isSearchVisible" 
+                class="btn btn-search-trigger p-0 ms-2"
+                @click.stop="handleSearch(searchQuery)"
+              >
+                搜尋
+              </button>
+            </div>
           </div>
+
+          <!-- Search Overlay (Dropdown only) -->
+          <SearchOverlay 
+            :is-visible="isSearchVisible" 
+            @close="isSearchVisible = false"
+            @search="handleSearch"
+          />
         </div>
 
         <div class="navbar-actions">
@@ -78,22 +118,64 @@ const tabs = ref([
 }
 
 .search-wrapper {
-  display: flex;
-}
-
-.search-bar-placeholder {
   background-color: #eeeeee;
   border-radius: 50px;
   border: #000000 1px solid;
-  padding: 8px 16px;
   width: 200px;
+  height: 40px;
   color: #888888;
   font-size: 0.9rem;
   display: flex;
   align-items: center;
+  transition: width 0.3s ease, background-color 0.3s ease;
+  overflow: hidden;
+  cursor: pointer;
+
+  &.expanded {
+    width: 600px;
+    background-color: var(--background-brand-secondary);
+    cursor: default;
+
+    @media (max-width: 1400px) {
+      width: 500px;
+    }
+
+    @media (max-width: 992px) {
+      width: 400px;
+    }
+  }
 
   @media (max-width: 1400px) {
     width: 150px;
+  }
+}
+
+.search-bar-inner {
+  width: 100%;
+}
+
+.search-input-field {
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  color: var(--text-default-default);
+  &::placeholder {
+    color: var(--text-default-tertiary);
+  }
+}
+
+.btn-search-trigger {
+  font-weight: bold;
+  font-size: 14px;
+  color: var(--text-brand-on-brand-secondary);
+  white-space: nowrap;
+  letter-spacing: 1px;
+  border: none;
+  background: none;
+
+  &:hover {
+    color: var(--text-brand-default);
   }
 }
 
