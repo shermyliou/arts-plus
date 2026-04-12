@@ -60,7 +60,7 @@ onUnmounted(() => {
 <template>
   <div class="search-overlay-container" ref="overlayRef">
     <!-- Dropdown Content -->
-    <div class="search-dropdown-content p-3">
+    <div class="search-dropdown-content p-3 shadow">
       <!-- Suggested Events -->
       <div class="search-section mb-3">
         <div class="section-title mb-2">建議活動</div>
@@ -182,7 +182,6 @@ onUnmounted(() => {
 .search-dropdown-content {
   background-color: var(--background-default-default);
   border-radius: var(--border-radius-3);
-  box-shadow: 0px 16px 32px 0px rgba(12, 12, 13, 0.1), 0px 4px 4px 0px rgba(12, 12, 13, 0.05);
 }
 
 .section-title {

@@ -50,7 +50,7 @@ onUnmounted(() => {
 
 <template>
   <div class="user-overlay-container" ref="overlayRef">
-    <div class="user-card p-3">
+    <div class="user-card p-2 shadow">
       <!-- Account List -->
       <div class="account-list mb-3">
         <div v-for="account in accounts" :key="account.id" class="user-row d-flex align-items-center gap-3 p-2 mb-2">
@@ -65,9 +65,9 @@ onUnmounted(() => {
       </div>
 
       <!-- Actions -->
-      <div class="actions-row d-flex align-items-center justify-content-center gap-4">
-        <button class="btn btn-login px-4 py-2">登入</button>
-        <button class="btn btn-text-register p-0">註冊</button>
+      <div class="actions-row d-flex align-items-center justify-content-center">
+        <button class="btn btn-primary text-nowrap">登入</button>
+        <button class="btn btn-text text-primary text-nowrap">註冊</button>
       </div>
     </div>
   </div>
@@ -76,9 +76,8 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .user-overlay-container {
   position: absolute;
-  top: 48px;
+  top: 40px;
   right: 0;
-  width: 280px;
   z-index: 1050;
 }
 
@@ -86,7 +85,6 @@ onUnmounted(() => {
   background-color: var(--background-default-default);
   border: 1px solid var(--border-default-default);
   border-radius: var(--border-radius-3);
-  box-shadow: 0px 4px 4px -1px rgba(12, 12, 13, 0.1), 0px 4px 4px -1px rgba(12, 12, 13, 0.05);
 }
 
 .user-row {
@@ -123,36 +121,6 @@ onUnmounted(() => {
   font-size: 14px;
   color: #8e8e93;
   line-height: 1.4;
-}
-
-.btn-login {
-  background-color: #211f1e;
-  color: #f5f5f5;
-  border: none;
-  border-radius: 50px;
-  font-weight: bold;
-  font-size: 16px;
-  letter-spacing: 1.92px;
-  height: 48px;
-  min-width: 100px;
-  
-  &:hover {
-    background-color: #333;
-  }
-}
-
-.btn-text-register {
-  background: none;
-  border: none;
-  font-weight: bold;
-  font-size: 16px;
-  color: #77706a;
-  letter-spacing: 1.92px;
-  cursor: pointer;
-  
-  &:hover {
-    color: var(--text-button-hover);
-  }
 }
 
 /* Animations (Reuse from SearchOverlay style) */
