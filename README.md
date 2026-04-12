@@ -6,6 +6,8 @@
 ![首頁截圖](./public/screenshot-home.png)
 
 🔗 [Live Demo](https://art-plus-sigma.vercel.app/#/)
+🎨 [Figma Prototype](https://figma.com/你的連結)
+📁 [Behance](https://behance.net/你的連結)
 
 ## 技術堆疊
 
@@ -53,11 +55,10 @@ npm run build
 
 ## 團隊
 
-| 姓名 | 負責頁面 | Behance |
+| 姓名 | 負責頁面 | Github | Behance | 個人網站
 |------|------|---------|
-| 郭奕伶 | 首頁 | [Behance](https://behance.net/你的帳號) |
-| 高郁雯 | 活動編輯 | [Behance](https://behance.net/組員帳號) |
-| 劉育全 | 活動搜尋 | [Behance](https://behance.net/組員帳號) |
-| 蔡宜潔 | 活動介紹 | [Behance](https://behance.net/組員帳號) |
-| 吳盈瑩 | 藝文地圖 | [Behance](https://behance.net/組員帳號) |
-
+| 郭奕伶 | 首頁 | [wwyi0](https://github.com/wwyi0) | [Behance](https://behance.net/ac02a36c) |
+| 高郁雯 | 活動編輯 | [wendyyyk](https://github.com/wendyyyk) |  | [個人網站](https://wendykao.framer.website/)
+| 劉育全 | 活動搜尋 | [shermyliou](https://github.com/shermyliou) | [Behance](https://behance.net/shermyliou) |
+| 蔡宜潔 | 活動介紹 | [metaphor1212](https://github.com/metaphor1212) | [Behance](https://www.behance.net/0f191faf) | 
+| 吳盈瑩 | 藝文地圖 | [ShirlineWu](https://github.com/ShirlineWu) |  | [個人網站](https://wuyingying.my.canva.site/)
