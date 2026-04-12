@@ -2,9 +2,11 @@
 import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import SearchOverlay from "@/components/ui/SearchOverlay.vue";
+import NotificationOverlay from "@/components/ui/NotificationOverlay.vue";
 
 const router = useRouter();
 const isSearchVisible = ref(false);
+const isNotificationVisible = ref(false);
 
 const tabs = ref([
   { name: "首頁", badgeCount: 0, path: "/" },
@@ -95,8 +97,14 @@ const handleSearch = (query) => {
           <div class="nav-item-icon">
             <Icon icon="ph:ticket" />
           </div>
-          <div class="nav-item-icon">
-            <Icon icon="ph:bell" />
+          <div class="nav-item-icon position-relative bell-trigger" @click="isNotificationVisible = !isNotificationVisible">
+            <Icon :icon="isNotificationVisible ? 'ph:bell-fill' : 'ph:bell'" />
+            <Transition name="fade-slide">
+              <NotificationOverlay 
+                v-if="isNotificationVisible" 
+                @close="isNotificationVisible = false" 
+              />
+            </Transition>
           </div>
           <div class="nav-item-icon">
             <Icon icon="ph:user" />
@@ -192,5 +200,6 @@ const handleSearch = (query) => {
   align-items: center;
   cursor: pointer;
   font-size: 24px;
+  color: #333333;
 }
 </style>
