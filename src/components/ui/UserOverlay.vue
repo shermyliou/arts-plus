@@ -52,8 +52,8 @@ onUnmounted(() => {
   <div class="user-overlay-container" ref="overlayRef">
     <div class="user-card p-2 shadow">
       <!-- Account List -->
-      <div class="account-list mb-3">
-        <div v-for="account in accounts" :key="account.id" class="user-row d-flex align-items-center gap-3 p-2 mb-2">
+      <div class="account-list mb-2">
+        <div v-for="account in accounts" :key="account.id" class="user-row d-flex align-items-center gap-3 p-2 mb-1">
           <div class="avatar-wrapper">
             <img :src="account.avatar" alt="avatar" class="avatar-img" />
           </div>
@@ -63,11 +63,11 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-
+      <div class="btn btn-text mb-2 ps-1">會員中心</div>
       <!-- Actions -->
-      <div class="actions-row d-flex align-items-center justify-content-center">
-        <button class="btn btn-primary text-nowrap">登入</button>
-        <button class="btn btn-text text-primary text-nowrap">註冊</button>
+      <div class="actions-row d-flex align-items-center justify-content-center gap-3">
+        <button class="btn btn-primary rounded-pill text-nowrap">登入</button>
+        <button class="btn btn-text text-nowrap">註冊</button>
       </div>
     </div>
   </div>
@@ -76,7 +76,7 @@ onUnmounted(() => {
 <style scoped lang="scss">
 .user-overlay-container {
   position: absolute;
-  top: 40px;
+  top: 48px;
   right: 0;
   z-index: 1050;
 }
@@ -94,6 +94,11 @@ onUnmounted(() => {
   
   &:hover {
     background-color: var(--background-default-default-hover);
+  }
+
+  &.active{
+    background-color: var(--background-default-secondary);
+    border: 1px solid var(--border-default-secondary);
   }
 }
 
@@ -123,5 +128,17 @@ onUnmounted(() => {
   line-height: 1.4;
 }
 
-/* Animations (Reuse from SearchOverlay style) */
+.btn-login {
+  background-color: #211f1e;
+  color: #f5f5f5;
+  border: none;
+  font-weight: bold;
+  letter-spacing: 1.92px;
+  height: 48px;
+  
+  &:hover {
+    background-color: #333;
+    color: white;
+  }
+}
 </style>

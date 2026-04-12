@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from "vue";
-import { RouterLink, useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import SearchOverlay from "@/components/ui/SearchOverlay.vue";
 import NotificationOverlay from "@/components/ui/NotificationOverlay.vue";
 import UserOverlay from "@/components/ui/UserOverlay.vue";
@@ -9,15 +9,6 @@ const router = useRouter();
 const isSearchVisible = ref(false);
 const isNotificationVisible = ref(false);
 const isUserVisible = ref(false);
-
-const tabs = ref([
-  { name: "首頁", badgeCount: 0, path: "/" },
-  { name: "搜尋結果", badgeCount: 0, path: "/search" },
-  { name: "活動介紹", badgeCount: 0, path: "/event/:id" },
-  { name: "藝文地圖", badgeCount: 0, path: "/map" },
-  { name: "主辦方_活動編輯", badgeCount: 0, path: "/organizer" },
-  { name: "Bootstrap檢查器", badgeCount: 0, path: "/bootstrap" },
-]);
 
 const searchQuery = ref("");
 
@@ -31,27 +22,9 @@ const handleSearch = (query) => {
 <template>
   <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
     <div class="container-fluid p-0 d-flex align-items-center">
-      <a class="navbar-brand me-4" href="#">
+      <a class="navbar-brand me-auto" href="#">
         <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
       </a>
-
-      <!-- Centered Nav Tabs -->
-      <div class="flex-grow-1 d-flex justify-content-center">
-        <ul class="nav nav-pills custom-nav-pills">
-          <li v-for="tab in tabs" :key="tab.name" class="nav-item">
-            <RouterLink
-              class="nav-link d-flex align-items-center justify-content-center gap-1"
-              exact-active-class="active"
-              :to="tab.path"
-            >
-              <span class="tab-text">{{ tab.name }}</span>
-              <span v-if="tab.badgeCount > 0" class="badge rounded-pill bg-danger badge-sm">
-                {{ tab.badgeCount }}
-              </span>
-            </RouterLink>
-          </li>
-        </ul>
-      </div>
 
       <div class="d-flex align-items-center gap-4 ms-4">
         <div class="position-relative">
@@ -82,7 +55,7 @@ const handleSearch = (query) => {
             </div>
           </div>
 
-          <!-- Search Overlay (Dropdown only) -->
+          <!-- Search Overlay -->
           <Transition name="fade-slide">
             <SearchOverlay
               v-if="isSearchVisible"
@@ -137,6 +110,7 @@ const handleSearch = (query) => {
   height: 72px;
   border-bottom: 1px solid #eeeeee;
   padding: 0 60px !important;
+  z-index: 2000;
 
   @media (max-width: 1200px) {
     padding: 0 20px !important;

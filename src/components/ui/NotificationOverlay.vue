@@ -217,6 +217,4 @@ onUnmounted(() => {
   color: #8e8e93;
   letter-spacing: 0.16px;
 }
-
-/* 其他樣式 */
-.notification-overlay-container {
+</style>
