@@ -1,24 +1,22 @@
 import { defineStore } from 'pinia'
 import rawEvents from '@/data/events.json'
+import { useUserStore } from './useUserStore'
 
 /**
- * 處理原始活動資料，增加星期幾、日期範圍等資訊
+ * 處理原始活動資料
  * @param {Array} rawData 
  * @returns {Array}
  */
 function initializeEvents(rawData) {
   const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
-  
-  // 類別轉換對照表 (JSON -> UI Tabs)
-  const categoryMap = {
-    '展覽': '藝文展覽',
-    '戲劇': '藝文演出',
-    '音樂': '藝文演出',
-    '體驗': '藝文體驗',
-    '講座': '藝文講座',
-    '小旅行': '藝文小旅遊',
-    '線上': '線上展覽'
-  };
+  const ageLimits = ['普遍級', '保護級', '輔導12級', '輔導15級', '限制級', '不適用'];
+  const counties = [
+    '臺北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣',
+    '苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣',
+    '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣',
+    '花蓮縣', '臺東縣',
+    '澎湖縣', '金門縣', '連江縣'
+  ];
 
   return rawData.map(event => {
     // --- 1. 處理 Sessions 與 星期 ---
@@ -33,11 +31,12 @@ function initializeEvents(rawData) {
     const endDate = sortedDates[sortedDates.length - 1] || '';
 
     // --- 3. 自動計算 Price Range ---
-    const allPrices = fixedSessions.flatMap(s => s.prices || []);
+    // 從新的 tickets 結構中提取價格
+    const allPrices = fixedSessions.flatMap(s => s.tickets.map(t => t.price));
     const minPrice = allPrices.length ? Math.min(...allPrices) : 0;
     const maxPrice = allPrices.length ? Math.max(...allPrices) : 0;
 
-    // --- 4. 處理 Comments 隨機化 ---
+    // --- 4. 處理 Comments ---
     const fixedComments = (event.comments || []).map(comment => {
       const randomCommentRating = Math.floor(Math.random() * (5 - 3 + 1)) + 3;
       const baseDate = new Date(startDate || '2026-01-01');
@@ -55,13 +54,25 @@ function initializeEvents(rawData) {
       ? (fixedComments.reduce((acc, c) => acc + c.rating, 0) / fixedComments.length).toFixed(1) 
       : (Math.random() * (5 - 4) + 4).toFixed(1);
 
-    // 計算票務狀態
-    const totalRemaining = fixedSessions.reduce((sum, s) => sum + (s.remainingTickets || 0), 0);
+    // 計算票務狀態 (根據所有場次的總餘票)
+    const totalRemaining = fixedSessions.reduce((sum, s) => {
+      return sum + s.tickets.reduce((tSum, t) => tSum + (t.remaining || 0), 0);
+    }, 0);
     const ticketStatus = totalRemaining > 0 ? (totalRemaining < 50 ? '最後搶購' : '熱烈販售中') : '已售完';
+
+    // 隨機分配分級 (若原始資料已有則保留)
+    const ageLimit = event.ageLimit || ageLimits[Math.floor(Math.random() * ageLimits.length)];
+    // 隨機分配縣市 (若原始資料已有則保留)
+    const city = event.city || counties[Math.floor(Math.random() * counties.length)];
+
+    // 抓取第一個場次的場館作為代表
+    const venue = fixedSessions.length > 0 ? fixedSessions[0].venue : '暫無場館資訊';
 
     return {
       ...event,
-      category: categoryMap[event.category] || event.category,
+      city,
+      venue,
+      ageLimit,
       startDate,
       endDate,
       price: { min: minPrice, max: maxPrice },
@@ -83,7 +94,52 @@ export const useEventStore = defineStore('event', {
     events: initializeEvents(rawEvents),
   }),
   getters: {
+    /**
+     * 獲取包含收藏狀態的活動列表
+     * @returns {Array}
+     */
+    eventsWithFavoriteStatus: (state) => {
+      const userStore = useUserStore()
+      const favoriteIds = userStore.currentUser?.favoriteEvents || []
+      
+      return state.events.map(event => ({
+        ...event,
+        isFavorited: favoriteIds.includes(event.id)
+      }))
+    },
+
+    /**
+     * 根據大類別篩選活動
+     * @param {Object} state 
+     */
+    getEventsByMajorCategory: (state) => (majorCategory) => {
+      return state.events.filter(e => e.majorCategory === majorCategory)
+    }
   },
   actions: {
-  },
+    /**
+     * 切換收藏狀態
+     * @param {number} eventId 
+     */
+    toggleFavorite(eventId) {
+      const userStore = useUserStore()
+      if (!userStore.currentUser) {
+        alert('請先登入以收藏活動')
+        return
+      }
+
+      const index = userStore.currentUser.favoriteEvents.indexOf(eventId)
+      if (index > -1) {
+        userStore.currentUser.favoriteEvents.splice(index, 1)
+      } else {
+        userStore.currentUser.favoriteEvents.push(eventId)
+      }
+      
+      // 同步更新全體使用者資料 (模擬後端更新)
+      const userInList = userStore.users.find(u => u.id === userStore.currentUser.id)
+      if (userInList) {
+        userInList.favoriteEvents = [...userStore.currentUser.favoriteEvents]
+      }
+    }
+  }
 })

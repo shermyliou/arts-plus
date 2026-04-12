@@ -1,14 +1,17 @@
 <script setup>
 import PublicNavbar from './PublicNavbar.vue';
+import FloatingNavTabs from '@/components/ui/FloatingNavTabs.vue';
 </script>
 
 <template>
   <div>
     <PublicNavbar />
-    <RouterView class="pt72px"/>
+    <main>
+      <RouterView class="pt72px"/>
+    </main>
+    <FloatingNavTabs />
   </div>
 </template>
 
 <style scoped lang="scss">
-  
 </style>

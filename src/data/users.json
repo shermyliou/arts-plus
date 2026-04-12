@@ -1,0 +1,119 @@
+[
+  {
+    "id": 10,
+    "nickname": "藝文主辦王小明",
+    "email": "wang.organizer@artplus.com",
+    "password": "password123",
+    "points": 500,
+    "gender": "男",
+    "role": "organizer",
+    "avatar": "/images/avatars/user-10.avif",
+    "purchasedEvents": [
+      {
+        "eventId": 1,
+        "accumulatedPoints": 50
+      }
+    ],
+    "cartEvents": [],
+    "favoriteEvents": [2, 3]
+  },
+  {
+    "id": 11,
+    "nickname": "展演中心大雅",
+    "email": "taya.art@artplus.com",
+    "password": "password123",
+    "points": 800,
+    "gender": "女",
+    "role": "organizer",
+    "avatar": "/images/avatars/user-11.avif",
+    "purchasedEvents": [],
+    "cartEvents": [],
+    "favoriteEvents": [1]
+  },
+  {
+    "id": 20,
+    "nickname": "李愛看",
+    "email": "lee.consumer@gmail.com",
+    "password": "password123",
+    "points": 150,
+    "gender": "女",
+    "role": "consumer",
+    "avatar": "/images/avatars/user-20.avif",
+    "purchasedEvents": [
+      {
+        "eventId": 1,
+        "accumulatedPoints": 15
+      },
+      {
+        "eventId": 4,
+        "accumulatedPoints": 20
+      }
+    ],
+    "cartEvents": [
+      {
+        "eventId": 2,
+        "session": "2026-05-10 14:00"
+      }
+    ],
+    "favoriteEvents": [3, 5]
+  },
+  {
+    "id": 21,
+    "nickname": "張藝博",
+    "email": "zhang.art@gmail.com",
+    "password": "password123",
+    "points": 300,
+    "gender": "男",
+    "role": "consumer",
+    "avatar": "/images/avatars/user-21.avif",
+    "purchasedEvents": [
+      {
+        "eventId": 2,
+        "accumulatedPoints": 30
+      }
+    ],
+    "cartEvents": [
+      {
+        "eventId": 3,
+        "session": "2026-06-15 19:30"
+      }
+    ],
+    "favoriteEvents": [1, 4]
+  },
+  {
+    "id": 22,
+    "nickname": "王小美",
+    "email": "mei.wang@gmail.com",
+    "password": "password123",
+    "points": 50,
+    "gender": "女",
+    "role": "consumer",
+    "avatar": "/images/avatars/user-22.avif",
+    "purchasedEvents": [],
+    "cartEvents": [
+      {
+        "eventId": 5,
+        "session": "2026-07-20 10:00"
+      }
+    ],
+    "favoriteEvents": [2]
+  },
+  {
+    "id": 23,
+    "nickname": "陳文青",
+    "email": "chen.hip@gmail.com",
+    "password": "password123",
+    "points": 200,
+    "gender": "男",
+    "role": "consumer",
+    "avatar": "/images/avatars/user-23.avif",
+    "purchasedEvents": [
+      {
+        "eventId": 5,
+        "accumulatedPoints": 20
+      }
+    ],
+    "cartEvents": [],
+    "favoriteEvents": [1, 2, 3]
+  }
+]
