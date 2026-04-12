@@ -31,7 +31,7 @@ import usersData from '@/data/users.json'
 export const useUserStore = defineStore('user', {
   state: () => ({
     users: usersData,
-    currentUser: null
+    currentUser: usersData.find(u => u.id === 11) || null
   }),
   getters: {
     /**

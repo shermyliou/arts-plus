@@ -1,5 +1,6 @@
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
+import { useUserStore } from '@/stores/useUserStore';
 
 const props = defineProps({
   isVisible: {
@@ -10,23 +11,27 @@ const props = defineProps({
 
 const emit = defineEmits(['close']);
 
+const userStore = useUserStore();
 const overlayRef = ref(null);
 
-const accounts = ref([
-  {
-    id: 1,
-    name: "Ting",
-    avatar: "/images/char1.png",
-    type: "personal"
-  },
-  {
-    id: 2,
-    name: "林雅婷",
-    org: "藝境文化",
-    avatar: "/images/avatars/user-10.avif",
-    type: "organization"
+const accounts = computed(() => {
+  return userStore.users
+    .filter(u => [11, 22].includes(u.id))
+    .map(u => ({
+      id: u.id,
+      name: u.nickname,
+      avatar: u.avatar,
+      org: u.role === 'organizer' ? '主辦單位' : '',
+      type: u.role === 'organizer' ? 'organization' : 'personal'
+    }));
+});
+
+const selectUser = (id) => {
+  const user = userStore.users.find(u => u.id === id);
+  if (user) {
+    userStore.currentUser = { ...user };
   }
-]);
+};
 
 const handleClickOutside = (event) => {
   if (overlayRef.value && !overlayRef.value.contains(event.target)) {
@@ -53,21 +58,28 @@ onUnmounted(() => {
     <div class="user-card p-2 shadow">
       <!-- Account List -->
       <div class="account-list mb-2">
-        <div v-for="account in accounts" :key="account.id" class="user-row d-flex align-items-center gap-3 p-2 mb-1">
+        <div 
+          v-for="account in accounts" 
+          :key="account.id" 
+          class="user-row d-flex align-items-center gap-3 p-2 mb-1"
+          :class="{ active: userStore.currentUser?.id === account.id }"
+          @click="selectUser(account.id)"
+        >
           <div class="avatar-wrapper">
             <img :src="account.avatar" alt="avatar" class="avatar-img" />
           </div>
           <div class="user-info">
-            <div class="user-name">{{ account.name }}</div>
+            <div class="user-name text-nowrap">{{ account.name }}</div>
             <div v-if="account.org" class="user-org">{{ account.org }}</div>
           </div>
         </div>
       </div>
       <div class="btn btn-text mb-2 ps-1">會員中心</div>
       <!-- Actions -->
-      <div class="actions-row d-flex align-items-center justify-content-center gap-3">
-        <button class="btn btn-primary rounded-pill text-nowrap">登入</button>
-        <button class="btn btn-text text-nowrap">註冊</button>
+      <div class="actions-row d-flex align-items-center justify-content-center">
+        <button v-if="!userStore.isLoggedIn" class="btn btn-primary rounded-pill text-nowrap">登入</button>
+        <button v-if="!userStore.isLoggedIn" class="btn btn-text text-nowrap">註冊</button>
+        <button v-else class="btn btn-outline-secondary rounded-pill text-nowrap w-100" @click="userStore.logout()">登出</button>
       </div>
     </div>
   </div>
