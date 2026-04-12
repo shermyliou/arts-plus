@@ -79,11 +79,13 @@ const handleSearch = (query) => {
           </div>
 
           <!-- Search Overlay (Dropdown only) -->
-          <SearchOverlay 
-            :is-visible="isSearchVisible" 
-            @close="isSearchVisible = false"
-            @search="handleSearch"
-          />
+          <Transition name="fade-slide">
+            <SearchOverlay
+              v-if="isSearchVisible"
+              @close="isSearchVisible = false"
+              @search="handleSearch"
+            />
+          </Transition>
         </div>
 
         <div class="navbar-actions">
