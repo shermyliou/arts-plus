@@ -9,7 +9,6 @@
 ## Project Structure
 ART-PLUS
 /src
-src
  ┣ assets
  ┃ ┣ images
  ┃ ┃ ┣ event-1.jpg
@@ -45,11 +44,14 @@ src
  ┃ ┃ ┣ EventCard.vue
  ┃ ┃ ┣ EventNavTabs.vue
  ┃ ┃ ┣ FilterSidebar.vue
+ ┃ ┃ ┣ FloatingNavTabs.vue
  ┃ ┃ ┣ HeroEventCard.vue
  ┃ ┃ ┣ HorizontalEventCard.vue
  ┃ ┃ ┣ NewsMarquee.vue
+ ┃ ┃ ┣ NotificationOverlay.vue
  ┃ ┃ ┣ ReviewCard.vue
  ┃ ┃ ┣ SearchOverlay.vue
+ ┃ ┃ ┣ UserOverlay.vue
  ┃ ┃ ┗ VenueSelector.vue
  ┣ data
  ┃ ┣ events.json
