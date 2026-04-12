@@ -9,6 +9,7 @@
 ## Project Structure
 ART-PLUS
 /src
+src
  ┣ assets
  ┃ ┣ images
  ┃ ┃ ┣ event-1.jpg
@@ -16,8 +17,10 @@ ART-PLUS
  ┃ ┃ ┗ 解憂雜貨店_橫式Banner(台中歌劇院).jpg
  ┃ ┗ styles
  ┃ ┃ ┣ abstracts
+ ┃ ┃ ┃ ┣ _fonts.scss
  ┃ ┃ ┃ ┗ _mixin.scss
  ┃ ┃ ┣ overrides
+ ┃ ┃ ┃ ┣ _badge.scss
  ┃ ┃ ┃ ┣ _button.scss
  ┃ ┃ ┃ ┣ _nav.scss
  ┃ ┃ ┃ ┣ _navtabs.scss
@@ -26,7 +29,8 @@ ART-PLUS
  ┃ ┃ ┃ ┣ _component.scss
  ┃ ┃ ┃ ┣ _primitive.scss
  ┃ ┃ ┃ ┗ _semantic.scss
- ┃ ┃ ┗ main.scss
+ ┃ ┃ ┣ main.scss
+ ┃ ┃ ┗ _animations.scss
  ┣ components
  ┃ ┣ common
  ┃ ┃ ┣ EventLayout.vue
@@ -39,19 +43,23 @@ ART-PLUS
  ┃ ┃ ┣ BookingCard.vue
  ┃ ┃ ┣ CalendarView.vue
  ┃ ┃ ┣ EventCard.vue
+ ┃ ┃ ┣ EventNavTabs.vue
  ┃ ┃ ┣ FilterSidebar.vue
  ┃ ┃ ┣ HeroEventCard.vue
  ┃ ┃ ┣ HorizontalEventCard.vue
- ┃ ┃ ┗ ReviewCard.vue
+ ┃ ┃ ┣ NewsMarquee.vue
+ ┃ ┃ ┣ ReviewCard.vue
+ ┃ ┃ ┣ SearchOverlay.vue
+ ┃ ┃ ┗ VenueSelector.vue
  ┣ data
- ┃ ┗ events.json
+ ┃ ┣ events.json
+ ┃ ┗ users.json
  ┣ router
  ┃ ┗ index.js
  ┣ stores
  ┃ ┣ useEventStore.js
  ┃ ┗ useUserStore.js
  ┣ views
- ┃ ┣ Basic.vue
  ┃ ┣ BootstrapChecker.vue
  ┃ ┣ EventDetail.vue
  ┃ ┣ EventEdit.vue
