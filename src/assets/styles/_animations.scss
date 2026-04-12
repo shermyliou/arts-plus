@@ -32,3 +32,22 @@
 .fade-leave-to {
   opacity: 0 !important;
 }
+
+/* Entrance Animations */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* 稍微增加滑動距離增加動感 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-entrance {
+  /* 使用 Ease Out Quint 曲線，並稍微加長時間讓收尾更細膩 */
+  animation: slide-up-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+

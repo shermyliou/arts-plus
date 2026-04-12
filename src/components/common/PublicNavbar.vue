@@ -22,12 +22,12 @@ const handleSearch = (query) => {
 <template>
   <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
     <div class="container-fluid p-0 d-flex align-items-center">
-      <a class="navbar-brand me-auto" href="#">
+      <a class="navbar-brand me-auto animate-entrance" href="#" style="animation-delay: 0s">
         <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
       </a>
 
       <div class="d-flex align-items-center gap-4 ms-4">
-        <div class="position-relative">
+        <div class="position-relative animate-entrance" style="animation-delay: 0.1s">
           <div 
             class="search-wrapper" 
             :class="{ 'expanded': isSearchVisible }"
@@ -66,14 +66,14 @@ const handleSearch = (query) => {
         </div>
 
         <div class="navbar-actions">
-          <div class="nav-item-icon">
+          <div class="nav-item-icon animate-entrance" style="animation-delay: 0.2s">
             <Icon icon="ph:shopping-cart" />
           </div>
-          <div class="nav-item-icon">
+          <div class="nav-item-icon animate-entrance" style="animation-delay: 0.2s">
             <Icon icon="ph:ticket" />
           </div>
           
-          <div class="nav-item-icon position-relative bell-trigger" @click="isNotificationVisible = !isNotificationVisible">
+          <div class="nav-item-icon position-relative bell-trigger animate-entrance" style="animation-delay: 0.2s" @click="isNotificationVisible = !isNotificationVisible">
             <Transition name="icon-fade" mode="out-in">
               <Icon :key="isNotificationVisible" :icon="isNotificationVisible ? 'ph:bell-fill' : 'ph:bell'" />
             </Transition>
@@ -86,7 +86,7 @@ const handleSearch = (query) => {
             </Transition>
           </div>
 
-          <div class="nav-item-icon position-relative user-trigger" @click="isUserVisible = !isUserVisible">
+          <div class="nav-item-icon position-relative user-trigger animate-entrance" style="animation-delay: 0.2s" @click="isUserVisible = !isUserVisible">
             <Transition name="icon-fade" mode="out-in">
               <Icon :key="isUserVisible" :icon="isUserVisible ? 'ph:user-fill' : 'ph:user'" />
             </Transition>
