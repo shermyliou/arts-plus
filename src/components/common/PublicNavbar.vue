@@ -3,10 +3,12 @@ import { ref } from "vue";
 import { RouterLink, useRouter } from "vue-router";
 import SearchOverlay from "@/components/ui/SearchOverlay.vue";
 import NotificationOverlay from "@/components/ui/NotificationOverlay.vue";
+import UserOverlay from "@/components/ui/UserOverlay.vue";
 
 const router = useRouter();
 const isSearchVisible = ref(false);
 const isNotificationVisible = ref(false);
+const isUserVisible = ref(false);
 
 const tabs = ref([
   { name: "首頁", badgeCount: 0, path: "/" },
@@ -106,8 +108,14 @@ const handleSearch = (query) => {
               />
             </Transition>
           </div>
-          <div class="nav-item-icon">
-            <Icon icon="ph:user" />
+          <div class="nav-item-icon position-relative user-trigger" @click="isUserVisible = !isUserVisible">
+            <Icon :icon="isUserVisible ? 'ph:user-fill' : 'ph:user'" />
+            <Transition name="fade-slide">
+              <UserOverlay 
+                v-if="isUserVisible" 
+                @close="isUserVisible = false" 
+              />
+            </Transition>
           </div>
         </div>
       </div>
