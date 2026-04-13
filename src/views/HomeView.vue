@@ -1,40 +1,39 @@
 <script setup>
-import EventDetail from './EventDetail.vue';
+import EventDetail from './EventDetail.vue';      
+import Search from './Search.vue';               
+import Map from './Map.vue';                      
+import BootstrapChecker from './BootstrapChecker.vue'; 
+
+
 import SideBar from '../components/common/SideBar.vue';
-import navbar from '../components/common/navbar.vue'
-import Search from './Search.vue';
-import Map from './Map.vue'
+// import navbar from '../components/common/navbar.vue'
 
-import BootstrapChecker from './BootstrapChecker.vue'
 
-    if (video) {
-      card.addEventListener("mouseenter", () => {
-        video.currentTime = 0;
-        video.play().catch((error) => {
-          console.error("影片播放失敗:", error);
-        });
-      });
+    // if (video) {
+    //   card.addEventListener("mouseenter", () => {
+    //     video.currentTime = 0;
+    //     video.play().catch((error) => {
+    //       console.error("影片播放失敗:", error);
+    //     });
+    //   });
 
-      card.addEventListener("mouseleave", () => {
-        video.pause();
-      });
-    }
+    //   card.addEventListener("mouseleave", () => {
+    //     video.pause();
+    //   });
+    // }
 
 </script>
 
 <template>
   <div>
-    <nav>
-      <navbar/>
-    </nav>
-    <div class="d-flex col-12">
+        <div class="d-flex col-12">
       <aside>
         <SideBar/>
       </aside>
       <main>
         <Map></Map>
         <Search/>
-        <!-- <BootstrapChecker /> -->
+        <BootstrapChecker />
         <EventDetail></EventDetail>
       </main>
       <aside></aside>
