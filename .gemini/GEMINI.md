@@ -16,8 +16,10 @@ ART-PLUS
  ┃ ┃ ┗ 解憂雜貨店_橫式Banner(台中歌劇院).jpg
  ┃ ┗ styles
  ┃ ┃ ┣ abstracts
+ ┃ ┃ ┃ ┣ _fonts.scss
  ┃ ┃ ┃ ┗ _mixin.scss
  ┃ ┃ ┣ overrides
+ ┃ ┃ ┃ ┣ _badge.scss
  ┃ ┃ ┃ ┣ _button.scss
  ┃ ┃ ┃ ┣ _nav.scss
  ┃ ┃ ┃ ┣ _navtabs.scss
@@ -26,7 +28,8 @@ ART-PLUS
  ┃ ┃ ┃ ┣ _component.scss
  ┃ ┃ ┃ ┣ _primitive.scss
  ┃ ┃ ┃ ┗ _semantic.scss
- ┃ ┃ ┗ main.scss
+ ┃ ┃ ┣ main.scss
+ ┃ ┃ ┗ _animations.scss
  ┣ components
  ┃ ┣ common
  ┃ ┃ ┣ EventLayout.vue
@@ -39,19 +42,26 @@ ART-PLUS
  ┃ ┃ ┣ BookingCard.vue
  ┃ ┃ ┣ CalendarView.vue
  ┃ ┃ ┣ EventCard.vue
+ ┃ ┃ ┣ EventNavTabs.vue
  ┃ ┃ ┣ FilterSidebar.vue
+ ┃ ┃ ┣ FloatingNavTabs.vue
  ┃ ┃ ┣ HeroEventCard.vue
  ┃ ┃ ┣ HorizontalEventCard.vue
- ┃ ┃ ┗ ReviewCard.vue
+ ┃ ┃ ┣ NewsMarquee.vue
+ ┃ ┃ ┣ NotificationOverlay.vue
+ ┃ ┃ ┣ ReviewCard.vue
+ ┃ ┃ ┣ SearchOverlay.vue
+ ┃ ┃ ┣ UserOverlay.vue
+ ┃ ┃ ┗ VenueSelector.vue
  ┣ data
- ┃ ┗ events.json
+ ┃ ┣ events.json
+ ┃ ┗ users.json
  ┣ router
  ┃ ┗ index.js
  ┣ stores
  ┃ ┣ useEventStore.js
  ┃ ┗ useUserStore.js
  ┣ views
- ┃ ┣ Basic.vue
  ┃ ┣ BootstrapChecker.vue
  ┃ ┣ EventDetail.vue
  ┃ ┣ EventEdit.vue
@@ -78,6 +88,11 @@ ART-PLUS
 - Phosphor Icons are used via Iconify: `<Icon icon="ph:icon-name" />`
 - Color tokens are defined in src/assets/styles/_variables.scss
 - Don't need to apple font family in css as the default fonts are already implemented.
+- Iconify was imported in main.js in following codes:
+```js
+import { Icon } from '@iconify/vue'
+app.component('Icon', Icon)
+```
 
 ## Figma MCP server rules
   - The Figma MCP server provides an assets endpoint which can serve image and SVG assets

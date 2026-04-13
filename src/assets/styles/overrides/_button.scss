@@ -101,5 +101,13 @@
     --bs-btn-padding-x: 1.5em;
 }
 
+.btn-text {
+  background: none;
+  border: none;
+  color: var(--text-button-default);
 
-
+  &:hover, &:active, &.active {
+    color: var(--text-button-hover) !important;
+    background: none;
+  }
+}
