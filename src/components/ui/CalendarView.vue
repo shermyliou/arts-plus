@@ -272,11 +272,11 @@ const getEventsForDay = (date) => {
     background-color: rgba(254, 233, 231, 0.8);
   }
 }
-
 .event-time {
   font-family: "Inter", sans-serif;
   flex-shrink: 0;
-  font-size: 11px;
+  font-size: .75rem;
+  transform: translateY(1px); // 視覺補償：向下微調以對齊中文中心
 }
 
 .event-title {
@@ -285,13 +285,18 @@ const getEventsForDay = (date) => {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  translate: 0 0.2em; // 視覺補償：解決 Noto Sans TC 偏上的問題
 }
 
 .badge-deadline {
   background-color: var(--background-danger-secondary);
   padding: 2px 8px;
   border-radius: 1000px;
-  font-size: 11px;
+  font-size: .75rem;
   flex-shrink: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  transform: translateY(1px); // 視覺補償
 }
 </style>
