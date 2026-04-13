@@ -150,7 +150,8 @@ const formatDateRange = (start, end) => {
             :rating="event.rating"
             :ticket-status="event.ticketStatus" 
             :time="formatDateRange(event.startDate, event.endDate)"
-            :location="`${event.city} ${event.venue}`" 
+            :city="event.city"
+            :location="event.venue" 
             :price-range="formatPrice(event.price)"
             :image="event.imageUrl" 
           />

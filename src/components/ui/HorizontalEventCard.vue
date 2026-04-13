@@ -68,20 +68,17 @@ const handleFavoriteClick = () => {
     <div class="horizontal-event-card__body">
       <div class="horizontal-event-card__header align-items-start">
         <div>
-          <span v-if="category" class="badge rounded-pill border fw-light horizontal-event-card__category-badge">{{ category }}</span>
+          <span v-if="category" class="badge rounded-pill border fw-light horizontal-event-card__category-badge">{{
+            category }}</span>
           <h3 class="horizontal-event-card__title mt-2" :title="title">{{ title }}</h3>
         </div>
-        <button 
-          class="horizontal-event-card__favorite-btn" 
-          :class="{ 'is-favorite': isFavorite }"
-          @click.stop="handleFavoriteClick"
-          aria-label="收藏活動"
-        >
+        <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }"
+          @click.stop="handleFavoriteClick" aria-label="收藏活動">
           <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
         </button>
       </div>
-      
-      
+
+
       <div class="horizontal-event-card__status">
         <div class="horizontal-event-card__rating" v-show="rating">
           <Icon icon="ph:star-fill" class="horizontal-event-card__rating-icon" />
@@ -92,16 +89,13 @@ const handleFavoriteClick = () => {
           <span>{{ ticketStatus }}</span>
         </div>
       </div>
-      
+
       <div class="horizontal-event-card__footer">
         <div class="horizontal-event-card__meta">
           <div class="horizontal-event-card__time">{{ time }}</div>
           <div class="horizontal-event-card__location">
-            <template v-if="location.includes(' ')">
-              <span class="horizontal-event-card__city">{{ location.split(' ')[0] }}</span>
-              <span class="horizontal-event-card__venue">{{ location.split(' ').slice(1).join(' ') }}</span>
-            </template>
-            <span v-else>{{ location }}</span>
+            <span class="horizontal-event-card__city">{{ city }}</span>
+            <span class="horizontal-event-card__venue">{{ location }}</span>
           </div>
         </div>
         <div class="horizontal-event-card__price">
@@ -123,21 +117,21 @@ const handleFavoriteClick = () => {
   width: 100%;
   position: relative;
   box-sizing: border-box;
-  
+
   &__image {
     flex-shrink: 0;
     width: 114px;
     height: 152px;
     border-radius: var(--border-radius-1);
     overflow: hidden;
-    
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-  
+
   &__body {
     flex-grow: 1;
     display: flex;
@@ -145,18 +139,18 @@ const handleFavoriteClick = () => {
     gap: var(--component-gap-y-small);
     min-width: 0; // Needed for text truncation in flex children
   }
-  
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   &__category-badge {
     color: var(--text-brand-primary);
     padding-top: 0.5em;
   }
-  
+
   &__favorite-btn {
     background: none;
     border: none;
@@ -172,12 +166,12 @@ const handleFavoriteClick = () => {
     &:hover {
       transform: scale(1.1);
     }
-    
+
     &.is-favorite {
       color: var(--icon-danger-secondary);
     }
   }
-  
+
   &__title {
     margin: 4px 0;
     color: var(--text-default-default);
@@ -185,14 +179,14 @@ const handleFavoriteClick = () => {
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  
+
   &__status {
     display: flex;
     gap: 16px;
     align-items: center;
     margin-bottom: 8px;
   }
-  
+
   &__rating {
     display: flex;
     align-items: center;
@@ -200,7 +194,7 @@ const handleFavoriteClick = () => {
     color: var(--text-warning-tertiary);
     font-size: 14px;
     height: 20px;
-    
+
     &-icon {
       font-size: 18px;
     }
@@ -210,7 +204,7 @@ const handleFavoriteClick = () => {
       transform: translateY(0.0625em); // 視覺補償，使文字中線與圖示中心對齊
     }
   }
-  
+
   &__ticket-status {
     display: flex;
     align-items: center;
@@ -218,7 +212,7 @@ const handleFavoriteClick = () => {
     color: var(--text-positive-default);
     font-size: 14px;
     height: 20px;
-    
+
     .horizontal-event-card__ticket-icon {
       font-size: 18px;
     }
@@ -228,14 +222,14 @@ const handleFavoriteClick = () => {
       transform: translateY(1px); // 視覺補償
     }
   }
-  
+
   &__footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-top: auto;
   }
-  
+
   &__meta {
     display: flex;
     flex-direction: column;
@@ -243,16 +237,16 @@ const handleFavoriteClick = () => {
     color: var(--text-default-default);
     font-size: 14px;
   }
-  
+
   &__location {
     display: flex;
     gap: 4px;
   }
-  
+
   &__city {
     font-weight: 700;
   }
-  
+
   &__price {
     font-size: 20px;
     font-weight: 700;
