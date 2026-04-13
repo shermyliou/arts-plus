@@ -11,11 +11,11 @@ const props = defineProps({
   title: {
     type: String,
     required: true,
-    default: 'Test'
+    default: ''
   },
   category: {
     type: String,
-    default: 'test'
+    default: ''
   },
   rating: {
     type: [Number, String],
@@ -23,23 +23,27 @@ const props = defineProps({
   },
   ticketStatus: {
     type: String,
-    default: 'test'
+    default: ''
   },
   time: {
     type: String,
-    default: 'test'
+    default: ''
+  },
+  city: {
+    type: String,
+    default: ''
   },
   location: {
     type: String,
-    default: 'test'
+    default: ''
   },
   priceRange: {
     type: String,
-    default: 'test'
+    default: ''
   },
   image: {
     type: String,
-    default: 'test'
+    default: ''
   }
 });
 
