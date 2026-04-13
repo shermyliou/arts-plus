@@ -117,16 +117,16 @@ const formatDateRange = (start, end) => {
         <!-- Filter/Sort Section -->
         <div class="col-2 d-flex justify-content-end">
           <div class="dropdown">
-            <button class="btn btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
+            <button class="btn btn-outline-secondary btn-rect btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
               data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="sort-header">
-                <div class="sort-title-area">
+              <div class="sort-header d-flex">
+                <div class="sort-title-area d-flex align-items-center">
                   <div class="sort-icon-wrapper">
                     <Icon icon="ph:sort-ascending" width="20" height="20" class="sort-icon" />
                   </div>
                   <span class="sort-text">排序</span>
                 </div>
-                <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" />
+                <!-- <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" /> -->
               </div>
             </button>
             <ul class="dropdown-menu sort-dropdown-menu" aria-labelledby="sortDropdown">
@@ -275,5 +275,9 @@ const formatDateRange = (start, end) => {
 
 .winherit {
   width: inherit;
+}
+
+.sort-text {
+  translate: 0 0.1em;
 }
 </style>
