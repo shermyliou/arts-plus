@@ -14,7 +14,6 @@ import BootstrapChecker from "./BootstrapChecker.vue";
     <img src="/images/統一黃-地點標示-永安藝文.png" alt="" class="mappin mappin-q">
     <img src="/images/統一黃-地點標示-四四南村.png" alt="" class="mappin mappin-s">
     <img src="/images/統一黃-地點標示-台北城市舞台.png" alt="" class="mappin mappin-taipei">
-
   </div>
 </template>
 
@@ -31,10 +30,8 @@ import BootstrapChecker from "./BootstrapChecker.vue";
 .word{
   display: flex;
   position: absolute;
-  width: 481px;
-  height: 206px;
   top:410px;
-  right: 350px;
+  right: 400px;
   align-items: center;
   justify-content: center;
   text-align: center;
