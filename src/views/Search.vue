@@ -8,6 +8,11 @@ import { useEventStore } from '@/stores/useEventStore';
 
 const eventStore = useEventStore();
 const searchQuery = ref('');
+const showCalendar = ref(false);
+
+const toggleCalendar = () => {
+  showCalendar.value = !showCalendar.value;
+};
 
 const tabs = computed(() => [
   { name: "全部", badgeCount: eventStore.events.length },
@@ -70,17 +75,12 @@ const formatDateRange = (start, end) => {
 </script>
 
 <template>
-  <div class="search-page-container d-flex">
+  <div class="search-page-container d-flex position-relative">
     <!-- Left Sidebar: Filters -->
     <FilterSidebar class="sidebar"></FilterSidebar>
 
     <!-- Main Content Area -->
     <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3 container-md ms-0">
-
-      <!-- Calendar View Section -->
-      <!-- <div class="position-fixed winherit"> -->
-      <!-- <CalendarView /> -->
-      <!-- </div> -->
 
       <!-- Fixed Header Section -->
       <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center">
@@ -101,25 +101,6 @@ const formatDateRange = (start, end) => {
             <FilterSidebar />
           </div>
         </div>
-        <!-- Search Bar Section -->
-        <!-- <div class="row mb-4 justify-content-center sticky-top topnav"> -->
-        <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
-        <!-- Search Input Container -->
-        <!-- <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2"> -->
-        <!-- <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" /> -->
-        <!-- <input 
-                v-model="searchQuery"
-                type="text" 
-                class="search-input border-0 bg-transparent flex-grow-1 ms-2" 
-                placeholder="搜尋" 
-              /> -->
-        <!-- </div> -->
-        <!-- Search Button -->
-        <!-- <button class="btn btn-search rounded-pill px-4 py-2"> -->
-        <!-- 搜尋 -->
-        <!-- </button> -->
-        <!-- </div> -->
-        <!-- </div> -->
 
         <!-- Nav Tabs Section -->
         <ul class="nav nav-pills overflow-x-auto flex-shrink-1">
@@ -160,8 +141,7 @@ const formatDateRange = (start, end) => {
         </div>
       </div>
 
-      <!-- Results Section (Scrollable Area) -->
-      <div class="results-scroll-area d-flex flex-column overflow-y-auto">
+      <div class="results-scroll-area d-flex flex-column">
         <div v-for="event in filteredEvents" :key="event.id">
           <HorizontalEventCard 
             :id="event.id"
@@ -177,6 +157,24 @@ const formatDateRange = (start, end) => {
         </div>
       </div>
     </div>
+
+    <!-- Calendar Overlay (Fixed to screen) -->
+    <Transition name="fade">
+      <div v-if="showCalendar" class="calendar-overlay">
+        <div class="container-sm me-0">
+          <CalendarView @close="showCalendar = false" />
+        </div>
+      </div>
+    </Transition>
+
+    <!-- Floating Action Button (Fixed to screen) -->
+    <button 
+      class="btn-calendar-fab"
+      @click="toggleCalendar"
+      :aria-label="showCalendar ? '關閉行事曆' : '開啟行事曆'"
+    >
+      <Icon :icon="showCalendar ? 'ph:x' : 'ph:calendar-blank'" width="24" height="24" />
+    </button>
   </div>
 </template>
 
@@ -207,8 +205,8 @@ const formatDateRange = (start, end) => {
   }
 
 .search-page-container {
-  // max-width: var(--main-container-max-width);
   height: 100vh;
+  overflow: hidden;
 }
 
 .search-content {
@@ -217,172 +215,62 @@ const formatDateRange = (start, end) => {
 }
 
 .results-scroll-area {
-  min-height: 0; // Essential for flex-grow with overflow
   gap: var(--main-gap-x);
+  padding-bottom: 80px; // Space for the FAB
+}
 
-  &::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
+.calendar-overlay {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+  padding: 0 24px;
+  pointer-events: none;
 
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 4px;
-  }
-
-  &:hover::-webkit-scrollbar-thumb {
-    background: var(--text-default-tertiary);
+  & > div {
+    pointer-events: auto;
   }
 }
 
-// Search Input (3004:18517)
-.search-input-container {
-  background-color: var(--background-default-default); // #fafaf9
-  border: 1px solid var(--border-default-default); // #d9d9d9 (close to #d1d1d6)
-  border-radius: var(--border-radius-pill);
-  min-height: 40px;
-
-  .search-icon {
-    color: var(--icon-default-tertiary); // #aeaeb2
-  }
-
-  .search-input {
-    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.48px;
-    color: var(--text-default-default);
-    outline: none;
-
-    &::placeholder {
-      color: var(--text-default-tertiary); // #aeaeb2
-    }
-  }
-}
-
-// Search Button (3004:18517 / 3004:18518)
-.btn-search {
-  border: 1px solid var(--border-brand-secondary) !important; // #444
-  color: var(--text-brand-on-brand-secondary); // #413d3a
-  font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 1.92px;
-  padding: 16px 28px !important;
-  line-height: 1.4;
-  white-space: nowrap;
-  background-color: transparent;
-
-  &:hover {
-    background-color: var(--background-default-default-hover);
-  }
-}
-
-// Sort Dropdown Button (3437:28340)
-.btn-sort-dropdown {
-  border: 1px solid var(--border-default-default) !important;
-  background-color: transparent;
-  border-radius: var(--border-radius-1);
-  padding: 0 !important;
-  width: 136px;
-  min-height: 40px;
-  overflow: hidden;
+.btn-calendar-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--background-brand-default); // #211f1e
+  color: var(--text-brand-on-brand);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: background-color 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1050;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 
   &:hover {
-    background-color: var(--background-default-secondary-hover);
+    background-color: var(--background-brand-hover);
+    transform: scale(1.05);
   }
 
-  &::after {
-    display: none; // Remove bootstrap default arrow
-  }
-
-  .sort-header {
-    width: 100%;
-    height: 40px;
-    padding: 8px 8px 8px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .sort-title-area {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-
-      .sort-icon-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .sort-icon {
-        color: var(--text-default-default);
-      }
-
-      .sort-text {
-        font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.4;
-        letter-spacing: 0.14px;
-        color: var(--text-default-default);
-      }
-    }
-
-    .caret-icon {
-      color: var(--text-default-default);
-      margin-left: 12px;
-    }
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-.sort-dropdown-menu {
-  width: 136px;
-  padding: 0;
-  border: 1px solid var(--border-default-default);
-  border-radius: var(--border-radius-1);
-  margin-top: 4px;
-  box-shadow: none;
-  background-color: var(--background-default-default);
+// Fade transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-  &.show {
-    inset: 0px 0px auto auto !important;
-  }
-
-  .dropdown-item {
-    height: 28px;
-    padding: 0 8px;
-    display: flex;
-    align-items: center;
-    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0.14px;
-    color: var(--text-default-default);
-
-    &::before {
-      content: '';
-      width: 24px;
-      height: 24px;
-      margin-right: 4px;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    &:hover {
-      background-color: var(--background-default-secondary-hover);
-    }
-
-    &.active {
-      background-color: var(--background-default-secondary-hover);
-      color: var(--text-default-default);
-    }
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .winherit {
