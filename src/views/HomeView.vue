@@ -27,9 +27,9 @@ import SideBar from '../components/common/SideBar.vue';
 <template>
   <div>
         <div class="d-flex col-12">
-      <aside>
+      <!-- <aside>
         <SideBar/>
-      </aside>
+      </aside> -->
       <main>
         <Map></Map>
         <Search/>
