@@ -25,19 +25,88 @@ const tabs = computed(() => [
 ]);
 
 const activeTab = ref("全部");
+const sidebarFilters = ref(null);
+
+const handleFilterUpdate = (filters) => {
+  sidebarFilters.value = filters;
+};
 
 const filteredEvents = computed(() => {
   let results = eventStore.events;
 
+  // 1. Top Tab Filter (Major Category)
   if (activeTab.value !== '全部') {
     results = results.filter(e => e.majorCategory === activeTab.value);
   }
 
+  // 2. Search Query Filter
   if (searchQuery.value) {
     results = results.filter(e => e.title.includes(searchQuery.value));
   }
 
-  return results;
+  // 3. Sidebar Filters
+  if (sidebarFilters.value) {
+    const { dateRange, cities, categories, excludeTickets, features } = sidebarFilters.value;
+
+    // Date Range Filter
+    if (dateRange.start && dateRange.end) {
+      results = results.filter(e => {
+        const eStart = new Date(e.startDate);
+        const eEnd = new Date(e.endDate);
+        return eStart <= dateRange.end && eEnd >= dateRange.start;
+      });
+    } else if (dateRange.start) {
+      // Only start date selected (selecting range in progress)
+      results = results.filter(e => {
+        const eEnd = new Date(e.endDate);
+        return eEnd >= dateRange.start;
+      });
+    }
+
+    // City Filter
+    if (cities && !cities.includes('全部')) {
+      results = results.filter(e => {
+        // e.city might be "臺北市、新北市"
+        const eventCities = e.city.split('、');
+        return eventCities.some(c => cities.includes(c));
+      });
+    }
+
+    // Category Filters (Sub-categories from Sidebar)
+    const allSelectedCategories = [
+      ...categories.exhibition,
+      ...categories.traditional,
+      ...categories.drama,
+      ...categories.dance,
+      ...categories.music
+    ].filter(c => c !== '全部');
+
+    if (allSelectedCategories.length > 0) {
+      results = results.filter(e => allSelectedCategories.includes(e.category));
+    }
+    
+    // Exclude Ticket Status
+    if (excludeTickets.length > 0) {
+      if (excludeTickets.includes('排除已售完')) {
+        results = results.filter(e => e.ticketStatus !== '已售完');
+      }
+      // Note: Student and Accessibility ticket exclusion would require more data in events.json
+    }
+  }
+
+  // 4. Sorting
+  const sorted = [...results];
+  if (currentSort.value === '日期：近到遠') {
+    sorted.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  } else if (currentSort.value === '日期：遠到近') {
+    sorted.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+  } else if (currentSort.value === '價格：低到高') {
+    sorted.sort((a, b) => a.price.min - b.price.min);
+  } else if (currentSort.value === '價格：高到低') {
+    sorted.sort((a, b) => b.price.max - a.price.max);
+  }
+
+  return sorted;
 });
 
 const sortOptions = ref([
@@ -77,7 +146,7 @@ const formatDateRange = (start, end) => {
 <template>
   <div class="search-page-container d-flex position-relative">
     <!-- Left Sidebar: Filters -->
-    <FilterSidebar class="sidebar"></FilterSidebar>
+    <FilterSidebar class="sidebar" @update:filters="handleFilterUpdate"></FilterSidebar>
 
     <!-- Main Content Area -->
     <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3 container-md ms-0">
@@ -98,7 +167,7 @@ const formatDateRange = (start, end) => {
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <FilterSidebar />
+            <FilterSidebar @update:filters="handleFilterUpdate" />
           </div>
         </div>
 
