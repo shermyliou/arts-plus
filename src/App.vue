@@ -1,6 +1,5 @@
 <script setup>
-import HomeView from './views/HomeView.vue';
-import EventEdit from './views/EventEdit.vue';
+import { RouterView } from 'vue-router';
 </script>
 
 <template>

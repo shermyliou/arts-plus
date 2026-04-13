@@ -1,4 +1,22 @@
+@import 'abstracts/fonts';
+
 @import 'abstracts/mixin';
+
+// Global resets & font smoothing
+body {
+  // 基本平滑化
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: auto;
+  
+  // Windows Chrome 進階優化
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.01); // 讓文字邊緣較圓潤
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: 0.045em;
+  text-rendering: optimizeLegibility;
+}
 
 @import 'tokens/primitive';
 @import 'tokens/semantic';
@@ -8,8 +26,10 @@
 
 @import 'overrides/navtabs';
 @import 'overrides/button';
+@import 'overrides/badge';
 
 @import '../styles/overrides/page';
 @import 'overrides/nav';
+@import 'animations';
 
-@include generate-spacing-classes(0, 64, 4);
+@include generate-spacing-classes(0, 72, 4);

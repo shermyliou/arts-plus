@@ -1,13 +1,13 @@
-$background-default-default: $gray-50;
-$background-default-default-hover: $brand-100;
+$background-default-default: $gray-0;
+$background-default-default-hover: $brand-50;
 $background-default-secondary: $brand-50;
-$background-default-secondary-hover: $gray-200;
+$background-default-secondary-hover: $brand-100;
 $background-default-tertiary: $brand-100;
-$background-default-tertiary-hover: $gray-400;
+$background-default-tertiary-hover: $brand-200;
 $background-brand-default: $brand-900;
-$background-brand-hover: $brand-800;
+$background-brand-hover: $brand-700;
 $background-brand-secondary: $brand-100;
-$background-brand-secondary-hover: $brand-700;
+$background-brand-secondary-hover: $brand-600;
 $background-positive-default: $green-500;
 $background-positive-hover: $green-600;
 $background-positive-secondary: $green-200;
@@ -61,7 +61,7 @@ $text-danger-on-danger-secondary: $red-700;
 $text-danger-on-danger-tertiary: $red-700;
 $text-disabled-default: $gray-400;
 $text-button-default: $brand-600;
-$text-button-hover: $brand-500;
+$text-button-hover: $brand-400;
 $text-disabled-on-disabled: $gray-0;
 $border-default-default: $gray-300;
 $border-focus-ring-light: $gray-0;
@@ -116,33 +116,52 @@ $icon-size-extra-small: 20px;
 $icon-size-small: 24px;
 $icon-size-medium: 32px;
 $icon-size-large: 40px;
-$component-height-small: 32px;
-$component-height-normal: 40px;
-$component-height-large: 48px;
-$component-padding-x-small: 0.5em;
-$component-padding-x-normal: 1em;
+
+$component-height-small: 2em;         // 32px
+$component-height-normal: 2.5em;      // 40px
+$component-height-large: 3.375em;     // 54px
+
+$component-padding-x-small: 0.5em;    // 8px
+$component-padding-x-normal: 1em;     // 16px
+$component-padding-x-large: 1.75em;   // 28px
+$component-padding-y-small: 0.5em;    // 8px
+$component-padding-y-normal: 1em;     // 16px
+
+$component-gap-x-small: 0.25rem;      // 4px
+$component-gap-x-normal: 0.75rem;     // 12px
+$component-gap-x-large: 2.5rem;       // 40px
+$component-gap-y-small: 0.25rem;      // 4px
+$component-gap-y-normal: 0.75rem;     // 12px
+$component-gap-y-large: 2.5rem;       // 40px
+
+$component-card-min-width: 224px;
+$component-card-max-width: 320px;
+
 $border-radius-0: 4px;
 $border-radius-1: 8px;
 $border-radius-2: 16px;
 $border-radius-3: 24px;
-$border-radius-4: 32px;
-$border-radius-5: 48px;
+$border-radius-4: 48px;
+$border-radius-5: 64px;
 $border-radius-pill: 1000px;
-$component-padding-y-small: 0.5em;
-$component-padding-y-normal: 1em;
-$component-gap-x-small: 0.25rem;
-$component-gap-x-normal: 0.75rem;
-$component-gap-y-small: 0.25rem;
-$component-gap-y-normal: 0.75rem;
-$component-card-min-width: 224px;
-$component-card-max-width: 320px;
+
 $aside-left-min-width: 120px;
 $aside-left-max-width: 240px;
 $aside-right-min-width: 160px;
 $aside-right-max-width: 320px;
 $aside-padding-x: 8px;
+
 $main-padding-x: 24px;
-$responsive-device-width: 1440px;
+$main-padding-y: 16px;
+$main-gap-x: 0.75rem;                 // 12px
+$main-gap-x-large: 1.5rem;            // 24px
+$main-gap-y: 0.75rem;                 // 12px
+$main-gap-y-large: 1.5rem;            // 24px
+$main-event-width: 960px;
+$main-article-width: 760px;
+$main-article-text-width: 580px;
+
+$page-width: 1440px;
 $page-min-width: 1280px;
 $page-max-width: 1920px;
 $main-container-max-width: $page-min-width;
@@ -150,12 +169,10 @@ $page-height: 900px;
 $component-navbar-height: 72px;
 $page-padding-top: $component-navbar-height;
 $page-padding-bottom: 16px;
-$main-padding-y: 16px;
-$main-gap-x: 0.75rem;
-$main-gap-x-large: 1.5rem;
-$main-gap-y: 0.75rem;
-$main-gap-y-large: 1.5rem;
-$main-event-width: 960px;
+
+$home-padding-x: 60px;
+$home-padding-y: 80px;
+$slide-padding: 24px;
 
 // ─── CSS Variables Output (:root) ─────────────────────────────
 :root {
@@ -194,7 +211,7 @@ $main-event-width: 960px;
   --background-utilities-measurement: #{$background-utilities-measurement};
   --background-chart-bar: #{$background-chart-bar};
   --background-chart-background: #{$background-chart-background};
- 
+
   // Text
   --text-default-default: #{$text-default-default};
   --text-default-secondary: #{$text-default-secondary};
@@ -227,7 +244,7 @@ $main-event-width: 960px;
   --text-button-default: #{$text-button-default};
   --text-button-hover: #{$text-button-hover};
   --text-disabled-on-disabled: #{$text-disabled-on-disabled};
- 
+
   // Border
   --border-default-default: #{$border-default-default};
   --border-focus-ring-light: #{$border-focus-ring-light};
@@ -248,7 +265,7 @@ $main-event-width: 960px;
   --border-danger-tertiary: #{$border-danger-tertiary};
   --border-disabled-default: #{$border-disabled-default};
   --border-utilities-swatch: #{$border-utilities-swatch};
- 
+
   // Icon
   --icon-default-default: #{$icon-default-default};
   --icon-default-secondary: #{$icon-default-secondary};
@@ -278,28 +295,32 @@ $main-event-width: 960px;
   --icon-danger-on-danger-tertiary: #{$icon-danger-on-danger-tertiary};
   --icon-disabled-default: #{$icon-disabled-default};
   --icon-disabled-on-disabled: #{$icon-disabled-on-disabled};
- 
+
   // Icon Size
   --icon-size-extra-small: #{$icon-size-extra-small};
   --icon-size-small: #{$icon-size-small};
   --icon-size-medium: #{$icon-size-medium};
   --icon-size-large: #{$icon-size-large};
- 
+
   // Component Size
   --component-height-small: #{$component-height-small};
   --component-height-normal: #{$component-height-normal};
   --component-height-large: #{$component-height-large};
   --component-padding-x-small: #{$component-padding-x-small};
   --component-padding-x-normal: #{$component-padding-x-normal};
+  --component-padding-x-large: #{$component-padding-x-large};
   --component-padding-y-small: #{$component-padding-y-small};
   --component-padding-y-normal: #{$component-padding-y-normal};
   --component-gap-x-small: #{$component-gap-x-small};
   --component-gap-x-normal: #{$component-gap-x-normal};
+  --component-gap-x-large: #{$component-gap-x-large};
   --component-gap-y-small: #{$component-gap-y-small};
   --component-gap-y-normal: #{$component-gap-y-normal};
+  --component-gap-y-large: #{$component-gap-y-large};
   --component-card-min-width: #{$component-card-min-width};
   --component-card-max-width: #{$component-card-max-width};
- 
+  --component-navbar-height: #{$component-navbar-height};
+
   // Border Radius
   --border-radius-0: #{$border-radius-0};
   --border-radius-1: #{$border-radius-1};
@@ -308,7 +329,7 @@ $main-event-width: 960px;
   --border-radius-4: #{$border-radius-4};
   --border-radius-5: #{$border-radius-5};
   --border-radius-pill: #{$border-radius-pill};
- 
+
   // Layout
   --aside-left-min-width: #{$aside-left-min-width};
   --aside-left-max-width: #{$aside-left-max-width};
@@ -323,15 +344,19 @@ $main-event-width: 960px;
   --main-gap-y-large: #{$main-gap-y-large};
   --main-container-max-width: #{$main-container-max-width};
   --main-event-width: #{$main-event-width};
- 
+  --main-article-width: #{$main-article-width};
+  --main-article-text-width: #{$main-article-text-width};
+
   // Page
+  --page-width: #{$page-width};
   --page-min-width: #{$page-min-width};
   --page-max-width: #{$page-max-width};
   --page-height: #{$page-height};
   --page-padding-top: #{$page-padding-top};
   --page-padding-bottom: #{$page-padding-bottom};
-  --responsive-device-width: #{$responsive-device-width};
- 
-  // Navbar
-  --component-navbar-height: #{$component-navbar-height};
+
+  // Home
+  --home-padding-x: #{$home-padding-x};
+  --home-padding-y: #{$home-padding-y};
+  --slide-padding: #{$slide-padding};
 }

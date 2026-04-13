@@ -26,20 +26,20 @@ const filters = ref([
       { label: '桃園市', type: 'item' },
       { label: '新竹市', type: 'item' },
       { label: '新竹縣', type: 'item' },
-      { label: '宜蘭縣', type: 'item' },
-      { label: '中部', type: 'region' },
       { label: '苗栗縣', type: 'item' },
+      { label: '中部', type: 'region' },
       { label: '臺中市', type: 'item' },
       { label: '彰化縣', type: 'item' },
       { label: '南投縣', type: 'item' },
       { label: '雲林縣', type: 'item' },
-      { label: '南部', type: 'region' },
       { label: '嘉義市', type: 'item' },
       { label: '嘉義縣', type: 'item' },
+      { label: '南部', type: 'region' },
       { label: '臺南市', type: 'item' },
       { label: '高雄市', type: 'item' },
       { label: '屏東縣', type: 'item' },
       { label: '東部', type: 'region' },
+      { label: '宜蘭縣', type: 'item' },
       { label: '花蓮縣', type: 'item' },
       { label: '臺東縣', type: 'item' },
       { label: '離島', type: 'region' },
@@ -215,7 +215,7 @@ const toggleOption = (filterIndex, option) => {
 </script>
 
 <template>
-  <aside class="filter-sidebar h-100">
+  <aside class="filter-sidebar h-100 overflow-y-auto">
     <div v-for="(filter, index) in filters" :key="filter.label" class="filter-group">
       <div v-if="index > 0" class="filter-divider mx-3"></div>
       <button 
@@ -281,13 +281,35 @@ const toggleOption = (filterIndex, option) => {
 </template>
 
 <style scoped lang="scss">
+@use 'bootstrap' as *;
+
 .filter-sidebar {
-  background-color: var(--background-default-secondary);
-  width: 280px;
-  min-width: 280px;
-  overflow-y: auto;
-  padding-top: 16px;
+  width: 100%;
+  max-width: var(--aside-left-max-width);
+  padding: var(--aside-padding-x) var(--main-padding-y);
   padding-bottom: 16px;
+  top: var(--component-navbar-height);
+    &::-webkit-scrollbar {
+    width: 4px;
+    background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+    }
+
+    /* 滑動時（hover 容器）才顯示 */
+    &:hover::-webkit-scrollbar-thumb {
+    background: var(--text-default-tertiary);
+    }
+}
+
+@include media-breakpoint-down(md) {
+  .filter-sidebar {
+    max-width: none;
+    padding: 0;
+  }
 }
 
 .filter-header {

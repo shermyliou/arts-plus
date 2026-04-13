@@ -26,19 +26,18 @@
 
 .event-layout {
   display: grid;
-  grid-template-columns: 200px 1fr 200px;
+  // 使用 1fr auto 1fr：左右自動填滿剩餘空間，中間由內容(main)決定寬度
+  grid-template-columns: 1fr auto 1fr;
   gap: 0;
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 0 ;
   width: 100%;
   min-height: 100vh;
+  background-color: $brand-50; // 確保側邊欄底色延伸
 
   &__aside-left,
   &__aside-right {
-    //width: 200px;
     background-color: $brand-50;
-    //background-color: var(--background-default-secondary);
+    width: 100%;
+    
   }
 
   &__main {
@@ -47,24 +46,38 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
+    // 關鍵：限制主內容最大寬度，並在大空間中置中
+    max-width: 910px;
+    margin: 0 auto;
     background-color:  var(--background-default-default);
-    padding: 24px;
+    padding: 0 24px;
   }
 
-  // 響應式處理：當螢幕寬度不足以容納三欄時
+  // 響應式處理：1200px 以下隱藏右側
   @media (max-width: 1200px) {
-    grid-template-columns: 250px 1fr;
+    grid-template-columns: auto 1fr;
     
     &__aside-right {
       display: none;
     }
+
+    &__main {
+      max-width: 100%; // 恢復為填滿剩餘空間
+      margin: 0;
+    }
   }
 
+  // 響應式處理：768px 以下僅保留主內容
   @media (max-width: 768px) {
     grid-template-columns: 1fr;
     
     &__aside-left {
       display: none;
+    }
+    
+    &__main {
+      padding: 16px;
+      max-width: 100%;
     }
   }
 }

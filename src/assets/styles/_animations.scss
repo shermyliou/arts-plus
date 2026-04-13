@@ -1,0 +1,53 @@
+/* Vue Transition: Fade Slide (用於下拉選單) */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0 !important;
+  transform: translateY(-10px) !important;
+}
+
+/* Vue Transition: Icon Fade (用於圖示切換) */
+.icon-fade-enter-active,
+.icon-fade-leave-active {
+  transition: all 0.2s ease !important;
+}
+
+.icon-fade-enter-from,
+.icon-fade-leave-to {
+  opacity: 0 !important;
+  transform: scale(0.8) !important;
+}
+
+/* 通用 Fade 動畫 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease !important;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0 !important;
+}
+
+/* Entrance Animations */
+@keyframes slide-up-fade {
+  from {
+    opacity: 0;
+    transform: translateY(30px); /* 稍微增加滑動距離增加動感 */
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-entrance {
+  /* 使用 Ease Out Quint 曲線，並稍微加長時間讓收尾更細膩 */
+  animation: slide-up-fade 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  opacity: 0;
+}
+
