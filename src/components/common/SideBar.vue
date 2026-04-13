@@ -36,7 +36,7 @@ const handleNavClick = (path) => {
     class="sidebar-container d-flex flex-column vh-100 border-end"
     :class="{ 'expanded': isHovered }"
     @mouseenter="isHovered = true"
-    @mouseleave="isHovered = true"
+    @mouseleave="isHovered = false"
   >
     <!-- 導航選單區域 -->
     <nav class="nav-menu flex-grow-1 py-5 px-3">
@@ -117,14 +117,16 @@ const handleNavClick = (path) => {
     border-radius: var(--border-radius-1);
     transition: all 0.2s ease;
     height: 48px;
+    border: none !important; // 徹底去掉所有邊框
 
     &:hover {
       background-color: var(--background-default-default-hover);
     }
 
     &.active {
-      background-color: transparent; // As per Figma, it doesn't show a strong active background here
+      background-color: transparent; 
       color: var(--text-brand-default);
+      border: none !important;
     }
   }
 
