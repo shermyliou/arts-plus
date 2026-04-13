@@ -2,6 +2,13 @@
 import { ref } from "vue";
 import { Icon } from "@iconify/vue";
 
+const props = defineProps({
+  noHover: {
+    type: Boolean,
+    default: false
+  }
+});
+
 /**
  * @typedef {Object} myNavItem
  * @property {string} name - 導航名稱
@@ -13,8 +20,8 @@ import { Icon } from "@iconify/vue";
 const navItems = [
   { name: '首頁', icon: 'ph:house-line', path: '/' },
   { name: '會員中心', icon: 'ph:user', path: '/profile' },
-  { name: '地點蒐藏', icon: 'ph:heart', path: '/favorites' },
   { name: '藝文足跡', icon: 'ph:sneaker-move', path: '/footprint' },
+  { name: '地點蒐藏', icon: 'ph:heart', path: '/favorites' },
   { name: '瀏覽紀錄', icon: 'ph:clock-counter-clockwise', path: '/history' },
 ];
 
@@ -33,33 +40,40 @@ const handleNavClick = (path) => {
 
 <template>
   <aside 
-    class="sidebar-container d-flex flex-column vh-100 border-end"
+    class="sidebar-container d-flex flex-column border-end"
     :class="{ 'expanded': isHovered }"
     @mouseenter="isHovered = true"
-    @mouseleave="isHovered = true"
+    @mouseleave="isHovered = false"
   >
     <!-- 導航選單區域 -->
     <nav class="nav-menu flex-grow-1 py-5 px-3">
       <ul class="nav vstack gap-3">
-        <li v-for="item in navItems" :key="item.path" class="nav-item">
-          <a 
-            href="#" 
-            class="nav-link d-flex align-items-center py-2 px-2"
-            :class="{ 
-              'active': activePath === item.path,
-              'justify-content-center': !isHovered,
-              'gap-3': isHovered 
-            }"
-            @click.prevent="handleNavClick(item.path)"
-          >
-            <Icon :icon="item.icon" width="30" height="30" />
-            <span v-if="isHovered" class="nav-label fw-normal text-nowrap">{{ item.name }}</span>
-          </a>
-        </li>
-      </ul>
+        <template v-for="(item, index) in navItems" :key="item.path">
+    
+        <div v-if="index === 3" style="height: 1px; background-color: #999; opacity: 0.5; margin: 4px 8px;"></div>
+
+        <li class="nav-item">
+        <div
+        class="nav-link d-flex align-items-center py-2 px-2"
+        :class="{ 
+          'active': activePath === item.path,
+          'justify-content-center': !isHovered,
+          'gap-3': isHovered,
+          'no-hover': props.noHover,
+        }"
+        style="cursor: pointer;"
+        @click="handleNavClick(item.path)">
+        <Icon :icon="item.icon" width="30" height="30" />
+        <span v-if="isHovered" class="nav-label fw-normal text-nowrap">{{ item.name }}</span>
+      </div>
+    </li>
+
+  </template>
+</ul>
 
       <!-- 分隔線 -->
       <div class="sidebar-divider my-4 mx-2"></div>
+     
 
       <!-- 歷史紀錄區域 -->
       <div class="history-section d-flex flex-column gap-4 align-items-center mt-2">
@@ -99,7 +113,11 @@ const handleNavClick = (path) => {
 
 <style scoped lang="scss">
 .sidebar-container {
+  position: absolute;
+  left: 0;
+  top:0;
   width: 62px;
+  height: 100%;
   background-color: var(--background-default-secondary);
   border-color: var(--border-default-default) !important;
   transition: width 0.3s ease;
@@ -120,12 +138,42 @@ const handleNavClick = (path) => {
 
     &:hover {
       background-color: var(--background-default-default-hover);
+      .nav-label {
+      font-weight: 700 !important;
+     }
     }
 
     &.active {
       background-color: transparent; // As per Figma, it doesn't show a strong active background here
       color: var(--text-brand-default);
     }
+    
+    &.no-hover {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+
+    &.hover {
+      background-color: transparent !important;
+      border: none !important;
+      .nav-label {
+        font-weight: 700 !important; 
+       }
+     }
+  
+    &:focus {
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+
+    &:active {
+      border: none !important;
+      box-shadow: none !important;
+      outline: none !important;
+    }
+   }
+    
   }
 
   .nav-label {
@@ -135,8 +183,9 @@ const handleNavClick = (path) => {
 
   .sidebar-divider {
     height: 1px;
-    background-color: var(--gray-600);
+    background-color:var(--gray-600);
     opacity: 0.5;
+    margin: 8px 8px;
   }
 
   .history-section {
