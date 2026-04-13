@@ -21,7 +21,7 @@ import BootstrapChecker from './BootstrapChecker.vue'
       <main>
         <Map></Map>
         <Search/>
-        <BootstrapChecker />
+        <!-- <BootstrapChecker /> -->
         <EventDetail></EventDetail>
       </main>
       <aside></aside>
