@@ -27,8 +27,8 @@ const suggestedSearches = [
 
 const searchHistory = [
   { text: "奇異果劇團", time: "11:32" },
-  { text: "奇異果劇團", time: "11:32" },
-  { text: "奇異果劇團", time: "11:32" }
+  { text: "埃及", time: "12:27" },
+  { text: "人間條件", time: "15:02" }
 ];
 
 const handleClickOutside = (event) => {
