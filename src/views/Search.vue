@@ -186,7 +186,7 @@ const formatDateRange = (start, end) => {
         <!-- Filter/Sort Section -->
         <div class="col-2 d-flex justify-content-end">
           <div class="dropdown">
-            <button class="btn btn-outline-secondary btn-rect btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
+            <button class="btn btn-outline-secondary bg-white btn-rect btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
               data-bs-toggle="dropdown" aria-expanded="false">
               <div class="sort-header d-flex">
                 <div class="sort-title-area d-flex align-items-center">
