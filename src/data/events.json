@@ -1,0 +1,345 @@
+[
+  {
+    "id": 1,
+    "title": "果陀劇場《深夜小狗神秘習題》",
+    "majorCategory": "藝文演出",
+    "category": "戲劇",
+    "ageLimit": "普遍級",
+    "organizer": { "name": "果陀百娛股份有限公司", "phone": "(02)8772-1867", "link": "/organizer/1" },
+    "original_image": "/images/events/event-1-main.avif",
+    "original_coverImage": "/images/events/event-1-cover.avif",
+    "image": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1507676184212-d03ab07a01bf?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯", "助聽系統"],
+    "sessions": [
+      { 
+        "id": 101, "date": "2026-03-28", "time": "14:00", "venue": "衛武營國家藝術文化中心", "city": "高雄市",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
+        ]
+      }
+    ],
+    "comments": [{ "id": 1, "user": "John", "content": "敘事手法非常特別！" }]
+  },
+  {
+    "id": 2,
+    "title": "2026 達文西天才特展",
+    "majorCategory": "藝文展覽",
+    "category": "展覽",
+    "ageLimit": "普遍級",
+    "organizer": { "name": "時藝多媒體", "phone": "(02)2322-2128", "link": "/organizer/2" },
+    "original_image": "/images/events/event-2-main.avif",
+    "original_coverImage": "/images/events/event-2-cover.avif",
+    "image": "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["無障礙入口", "電梯", "輪椅"],
+    "sessions": [
+      { 
+        "id": 201, "date": "2026-04-01", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 350, "status": "available", "remaining": 400 }]
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": 3,
+    "title": "維也納愛樂：仲夏夜之夢",
+    "majorCategory": "藝文演出",
+    "category": "音樂",
+    "ageLimit": "普遍級",
+    "organizer": { "name": "牛耳藝術", "phone": "(02)6636-5168", "link": "/organizer/3" },
+    "original_image": "/images/events/event-3-main.avif",
+    "original_coverImage": "/images/events/event-3-cover.avif",
+    "image": "https://images.unsplash.com/photo-1514320299443-30064973347c?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1514320299443-30064973347c?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["助聽系統", "口述影像", "無障礙座位"],
+    "sessions": [
+      { 
+        "id": 301, "date": "2026-05-15", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 20 }]
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": 4,
+    "title": "AI 時代的創意生存指南",
+    "majorCategory": "藝文講座",
+    "category": "講座",
+    "ageLimit": "普遍級",
+    "organizer": { "name": "TEDxTaipei", "phone": "(02)2700-1234", "link": "/organizer/4" },
+    "original_image": "/images/events/event-4-main.avif",
+    "original_coverImage": "/images/events/event-4-cover.avif",
+    "image": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["手語導覽", "無障礙入口"],
+    "sessions": [
+      { 
+        "id": 401, "date": "2026-03-20", "time": "13:00", "venue": "台北國際會議中心", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 300 }]
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": 5,
+    "title": "大稻埕巷弄老建築巡禮",
+    "majorCategory": "藝文小旅遊",
+    "category": "小旅行",
+    "ageLimit": "普遍級",
+    "organizer": { "name": "島內散步", "phone": "(02)2556-1798", "link": "/organizer/5" },
+    "original_image": "/images/events/event-5-main.avif",
+    "original_coverImage": "/images/events/event-5-cover.avif",
+    "image": "https://images.unsplash.com/photo-1490761668535-3149d28a504a?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1490761668535-3149d28a504a?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["輪椅", "電梯"],
+    "sessions": [
+      { 
+        "id": 501, "date": "2026-04-10", "time": "15:00", "venue": "大稻埕遊客中心", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 600, "status": "available", "remaining": 12 }]
+      }
+    ],
+    "comments": []
+  },
+  {
+    "id": 6,
+    "title": "雲門舞集《波》2026 巡演",
+    "majorCategory": "藝文演出",
+    "category": "舞蹈",
+    "organizer": { "name": "雲門基金會", "phone": "(02)2629-8558", "link": "/organizer/6" },
+    "original_image": "/images/events/event-6-main.avif",
+    "original_coverImage": "/images/events/event-6-cover.avif",
+    "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯"],
+    "sessions": [
+      { "id": 601, "date": "2026-08-15", "time": "19:30", "venue": "國家戲劇院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1800, "status": "available", "remaining": 200 }] }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "陶瓷手作美學工作坊",
+    "majorCategory": "藝文體驗",
+    "category": "工作坊",
+    "organizer": { "name": "鶯歌陶瓷博物館", "phone": "(02)2670-6061", "link": "/organizer/7" },
+    "original_image": "/images/events/event-7-main.avif",
+    "original_coverImage": "/images/events/event-7-cover.avif",
+    "image": "https://images.unsplash.com/photo-1565191999001-551c187427bb?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1565191999001-551c187427bb?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["兒童友善", "觸覺展示", "無障礙廁所"],
+    "sessions": [
+      { "id": 701, "date": "2026-09-10", "time": "10:00", "venue": "鶯歌陶博館教室", "city": "新北市", "tickets": [{ "type": "一般", "price": 850, "status": "available", "remaining": 15 }] }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "台北數位藝術節 2026",
+    "majorCategory": "藝文展覽",
+    "category": "展覽",
+    "organizer": { "name": "數位藝術中心", "phone": "(02)2834-5066", "link": "/organizer/8" },
+    "original_image": "/images/events/event-8-main.avif",
+    "original_coverImage": "/images/events/event-8-cover.avif",
+    "image": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["口述影像", "觸覺展示", "電梯"],
+    "sessions": [
+      { "id": 801, "date": "2026-11-05", "time": "11:00", "venue": "松山文創園區", "city": "臺北市", "tickets": [{ "type": "一般", "price": 200, "status": "available", "remaining": 500 }] }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "量子力學與日常生活演講",
+    "majorCategory": "藝文講座",
+    "category": "演講",
+    "organizer": { "name": "中研院科普組", "phone": "(02)2782-1700", "link": "/organizer/9" },
+    "original_image": "/images/events/event-9-main.avif",
+    "original_coverImage": "/images/events/event-9-cover.avif",
+    "image": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["助聽系統", "手語導覽"],
+    "sessions": [
+      { "id": 901, "date": "2026-06-20", "time": "14:00", "venue": "國立臺灣博物館", "city": "臺北市", "tickets": [{ "type": "一般", "price": 100, "status": "available", "remaining": 100 }] }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "淡水河岸歷史散步導覽",
+    "majorCategory": "藝文小旅遊",
+    "category": "導覽",
+    "organizer": { "name": "新北市文化局", "phone": "(02)2960-3456", "link": "/organizer/10" },
+    "original_image": "/images/events/event-10-main.avif",
+    "original_coverImage": "/images/events/event-10-cover.avif",
+    "image": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["兒童友善", "無障礙入口"],
+    "sessions": [
+      { "id": 1001, "date": "2026-05-30", "time": "16:00", "venue": "淡水捷運站集合", "city": "新北市", "tickets": [{ "type": "一般", "price": 450, "status": "available", "remaining": 20 }] }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "印象派大師虛擬實境展",
+    "majorCategory": "線上展覽",
+    "category": "線上展覽",
+    "organizer": { "name": "虛擬藝術實驗室", "phone": "(02)2233-4455", "link": "/organizer/11" },
+    "original_image": "/images/events/event-11-main.avif",
+    "original_coverImage": "/images/events/event-11-cover.avif",
+    "image": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1592478411213-6153e4ebc07d?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["口述影像", "手語導覽"],
+    "sessions": [
+      { "id": 1101, "date": "2026-01-01", "time": "00:00", "venue": "線上平台", "city": "線上", "tickets": [{ "type": "一般", "price": 150, "status": "available", "remaining": 9999 }] }
+    ]
+  },
+  {
+    "id": 12,
+    "title": "當代芭蕾《黑天鵝之夢》",
+    "majorCategory": "藝文演出",
+    "category": "舞蹈",
+    "organizer": { "name": "台北芭蕾舞團", "phone": "(02)2765-4321", "link": "/organizer/12" },
+    "original_image": "/images/events/event-12-main.avif",
+    "original_coverImage": "/images/events/event-12-cover.avif",
+    "image": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["無障礙座位", "無障礙廁所", "電梯"],
+    "sessions": [
+      { "id": 1201, "date": "2026-10-12", "time": "19:00", "venue": "台北表演藝術中心", "city": "臺北市", "tickets": [{ "type": "一般", "price": 2500, "status": "available", "remaining": 120 }] }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "親子科學探索工作坊",
+    "majorCategory": "藝文體驗",
+    "category": "工作坊",
+    "organizer": { "name": "科教館", "phone": "(02)6610-1234", "link": "/organizer/13" },
+    "original_image": "/images/events/event-13-main.avif",
+    "original_coverImage": "/images/events/event-13-cover.avif",
+    "image": "https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1530210124550-912dc1381cb8?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["哺乳室", "兒童友善高度", "電梯"],
+    "sessions": [
+      { "id": 1301, "date": "2026-07-25", "time": "14:00", "venue": "國立臺灣科學教育館", "city": "臺北市", "tickets": [{ "type": "一般", "price": 400, "status": "available", "remaining": 30 }] }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "全球暖化與極地危機演講",
+    "majorCategory": "藝文講座",
+    "category": "演講",
+    "organizer": { "name": "綠色和平", "phone": "(02)2361-2358", "link": "/organizer/14" },
+    "original_image": "/images/events/event-14-main.avif",
+    "original_coverImage": "/images/events/event-14-cover.avif",
+    "image": "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1454496522488-7a8e488e8606?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["手語導覽", "無障礙入口"],
+    "sessions": [
+      { "id": 1401, "date": "2026-12-01", "time": "19:00", "venue": "公務人力發展學院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 200 }] }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "台北城門歷史深度小旅行",
+    "majorCategory": "藝文小旅遊",
+    "category": "小旅遊",
+    "organizer": { "name": "台北城市散步", "phone": "(02)2556-1798", "link": "/organizer/15" },
+    "original_image": "/images/events/event-15-main.avif",
+    "original_coverImage": "/images/events/event-15-cover.avif",
+    "image": "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1582234372722-50d7ccc30ebd?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["無障礙停車場", "輪椅"],
+    "sessions": [
+      { "id": 1501, "date": "2026-10-15", "time": "09:00", "venue": "北門廣場集合", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 15 }] }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "故宮珍寶 3D 虛擬導覽展",
+    "majorCategory": "線上展覽",
+    "category": "線上展覽",
+    "organizer": { "name": "國立故宮博物院", "phone": "(02)2881-2021", "link": "/organizer/16" },
+    "original_image": "/images/events/event-16-main.avif",
+    "original_coverImage": "/images/events/event-16-cover.avif",
+    "image": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["口述影像", "觸覺展示"],
+    "sessions": [
+      { "id": 1601, "date": "2026-02-01", "time": "00:00", "venue": "故宮雲端展廳", "city": "線上", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 99999 }] }
+    ]
+  },
+  {
+    "id": 17,
+    "title": "當代先鋒戲劇《失語症》",
+    "majorCategory": "藝文演出",
+    "category": "戲劇",
+    "organizer": { "name": "實驗劇場中心", "phone": "(02)2395-6838", "link": "/organizer/17" },
+    "original_image": "/images/events/event-17-main.avif",
+    "original_coverImage": "/images/events/event-17-cover.avif",
+    "image": "https://images.unsplash.com/photo-1503095396549-807a8bc36674?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1503095396549-807a8bc36674?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["手語導覽", "無障礙座位"],
+    "sessions": [
+      { "id": 1701, "date": "2026-09-20", "time": "20:00", "venue": "華山烏梅劇院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 50 }] }
+    ]
+  },
+  {
+    "id": 18,
+    "title": "植感生活：多肉植物工作坊",
+    "majorCategory": "藝文體驗",
+    "category": "工作坊",
+    "organizer": { "name": "綠手作工作室", "phone": "(02)2555-1234", "link": "/organizer/18" },
+    "original_image": "/images/events/event-18-main.avif",
+    "original_coverImage": "/images/events/event-18-cover.avif",
+    "image": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1459411552884-841db9b3cc2a?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["兒童友善", "電梯"],
+    "sessions": [
+      { "id": 1801, "date": "2026-11-15", "time": "14:30", "venue": "建國花市教室", "city": "臺北市", "tickets": [{ "type": "一般", "price": 650, "status": "available", "remaining": 10 }] }
+    ]
+  },
+  {
+    "id": 19,
+    "title": "區塊鏈與未來經濟演講",
+    "majorCategory": "藝文講座",
+    "category": "演講",
+    "organizer": { "name": "數發部科普組", "phone": "(02)2345-6789", "link": "/organizer/19" },
+    "original_image": "/images/events/event-19-main.avif",
+    "original_coverImage": "/images/events/event-19-cover.avif",
+    "image": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["助聽系統", "電梯"],
+    "sessions": [
+      { "id": 1901, "date": "2026-08-10", "time": "14:00", "venue": "三創生活園區", "city": "臺北市", "tickets": [{ "type": "一般", "price": 300, "status": "available", "remaining": 150 }] }
+    ]
+  },
+  {
+    "id": 20,
+    "title": "九份淘金歷史散策小旅行",
+    "majorCategory": "藝文小旅遊",
+    "category": "小旅遊",
+    "organizer": { "name": "新北市觀光發展協會", "phone": "(02)2497-1234", "link": "/organizer/20" },
+    "original_image": "/images/events/event-20-main.avif",
+    "original_coverImage": "/images/events/event-20-cover.avif",
+    "image": "https://images.unsplash.com/photo-1571232865744-80252697818e?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1571232865744-80252697818e?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["兒童友善", "無障礙停車場"],
+    "sessions": [
+      { "id": 2001, "date": "2026-12-15", "time": "10:00", "venue": "九份老街派出所集合", "city": "新北市", "tickets": [{ "type": "一般", "price": 1500, "status": "available", "remaining": 12 }] }
+    ]
+  },
+  {
+    "id": 21,
+    "title": "台北百年建築影像線上展",
+    "majorCategory": "線上展覽",
+    "category": "線上展覽",
+    "organizer": { "name": "文獻館", "phone": "(02)2311-6438", "link": "/organizer/21" },
+    "original_image": "/images/events/event-21-main.avif",
+    "original_coverImage": "/images/events/event-21-cover.avif",
+    "image": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80",
+    "accessibilityFeatures": ["口述影像"],
+    "sessions": [
+      { "id": 2101, "date": "2026-01-01", "time": "00:00", "venue": "數位資產庫", "city": "線上", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 9999 }] }
+    ]
+  }
+]

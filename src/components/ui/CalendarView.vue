@@ -1,127 +1,188 @@
 <script setup>
 import { Icon } from '@iconify/vue';
+import { ref, computed } from 'vue';
+import { useUserStore } from '@/stores/useUserStore';
+import { useEventStore } from '@/stores/useEventStore';
 
+const userStore = useUserStore();
+const eventStore = useEventStore();
+
+// 基準日期 (預設為今天)
+const currentDate = ref(new Date());
+
+// 星期名稱
 const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-const dates = [1, 2, 3, 4, 5, 6, 7];
 
-// Mock event data based on Figma layout
-const events = [
-  { 
-    id: 1, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 1, 
-    row: 1, 
-    span: 1, 
-    showSeatStatus: true 
-  },
-  { 
-    id: 2, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 2, 
-    row: 2, 
-    span: 2, 
-    showSeatStatus: true 
-  },
-  { 
-    id: 3, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 1, 
-    row: 3, 
-    span: 2, 
-    showSeatStatus: true 
-  },
-  { 
-    id: 4, 
-    title: '解憂雜貨店', 
-    time: '', 
-    col: 6, 
-    row: 4, 
-    span: 1, 
-    showSeatStatus: false,
-    badge: '截止'
-  },
-  { 
-    id: 5, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 3, 
-    row: 5, 
-    span: 1, 
-    showSeatStatus: true 
-  },
-  { 
-    id: 6, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 5, 
-    row: 5, 
-    span: 1, 
-    showSeatStatus: true 
-  },
-  { 
-    id: 7, 
-    title: '解憂雜貨店', 
-    time: '19:00', 
-    col: 7, 
-    row: 5, 
-    span: 1, 
-    showSeatStatus: true 
+/**
+ * 計算當前基準日所在周的所有日期 (週日到週六)
+ */
+const weekDates = computed(() => {
+  const dates = [];
+  const curr = new Date(currentDate.value);
+  const first = curr.getDate() - curr.getDay(); // 本周第一天 (週日)
+  
+  for (let i = 0; i < 7; i++) {
+    const day = new Date(curr.setDate(first + i));
+    dates.push(day);
   }
-];
+  return dates;
+});
+
+/**
+ * 格式化顯示月份
+ */
+const displayMonth = computed(() => {
+  return (currentDate.value.getMonth() + 1) + '月';
+});
+
+/**
+ * 判斷是否為今天
+ */
+const isToday = (date) => {
+  const today = new Date();
+  return date.getDate() === today.getDate() &&
+    date.getMonth() === today.getMonth() &&
+    date.getFullYear() === today.getFullYear();
+};
+
+/**
+ * 格式化日期為 YYYY-MM-DD
+ */
+const formatDate = (date) => {
+  return date.toISOString().split('T')[0];
+};
+
+// 切換功能
+const prevWeek = () => {
+  const newDate = new Date(currentDate.value);
+  newDate.setDate(newDate.getDate() - 7);
+  currentDate.value = newDate;
+};
+
+const nextWeek = () => {
+  const newDate = new Date(currentDate.value);
+  newDate.setDate(newDate.getDate() + 7);
+  currentDate.value = newDate;
+};
+
+const goToToday = () => {
+  currentDate.value = new Date();
+};
+
+const emit = defineEmits(['close']);
+const closeCalendar = () => {
+  emit('close');
+};
+
+/**
+ * 取得收藏活動並轉換為日曆格式
+ */
+const calendarEvents = computed(() => {
+  if (!userStore.currentUser) return [];
+
+  const favoriteIds = userStore.currentUser.favoriteEvents || [];
+  const favoriteEvents = eventStore.events.filter(e => favoriteIds.includes(e.id));
+  
+  const results = [];
+
+  favoriteEvents.forEach(event => {
+    // 判斷是否為區間活動 (如展覽)
+    if (event.majorCategory === '藝文展覽') {
+      results.push({
+        id: `deadline-${event.id}`,
+        title: event.title,
+        date: event.endDate,
+        isDeadline: true,
+        showSeatStatus: false
+      });
+    } else {
+      // 一般場次活動
+      event.sessions.forEach(session => {
+        results.push({
+          id: `session-${event.id}-${session.date}-${session.time}`,
+          title: event.title,
+          date: session.date,
+          time: session.time,
+          isDeadline: false,
+          showSeatStatus: true
+        });
+      });
+    }
+  });
+
+  return results;
+});
+
+/**
+ * 將活動分配到對應日期的欄位
+ */
+const getEventsForDay = (date) => {
+  const dateString = formatDate(date);
+  return calendarEvents.value.filter(e => e.date === dateString);
+};
 </script>
 
 <template>
-  <div class="calendar-view rounded-4 p-4 mb-4">
+  <div class="calendar-view rounded-4 p-4 shadow-sm">
     <!-- Header -->
-    <div class="d-flex justify-content-between align-items-center mb-3">
-      <h2 class="calendar-title m-0">日曆檢視</h2>
-      <button class="btn btn-link p-0 text-dark">
-        <Icon icon="ph:caret-down" width="24" height="24" />
-      </button>
+    <div class="calendar-header mb-4">
+      <div class="row align-items-center">
+        <div class="col-4">
+          <h2 class="calendar-title m-0">收藏行事曆</h2>
+        </div>
+        <div class="col-4 text-center">
+          <span class="month-display">{{ displayMonth }}</span>
+        </div>
+        <div class="col-4 d-flex justify-content-end gap-2 align-items-center">
+          <button class="btn btn-outline-secondary btn-nav-circle" @click="prevWeek" aria-label="上周">
+            <Icon icon="ph:caret-left" width="20" height="20" />
+          </button>
+          <button class="btn btn-outline-secondary btn-today" @click="goToToday">今天</button>
+          <button class="btn btn-outline-secondary btn-nav-circle" @click="nextWeek" aria-label="下周">
+            <Icon icon="ph:caret-right" width="20" height="20" />
+          </button>
+          <!-- <button class="btn btn-link p-0 text-dark ms-2" @click="closeCalendar" aria-label="收合">
+            <Icon icon="ph:caret-down" width="24" height="24" />
+          </button> -->
+        </div>
+      </div>
     </div>
 
     <!-- Calendar Grid -->
-    <div class="calendar-grid-container position-relative">
-      <!-- Background Headers and Grid -->
-      <div class="calendar-bg-grid  position-absolute w-100 h-100">
-        <div class="calendar-header-row d-flex border-bottom border-gray-300">
-          <div v-for="day in days" :key="day" class="calendar-header-cell flex-fill p-2 border-end border-gray-300 last-child-no-border">
-            <span class="day-text">{{ day }}</span>
-          </div>
+    <div class="calendar-container bg-white rounded-3 overflow-hidden border">
+      <!-- Weekday Labels -->
+      <div class="weekday-header d-flex border-bottom">
+        <div v-for="day in days" :key="day" class="weekday-cell text-center py-2">
+          {{ day }}
         </div>
-        <div class="calendar-body-rows d-flex flex-column h-100">
-          <div class="calendar-date-row d-flex flex-fill">
-            <div v-for="date in dates" :key="date" class="calendar-date-cell flex-fill p-2 border-end border-gray-300 last-child-no-border">
-              <span class="date-text">{{ date }}</span>
-            </div>
+      </div>
+
+      <!-- Dates Row -->
+      <div class="dates-row d-flex">
+        <div v-for="date in weekDates" :key="date" class="date-cell d-flex p-2">
+          <div class="date-number" :class="{ 'is-today': isToday(date) }">
+            {{ date.getDate() }}
           </div>
         </div>
       </div>
 
-      <!-- Events Overlay -->
-      <div class="calendar-events-overlay top-0 start-0 w-100">
-        <div class="grid-overlay">
-          <div 
-            v-for="event in events" 
-            :key="event.id"
-            class="calendar-event-item rounded-2 p-1 d-flex align-items-center gap-1"
-            :style="{
-              gridColumn: `${event.col} / span ${event.span}`,
-              gridRow: event.row
-            }"
-          >
-            <span v-if="event.time" class="event-time flex-shrink-0">{{ event.time }}</span>
-            
-            <div v-if="event.badge" class="badge-pill" :class="event.badge === '截止' ? 'badge-danger' : 'badge-disabled'">
-              {{ event.badge }}
+      <!-- Events Grid -->
+      <div class="events-grid d-flex">
+        <div v-for="(date, index) in weekDates" :key="index" class="day-column p-1">
+          <div class="events-stack d-flex flex-column gap-1">
+            <div 
+              v-for="event in getEventsForDay(date)" 
+              :key="event.id"
+              class="event-card d-flex align-items-center px-2 py-1 rounded-2"
+              :class="{ 'is-deadline': event.isDeadline }"
+            >
+              <div v-if="event.isDeadline" class="badge-deadline me-1">截止</div>
+              <span v-else class="event-time me-1">{{ event.time }}</span>
+              
+              <span class="event-title text-truncate" :title="event.title">{{ event.title }}</span>
+              
+              <Icon v-if="event.showSeatStatus" icon="ph:users" width="14" height="14" class="ms-1 flex-shrink-0" />
             </div>
-
-            <span class="event-title text-truncate">{{ event.title }}</span>
-            
-            <Icon v-if="event.showSeatStatus" icon="ph:users" width="20" height="20" class="ms-auto flex-shrink-0" />
           </div>
         </div>
       </div>
@@ -131,106 +192,111 @@ const events = [
 
 <style scoped lang="scss">
 .calendar-view {
-  background-color: var(--background-default-secondary); // #f6f2ef
+  background-color: var(--background-default-tertiary);
+  border: 1px solid var(--border-default-default);
 }
 
 .calendar-title {
-  letter-spacing: 0.72px;
-  color: #1e1e1e;
+  font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
+  font-weight: 700;
+  font-size: 24px;
 }
 
-.calendar-grid-container {
-  min-height: 260px;
+.month-display {
+  font-size: 24px;
 }
 
-.calendar-bg-grid {
+.btn-nav-circle {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+}
+
+.btn-today {
+  height: 32px;
+  padding: 0 16px;
+}
+
+.calendar-container {
+  width: 100%;
+  table-layout: fixed; // 類似表格的固定佈局行為
+}
+
+.weekday-cell, .date-cell, .day-column {
+  width: 14.285%; // 強制鎖定為 1/7 寬度
+  flex: 0 0 14.285%; // 禁用彈性縮放，固定寬度
+  min-width: 0; // 允許文字截斷生效
+  border-right: 1px solid var(--border-default-default);
+  &:last-child { border-right: none; }
+}
+
+.weekday-header {
+  background-color: var(--background-default-default);
+  .weekday-cell {
+    font-size: 14px;
+    color: var(--text-default-secondary);
+  }
+}
+
+.date-number {
+  width: 32px;
+  height: 32px;
   display: flex;
-  flex-direction: column;
-  z-index: 0;
-}
-
-.calendar-header-cell, .calendar-date-cell {
-  width: calc(100% / 7);
-  min-height: 40px;
-}
-
-.last-child-no-border:last-child {
-  border-right: none !important;
-}
-
-.day-text {
-  font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
-  color: var(--text-default-secondary); // #8e8e93
-  letter-spacing: 0.42px;
+  color: var(--text-default-secondary);
+
+  &.is-today {
+    background-color: var(--background-brand-default);
+    color: var(--text-brand-on-brand);
+    border-radius: 50%;
+    font-weight: 700;
+  }
 }
 
-.date-text {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-  color: var(--text-default-secondary); // #8e8e93
+.day-column {
+  min-height: 200px;
+  background-color: var(--background-default-default);
 }
 
-.grid-overlay {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(5, 48px);
-  gap: 4px;
-}
-
-.calendar-events-overlay{
-  padding-top: 5rem;
-  z-index: 2;
-}
-
-.calendar-event-item {
-  background-color: rgba(254, 233, 231, 0.6); // Based on Figma rgba(254,233,231,0.6)
-  height: 40px;
-  border-radius: 8px;
-  font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-  font-size: 14px;
+.event-card {
+  background-color: rgba(254, 233, 231, 0.6);
+  height: 36px;
+  font-size: 12px;
   color: black;
   cursor: pointer;
-  overflow: hidden;
-
+  overflow: hidden; // 確保內容不溢出
+  
   &:hover {
     background-color: rgba(254, 233, 231, 0.8);
   }
 }
-
 .event-time {
   font-family: "Inter", sans-serif;
-  font-size: 14px;
-  margin-right: 4px;
+  flex-shrink: 0;
+  font-size: .75rem;
+  transform: translateY(1px); // 視覺補償：向下微調以對齊中文中心
 }
 
 .event-title {
-  flex: 1;
-  letter-spacing: 0.42px;
-}
-
-.badge-pill {
-  padding: 2px 12px;
-  border-radius: 1000px;
-  font-size: 12px;
-  font-family: "Roboto", sans-serif;
+  flex-grow: 1;
+  min-width: 0;
   white-space: nowrap;
-  line-height: 1.5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  translate: 0 0.2em; // 視覺補償：解決 Noto Sans TC 偏上的問題
 }
 
-.badge-danger {
-  background-color: var(--background-danger-secondary); // #fdd3d0
-}
-
-.badge-disabled {
-  background-color: var(--background-disabled-default); // #d9d9d9
-}
-
-.border-gray-300 {
-  border-color: var(--border-default-default) !important; // #d9d9d9
-}
-
-.flex-shrink-0 {
+.badge-deadline {
+  background-color: var(--background-danger-secondary);
+  padding: 2px 8px;
+  border-radius: 1000px;
+  font-size: .75rem;
   flex-shrink: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  transform: translateY(1px); // 視覺補償
 }
 </style>

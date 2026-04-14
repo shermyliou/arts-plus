@@ -1,14 +1,21 @@
 <script setup>
+import { computed } from 'vue';
 import { Icon } from '@iconify/vue';
-defineProps({
+import { useUserStore } from '@/stores/useUserStore';
+
+const props = defineProps({
+  id: {
+    type: Number,
+    required: true
+  },
   title: {
     type: String,
     required: true,
-    default: 'Test'
+    default: ''
   },
   category: {
     type: String,
-    default: 'test'
+    default: ''
   },
   rating: {
     type: [Number, String],
@@ -16,46 +23,66 @@ defineProps({
   },
   ticketStatus: {
     type: String,
-    default: 'test'
+    default: ''
   },
   time: {
     type: String,
-    default: 'test'
+    default: ''
+  },
+  city: {
+    type: String,
+    default: ''
   },
   location: {
     type: String,
-    default: 'test'
+    default: ''
   },
   priceRange: {
     type: String,
-    default: 'test'
+    default: ''
   },
   image: {
     type: String,
-    default: 'test'
-  },
-  isFavorite: {
-    type: Boolean,
-    default: false
+    default: ''
   }
-})
+});
+
+const userStore = useUserStore();
+
+// 從 userStore 讀取目前使用者是否收藏了這個活動
+const isFavorite = computed(() => {
+  if (!userStore.currentUser || !userStore.currentUser.favoriteEvents) return false;
+  return userStore.currentUser.favoriteEvents.includes(props.id);
+});
+
+const handleFavoriteClick = () => {
+  if (!userStore.isLoggedIn) {
+    alert('請先登入才能收藏活動！');
+    return;
+  }
+  userStore.toggleFavorite(props.id);
+};
 </script>
 
 <template>
-  <div class="horizontal-event-card col-6">
+  <div class="horizontal-event-card">
     <div class="horizontal-event-card__image">
       <img :src="image" :alt="title" />
     </div>
     <div class="horizontal-event-card__body">
-      <div class="horizontal-event-card__header">
-        <div v-if="category" class="horizontal-event-card__category-badge">{{ category }}</div>
-        <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }">
+      <div class="horizontal-event-card__header align-items-start">
+        <div>
+          <span v-if="category" class="badge rounded-pill border fw-light horizontal-event-card__category-badge">{{
+            category }}</span>
+          <h3 class="horizontal-event-card__title mt-2" :title="title">{{ title }}</h3>
+        </div>
+        <button class="horizontal-event-card__favorite-btn" :class="{ 'is-favorite': isFavorite }"
+          @click.stop="handleFavoriteClick" aria-label="收藏活動">
           <Icon :icon="isFavorite ? 'ph:heart-fill' : 'ph:heart'" />
         </button>
       </div>
-      
-      <h3 class="horizontal-event-card__title" :title="title">{{ title }}</h3>
-      
+
+
       <div class="horizontal-event-card__status">
         <div class="horizontal-event-card__rating" v-show="rating">
           <Icon icon="ph:star-fill" class="horizontal-event-card__rating-icon" />
@@ -66,16 +93,13 @@ defineProps({
           <span>{{ ticketStatus }}</span>
         </div>
       </div>
-      
+
       <div class="horizontal-event-card__footer">
         <div class="horizontal-event-card__meta">
           <div class="horizontal-event-card__time">{{ time }}</div>
           <div class="horizontal-event-card__location">
-            <template v-if="location.includes(' ')">
-              <span class="horizontal-event-card__city">{{ location.split(' ')[0] }}</span>
-              <span class="horizontal-event-card__venue">{{ location.split(' ').slice(1).join(' ') }}</span>
-            </template>
-            <span v-else>{{ location }}</span>
+            <span class="horizontal-event-card__city">{{ city }}</span>
+            <span class="horizontal-event-card__venue ms-1 ms-md-0">{{ location }}</span>
           </div>
         </div>
         <div class="horizontal-event-card__price">
@@ -97,21 +121,21 @@ defineProps({
   width: 100%;
   position: relative;
   box-sizing: border-box;
-  
+
   &__image {
     flex-shrink: 0;
     width: 114px;
     height: 152px;
     border-radius: var(--border-radius-1);
     overflow: hidden;
-    
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
     }
   }
-  
+
   &__body {
     flex-grow: 1;
     display: flex;
@@ -119,23 +143,18 @@ defineProps({
     gap: var(--component-gap-y-small);
     min-width: 0; // Needed for text truncation in flex children
   }
-  
+
   &__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
-  
+
   &__category-badge {
-    padding: 4px 12px;
-    background: var(--background-default-default); // Figma: #FAFAF9, which matches $gray-50
-    border: 1px solid var(--border-default-default);
-    border-radius: var(--border-radius-pill);
-    font-size: 12px;
-    color: var(--text-default-default);
-    line-height: 1.5;
+    color: var(--text-brand-primary);
+    padding-top: 0.5em;
   }
-  
+
   &__favorite-btn {
     background: none;
     border: none;
@@ -151,84 +170,110 @@ defineProps({
     &:hover {
       transform: scale(1.1);
     }
-    
+
     &.is-favorite {
-      color: var(--icon-danger-default);
+      color: var(--icon-danger-secondary);
     }
   }
-  
+
   &__title {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.2;
     margin: 4px 0;
     color: var(--text-default-default);
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: normal;
   }
-  
+
   &__status {
     display: flex;
     gap: 16px;
     align-items: center;
     margin-bottom: 8px;
   }
-  
+
   &__rating {
     display: flex;
     align-items: center;
-    gap: var(--component-gap-x-small);
+    gap: 4px;
     color: var(--text-warning-tertiary);
     font-size: 14px;
-    font-family: 'Inter', sans-serif;
-    
+    height: 20px;
+
     &-icon {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    span {
+      line-height: 1;
+      transform: translateY(0.0625em); // 視覺補償，使文字中線與圖示中心對齊
     }
   }
-  
+
   &__ticket-status {
     display: flex;
     align-items: center;
-    gap: var(--component-gap-x-small);
+    gap: 4px;
     color: var(--text-positive-default);
     font-size: 14px;
-    
+    height: 20px;
+
     .horizontal-event-card__ticket-icon {
-      font-size: 20px;
+      font-size: 18px;
+    }
+
+    span {
+      line-height: 1;
+      transform: translateY(1px); // 視覺補償
     }
   }
-  
+
   &__footer {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
     margin-top: auto;
+
+    @media (max-width: 768px) {
+      display: block;
+      min-width: 0;
+    }
   }
-  
+
   &__meta {
     display: flex;
     flex-direction: column;
     gap: 4px;
     color: var(--text-default-default);
     font-size: 14px;
+    
+    @media (max-width: 768px) {
+      margin-bottom: 4px;
+    }
   }
-  
+
   &__location {
     display: flex;
     gap: 4px;
+    
+    @media (max-width: 768px) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
   }
-  
+
   &__city {
     font-weight: 700;
   }
-  
+
   &__price {
     font-size: 20px;
     font-weight: 700;
-    color: var(--text-brand-tertiary); // Matches $brand-500 (#978F87)
-    font-family: 'Inter', sans-serif;
+    color: var(--text-brand-tertiary);
   }
 }
 </style>

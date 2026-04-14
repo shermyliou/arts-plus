@@ -26,6 +26,12 @@ defineProps({
     default: ''
   }
 })
+
+const DEFAULT_AVATAR = '/images/avatars/default-avatar.avif';
+
+const handleAvatarError = (event) => {
+  event.target.src = DEFAULT_AVATAR;
+};
 </script>
 
 <template>
@@ -33,7 +39,12 @@ defineProps({
     <div class="review-card__header">
       <div class="review-card__user">
         <div class="review-card__avatar">
-          <img v-if="userAvatar" :src="userAvatar" :alt="userName" />
+          <img 
+            v-if="userAvatar" 
+            :src="userAvatar" 
+            :alt="userName" 
+            @error="handleAvatarError"
+          />
           <div v-else class="review-card__avatar-placeholder">
             <Icon icon="ph:user" />
           </div>
@@ -43,7 +54,7 @@ defineProps({
       <span class="review-card__date">{{ date }}</span>
     </div>
     <div class="review-card__body">
-      <div class="review-card__rating">
+      <div class="review-card__rating d-flex">
         <span class="review-card__score">{{ score }}</span>
         <div class="review-card__stars">
           <Icon 
@@ -66,7 +77,7 @@ defineProps({
   background-color: var(--gray-0);
   border: 1px solid var(--border-default-default);
   border-radius: var(--border-radius-2);
-  padding: 32px;
+  padding: 16px 32px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -108,7 +119,7 @@ defineProps({
 
   &__username {
     font-family: 'DM Sans', sans-serif;
-    font-weight: 700;
+    font-weight: 600;
     font-size: 16px;
     line-height: 24px;
     color: var(--text-default-default);
@@ -126,7 +137,7 @@ defineProps({
   &__body {
     display: flex;
     flex-direction: column;
-    gap: 13px;
+    gap: 8px;
   }
 
   &__rating {
@@ -157,7 +168,7 @@ defineProps({
 
   &__comment {
     margin: 0;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1.6;
     color: var(--text-default-default);
     word-break: break-word;
