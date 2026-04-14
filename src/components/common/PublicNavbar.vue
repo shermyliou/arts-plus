@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, nextTick } from "vue";
 import { useRouter } from "vue-router";
 import SearchOverlay from "@/components/ui/SearchOverlay.vue";
 import NotificationOverlay from "@/components/ui/NotificationOverlay.vue";
@@ -11,30 +11,53 @@ const isNotificationVisible = ref(false);
 const isUserVisible = ref(false);
 
 const searchQuery = ref("");
+const searchInput = ref(null);
 
 const handleSearch = (query) => {
   isSearchVisible.value = false;
   router.push({ path: '/search', query: { q: query || searchQuery.value } });
 };
 
+const expandSearch = async () => {
+  isSearchVisible.value = true;
+  await nextTick();
+  if (searchInput.value) {
+    searchInput.value.focus();
+  }
+};
+
+const closeSearch = () => {
+  isSearchVisible.value = false;
+  searchQuery.value = "";
+};
+
 </script>
 
 <template>
   <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
-    <div class="container-fluid p-0 d-flex align-items-center">
-      <a class="navbar-brand me-auto animate-entrance" href="#" style="animation-delay: 0s">
+    <div class="container-fluid p-0 d-flex align-items-center position-relative h-100">
+      <a class="navbar-brand me-md-auto me-0 animate-entrance" href="#" style="animation-delay: 0s">
         <img src="/images/ArtPlusLogo.svg" alt="ArtPlus" />
       </a>
 
-      <div class="d-flex align-items-center gap-4 ms-4">
-        <div class="position-relative animate-entrance" style="animation-delay: 0.1s">
+      <div class="d-flex align-items-center gap-md-4 gap-0 ms-4 h-100">
+        <div class="animate-entrance" style="animation-delay: 0.1s">
           <div 
             class="search-wrapper" 
             :class="{ 'expanded': isSearchVisible }"
-            @click="isSearchVisible = true"
+            @click="!isSearchVisible && expandSearch()"
           >
-            <div class="search-bar-inner d-flex align-items-center gap-2 px-3 py-2">
-              <Icon icon="ph:magnifying-glass" class="search-icon" width="1.25em"/>
+            <div class="search-bar-inner d-flex align-items-center gap-2 px-md-3 px-0">
+              <button 
+                v-if="isSearchVisible" 
+                class="btn btn-close-search p-0 d-md-none"
+                @click.stop="closeSearch"
+              >
+                <Icon icon="ph:caret-left" width="24px" />
+              </button>
+              
+              <Icon icon="ph:magnifying-glass" class="search-icon" width="24px"/>
+              
               <input 
                 v-if="isSearchVisible"
                 v-model="searchQuery"
@@ -45,6 +68,7 @@ const handleSearch = (query) => {
                 ref="searchInput"
               />
               <span v-else class="search-placeholder-text">搜尋</span>
+              
               <button 
                 v-if="isSearchVisible" 
                 class="btn btn-search-trigger p-0 ms-2"
@@ -125,9 +149,10 @@ const handleSearch = (query) => {
   color: #888888;
   display: flex;
   align-items: center;
-  transition: width 0.3s ease, background-color 0.3s ease;
+  transition: width 0.3s ease, background-color 0.3s ease, left 0.3s ease, right 0.3s ease;
   overflow: hidden;
   cursor: pointer;
+  background-color: transparent;
 
   &.expanded {
     width: 600px;
@@ -145,6 +170,34 @@ const handleSearch = (query) => {
 
   @media (max-width: 1400px) {
     width: 150px;
+  }
+
+  @media (max-width: 768px) {
+    width: 40px;
+    border: none;
+    justify-content: center;
+
+    .search-placeholder-text {
+      display: none;
+    }
+
+    &.expanded {
+      position: absolute;
+      top: -36px;
+      right: -164px;
+      width: 100vw;
+      height: 72px;
+      border-radius: 0;
+      z-index: 2100;
+      padding: 0 20px;
+      background-color: var(--background-brand-secondary);
+      border-bottom: 1px solid #eeeeee;
+      
+      .search-bar-inner {
+        width: 100%;
+        gap: 12px !important;
+      }
+    }
   }
 }
 
@@ -177,10 +230,20 @@ const handleSearch = (query) => {
   }
 }
 
+.btn-close-search {
+  border: none;
+  background: none;
+  color: var(--text-default-default);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .navbar-actions {
   display: flex;
   align-items: center;
   gap: 16px;
+  z-index: -1;
 }
 
 .nav-item-icon {
@@ -189,5 +252,17 @@ const handleSearch = (query) => {
   cursor: pointer;
   font-size: 24px;
   color: #333333;
+}
+
+// Fade Slide Transition
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: all 0.3s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

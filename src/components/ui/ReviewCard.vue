@@ -26,6 +26,12 @@ defineProps({
     default: ''
   }
 })
+
+const DEFAULT_AVATAR = '/images/avatars/default-avatar.avif';
+
+const handleAvatarError = (event) => {
+  event.target.src = DEFAULT_AVATAR;
+};
 </script>
 
 <template>
@@ -33,7 +39,12 @@ defineProps({
     <div class="review-card__header">
       <div class="review-card__user">
         <div class="review-card__avatar">
-          <img v-if="userAvatar" :src="userAvatar" :alt="userName" />
+          <img 
+            v-if="userAvatar" 
+            :src="userAvatar" 
+            :alt="userName" 
+            @error="handleAvatarError"
+          />
           <div v-else class="review-card__avatar-placeholder">
             <Icon icon="ph:user" />
           </div>

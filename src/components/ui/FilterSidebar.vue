@@ -363,19 +363,19 @@ collectFilters();
           <!-- 活動時間 自定義 UI -->
           <template v-if="filter.label === '活動時間'">
             <div class="date-filter-container px-2">
-              <div class="date-toggles d-flex gap-2 mb-3">
+              <div class="date-toggles d-flex gap-2 mb-3 flex-wrap">
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'week' }"
                   @click="setToggleRange('week')"
                 >一週內</button>
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'month' }"
                   @click="setToggleRange('month')"
                 >一個月內</button>
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'year' }"
                   @click="setToggleRange('year')"
                 >一年內</button>
@@ -406,7 +406,8 @@ collectFilters();
                       :class="{ 
                         'text-muted': !day.isCurrentMonth,
                         'is-selected': isSelected(day.date),
-                        'is-in-range': isInRange(day.date)
+                        'is-in-range': isInRange(day.date),
+                        'is-today': new Date().toDateString() === day.date.toDateString()
                       }"
                       @click="handleDateClick(day.date)"
                     >
@@ -583,8 +584,15 @@ collectFilters();
 .mini-calendar {
   background-color: var(--background-default-default);
   
-  .calendar-nav .btn {
-    text-decoration: none;
+  .calendar-nav {
+    .btn {
+      text-decoration: none;
+      color: var(--text-default-default);
+    }
+    .calendar-month-year {
+      font-size: 14px;
+      color: var(--text-default-default);
+    }
   }
 
   .weekday-cell, .day-cell {
@@ -595,21 +603,51 @@ collectFilters();
     justify-content: center;
     cursor: pointer;
     border-radius: 4px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .weekday-cell {
+    color: var(--text-default-secondary);
+    font-weight: 400;
   }
 
   .day-cell {
+    color: var(--text-default-default);
+    transition: all 0.2s ease;
+
     &:hover {
       background-color: var(--background-default-secondary-hover);
     }
 
+    &.text-muted {
+      color: var(--text-default-tertiary);
+    }
+
+    &.is-today {
+      &::after {
+        content: '';
+        position: absolute;
+        width: 80%;
+        height: 80%;
+        border: 1px solid var(--border-brand-secondary);
+        border-radius: 50%;
+        pointer-events: none;
+      }
+    }
+
     &.is-selected {
-      background-color: var(--background-brand-default);
+      background-color: var(--background-brand-secondary-hover) !important;
       color: var(--text-brand-on-brand) !important;
+      border-radius: 50%;
+      z-index: 3;
     }
 
     &.is-in-range {
-      background-color: var(--background-brand-tertiary);
+      background-color: #B4AAA1; // $brand-400 from Figma range middle
+      color: var(--text-brand-on-brand) !important;
       border-radius: 0;
+      z-index: 2;
     }
   }
 }

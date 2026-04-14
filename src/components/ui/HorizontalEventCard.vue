@@ -99,7 +99,7 @@ const handleFavoriteClick = () => {
           <div class="horizontal-event-card__time">{{ time }}</div>
           <div class="horizontal-event-card__location">
             <span class="horizontal-event-card__city">{{ city }}</span>
-            <span class="horizontal-event-card__venue">{{ location }}</span>
+            <span class="horizontal-event-card__venue ms-1 ms-md-0">{{ location }}</span>
           </div>
         </div>
         <div class="horizontal-event-card__price">
@@ -179,9 +179,12 @@ const handleFavoriteClick = () => {
   &__title {
     margin: 4px 0;
     color: var(--text-default-default);
-    white-space: nowrap;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: normal;
   }
 
   &__status {
@@ -232,6 +235,11 @@ const handleFavoriteClick = () => {
     justify-content: space-between;
     align-items: flex-end;
     margin-top: auto;
+
+    @media (max-width: 768px) {
+      display: block;
+      min-width: 0;
+    }
   }
 
   &__meta {
@@ -240,11 +248,22 @@ const handleFavoriteClick = () => {
     gap: 4px;
     color: var(--text-default-default);
     font-size: 14px;
+    
+    @media (max-width: 768px) {
+      margin-bottom: 4px;
+    }
   }
 
   &__location {
     display: flex;
     gap: 4px;
+    
+    @media (max-width: 768px) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+    }
   }
 
   &__city {
