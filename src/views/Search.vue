@@ -162,12 +162,17 @@ const formatDateRange = (start, end) => {
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">篩選器</h5>
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">篩選器</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
+          <div class="offcanvas-body p-0">
             <FilterSidebar @update:filters="handleFilterUpdate" />
+          </div>
+          <div class="p-3 border-top mt-auto d-md-none">
+            <button type="button" class="btn btn-primary w-100 rounded-pill py-3" data-bs-dismiss="offcanvas">
+              查看結果
+            </button>
           </div>
         </div>
 
