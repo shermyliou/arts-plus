@@ -15,12 +15,11 @@ onMounted(() => {
         });
       });
 
-      card.addEventListener("mouseleave", () => {
-        video.pause();
-      });
-    }
-  });
-});
+    //   card.addEventListener("mouseleave", () => {
+    //     video.pause();
+    //   });
+    // }
+
 </script>
 
 <template>
@@ -299,14 +298,7 @@ onMounted(() => {
       </div>
     </div>
 
-    <footer class="footer">
-      <div class="footer-top d-flex align-items-center">
-        <div
-          class="footer-container d-flex justify-content-between align-items-top w-100"
-        >
-          <div class="footer-logo">
-            <img src="/images/ArtPlusLogo.png" alt="ART+" />
-          </div>
+    
 
           <div class="footer-links-group d-flex gap-5">
             <ul class="list-unstyled mb-0">
@@ -320,15 +312,13 @@ onMounted(() => {
               <li><a href="#">聯絡我們</a></li>
             </ul>
           </div>
-        </div>
-      </div>
+      
 
       <div
         class="footer-bottom d-flex align-items-center justify-content-center"
       >
         <p class="m-0">© Copyright 2026. ART+ All Right Reserved</p>
       </div>
-    </footer>
   </div>
 </template>
 
