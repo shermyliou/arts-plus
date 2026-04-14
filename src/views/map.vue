@@ -83,13 +83,14 @@ function handleDeny() {
 <style lang="scss" scoped>
 .container {
   position: relative;
+  display: flex;
   cursor: pointer;
   height: 1080px
 }
 
 .map-img {
   width: 100%;
-  height: 1080px;
+  height: 100%;
   z-index: 1;
 }
 
@@ -239,7 +240,10 @@ h1 {
   opacity: 0;
 }
 
-@media (min-width: 768px) {
+@media (max-width: 821px) {
+.container {
+  height: 100%
+}
   .map-img {
     width: 100%;
     height: 100%;
