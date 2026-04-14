@@ -23,7 +23,7 @@ const handleSearch = (query) => {
   <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
     <div class="container-fluid p-0 d-flex align-items-center">
       <a class="navbar-brand me-auto animate-entrance" href="#" style="animation-delay: 0s">
-        <img src="/images/ArtPlusLogo.png" alt="ArtPlus" width="128" />
+        <img src="/images/ArtPlusLogo.svg" alt="ArtPlus" />
       </a>
 
       <div class="d-flex align-items-center gap-4 ms-4">
@@ -34,7 +34,7 @@ const handleSearch = (query) => {
             @click="isSearchVisible = true"
           >
             <div class="search-bar-inner d-flex align-items-center gap-2 px-3 py-2">
-              <Icon icon="ph:magnifying-glass" class="search-icon" />
+              <Icon icon="ph:magnifying-glass" class="search-icon" width="1.25em"/>
               <input 
                 v-if="isSearchVisible"
                 v-model="searchQuery"
@@ -118,13 +118,11 @@ const handleSearch = (query) => {
 }
 
 .search-wrapper {
-  background-color: #eeeeee;
   border-radius: 50px;
   border: #000000 1px solid;
   width: 200px;
   height: 40px;
   color: #888888;
-  font-size: 0.9rem;
   display: flex;
   align-items: center;
   transition: width 0.3s ease, background-color 0.3s ease;

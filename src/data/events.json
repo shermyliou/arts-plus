@@ -11,7 +11,7 @@
     "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯", "助聽系統"],
     "sessions": [
       { 
-        "id": 101, "date": "2026-03-28", "time": "14:00", "venue": "衛武營國家藝術文化中心",
+        "id": 101, "date": "2026-03-28", "time": "14:00", "venue": "衛武營國家藝術文化中心", "city": "高雄市",
         "tickets": [
           { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
           { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
@@ -32,7 +32,7 @@
     "accessibilityFeatures": ["無障礙入口", "電梯", "輪椅"],
     "sessions": [
       { 
-        "id": 201, "date": "2026-04-01", "time": "09:00", "venue": "華山1914文創園區",
+        "id": 201, "date": "2026-04-01", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 350, "status": "available", "remaining": 400 }]
       }
     ],
@@ -50,7 +50,7 @@
     "accessibilityFeatures": ["助聽系統", "口述影像", "無障礙座位"],
     "sessions": [
       { 
-        "id": 301, "date": "2026-05-15", "time": "19:30", "venue": "國家音樂廳",
+        "id": 301, "date": "2026-05-15", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 20 }]
       }
     ],
@@ -68,7 +68,7 @@
     "accessibilityFeatures": ["手語導覽", "無障礙入口"],
     "sessions": [
       { 
-        "id": 401, "date": "2026-03-20", "time": "13:00", "venue": "台北國際會議中心",
+        "id": 401, "date": "2026-03-20", "time": "13:00", "venue": "台北國際會議中心", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 300 }]
       }
     ],
@@ -86,7 +86,7 @@
     "accessibilityFeatures": ["輪椅", "電梯"],
     "sessions": [
       { 
-        "id": 501, "date": "2026-04-10", "time": "15:00", "venue": "大稻埕遊客中心",
+        "id": 501, "date": "2026-04-10", "time": "15:00", "venue": "大稻埕遊客中心", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 600, "status": "available", "remaining": 12 }]
       }
     ],
@@ -102,7 +102,7 @@
     "coverImage": "/images/events/event-6-cover.avif",
     "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯"],
     "sessions": [
-      { "id": 601, "date": "2026-08-15", "time": "19:30", "venue": "國家戲劇院", "tickets": [{ "type": "一般", "price": 1800, "status": "available", "remaining": 200 }] }
+      { "id": 601, "date": "2026-08-15", "time": "19:30", "venue": "國家戲劇院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1800, "status": "available", "remaining": 200 }] }
     ]
   },
   {
@@ -115,7 +115,7 @@
     "coverImage": "/images/events/event-7-cover.avif",
     "accessibilityFeatures": ["兒童友善", "觸覺展示", "無障礙廁所"],
     "sessions": [
-      { "id": 701, "date": "2026-09-10", "time": "10:00", "venue": "鶯歌陶博館教室", "tickets": [{ "type": "一般", "price": 850, "status": "available", "remaining": 15 }] }
+      { "id": 701, "date": "2026-09-10", "time": "10:00", "venue": "鶯歌陶博館教室", "city": "新北市", "tickets": [{ "type": "一般", "price": 850, "status": "available", "remaining": 15 }] }
     ]
   },
   {
@@ -128,7 +128,7 @@
     "coverImage": "/images/events/event-8-cover.avif",
     "accessibilityFeatures": ["口述影像", "觸覺展示", "電梯"],
     "sessions": [
-      { "id": 801, "date": "2026-11-05", "time": "11:00", "venue": "松山文創園區", "tickets": [{ "type": "一般", "price": 200, "status": "available", "remaining": 500 }] }
+      { "id": 801, "date": "2026-11-05", "time": "11:00", "venue": "松山文創園區", "city": "臺北市", "tickets": [{ "type": "一般", "price": 200, "status": "available", "remaining": 500 }] }
     ]
   },
   {
@@ -141,7 +141,7 @@
     "coverImage": "/images/events/event-9-cover.avif",
     "accessibilityFeatures": ["助聽系統", "手語導覽"],
     "sessions": [
-      { "id": 901, "date": "2026-06-20", "time": "14:00", "venue": "國立臺灣博物館", "tickets": [{ "type": "一般", "price": 100, "status": "available", "remaining": 100 }] }
+      { "id": 901, "date": "2026-06-20", "time": "14:00", "venue": "國立臺灣博物館", "city": "臺北市", "tickets": [{ "type": "一般", "price": 100, "status": "available", "remaining": 100 }] }
     ]
   },
   {
@@ -154,7 +154,7 @@
     "coverImage": "/images/events/event-10-cover.avif",
     "accessibilityFeatures": ["兒童友善", "無障礙入口"],
     "sessions": [
-      { "id": 1001, "date": "2026-05-30", "time": "16:00", "venue": "淡水捷運站集合", "tickets": [{ "type": "一般", "price": 450, "status": "available", "remaining": 20 }] }
+      { "id": 1001, "date": "2026-05-30", "time": "16:00", "venue": "淡水捷運站集合", "city": "新北市", "tickets": [{ "type": "一般", "price": 450, "status": "available", "remaining": 20 }] }
     ]
   },
   {
@@ -167,7 +167,7 @@
     "coverImage": "/images/events/event-11-cover.avif",
     "accessibilityFeatures": ["口述影像", "手語導覽"],
     "sessions": [
-      { "id": 1101, "date": "2026-01-01", "time": "00:00", "venue": "線上平台", "tickets": [{ "type": "一般", "price": 150, "status": "available", "remaining": 9999 }] }
+      { "id": 1101, "date": "2026-01-01", "time": "00:00", "venue": "線上平台", "city": "線上", "tickets": [{ "type": "一般", "price": 150, "status": "available", "remaining": 9999 }] }
     ]
   },
   {
@@ -180,7 +180,7 @@
     "coverImage": "/images/events/event-12-cover.avif",
     "accessibilityFeatures": ["無障礙座位", "無障礙廁所", "電梯"],
     "sessions": [
-      { "id": 1201, "date": "2026-10-12", "time": "19:00", "venue": "台北表演藝術中心", "tickets": [{ "type": "一般", "price": 2500, "status": "available", "remaining": 120 }] }
+      { "id": 1201, "date": "2026-10-12", "time": "19:00", "venue": "台北表演藝術中心", "city": "臺北市", "tickets": [{ "type": "一般", "price": 2500, "status": "available", "remaining": 120 }] }
     ]
   },
   {
@@ -193,7 +193,7 @@
     "coverImage": "/images/events/event-13-cover.avif",
     "accessibilityFeatures": ["哺乳室", "兒童友善高度", "電梯"],
     "sessions": [
-      { "id": 1301, "date": "2026-07-25", "time": "14:00", "venue": "國立臺灣科學教育館", "tickets": [{ "type": "一般", "price": 400, "status": "available", "remaining": 30 }] }
+      { "id": 1301, "date": "2026-07-25", "time": "14:00", "venue": "國立臺灣科學教育館", "city": "臺北市", "tickets": [{ "type": "一般", "price": 400, "status": "available", "remaining": 30 }] }
     ]
   },
   {
@@ -206,7 +206,7 @@
     "coverImage": "/images/events/event-14-cover.avif",
     "accessibilityFeatures": ["手語導覽", "無障礙入口"],
     "sessions": [
-      { "id": 1401, "date": "2026-12-01", "time": "19:00", "venue": "公務人力發展學院", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 200 }] }
+      { "id": 1401, "date": "2026-12-01", "time": "19:00", "venue": "公務人力發展學院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 200 }] }
     ]
   },
   {
@@ -219,7 +219,7 @@
     "coverImage": "/images/events/event-15-cover.avif",
     "accessibilityFeatures": ["無障礙停車場", "輪椅"],
     "sessions": [
-      { "id": 1501, "date": "2026-10-15", "time": "09:00", "venue": "北門廣場集合", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 15 }] }
+      { "id": 1501, "date": "2026-10-15", "time": "09:00", "venue": "北門廣場集合", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 15 }] }
     ]
   },
   {
@@ -232,7 +232,7 @@
     "coverImage": "/images/events/event-16-cover.avif",
     "accessibilityFeatures": ["口述影像", "觸覺展示"],
     "sessions": [
-      { "id": 1601, "date": "2026-02-01", "time": "00:00", "venue": "故宮雲端展廳", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 99999 }] }
+      { "id": 1601, "date": "2026-02-01", "time": "00:00", "venue": "故宮雲端展廳", "city": "線上", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 99999 }] }
     ]
   },
   {
@@ -245,7 +245,7 @@
     "coverImage": "/images/events/event-17-cover.avif",
     "accessibilityFeatures": ["手語導覽", "無障礙座位"],
     "sessions": [
-      { "id": 1701, "date": "2026-09-20", "time": "20:00", "venue": "華山烏梅劇院", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 50 }] }
+      { "id": 1701, "date": "2026-09-20", "time": "20:00", "venue": "華山烏梅劇院", "city": "臺北市", "tickets": [{ "type": "一般", "price": 1200, "status": "available", "remaining": 50 }] }
     ]
   },
   {
@@ -258,7 +258,7 @@
     "coverImage": "/images/events/event-18-cover.avif",
     "accessibilityFeatures": ["兒童友善", "電梯"],
     "sessions": [
-      { "id": 1801, "date": "2026-11-15", "time": "14:30", "venue": "建國花市教室", "tickets": [{ "type": "一般", "price": 650, "status": "available", "remaining": 10 }] }
+      { "id": 1801, "date": "2026-11-15", "time": "14:30", "venue": "建國花市教室", "city": "臺北市", "tickets": [{ "type": "一般", "price": 650, "status": "available", "remaining": 10 }] }
     ]
   },
   {
@@ -271,7 +271,7 @@
     "coverImage": "/images/events/event-19-cover.avif",
     "accessibilityFeatures": ["助聽系統", "電梯"],
     "sessions": [
-      { "id": 1901, "date": "2026-08-10", "time": "14:00", "venue": "三創生活園區", "tickets": [{ "type": "一般", "price": 300, "status": "available", "remaining": 150 }] }
+      { "id": 1901, "date": "2026-08-10", "time": "14:00", "venue": "三創生活園區", "city": "臺北市", "tickets": [{ "type": "一般", "price": 300, "status": "available", "remaining": 150 }] }
     ]
   },
   {
@@ -284,7 +284,7 @@
     "coverImage": "/images/events/event-20-cover.avif",
     "accessibilityFeatures": ["兒童友善", "無障礙停車場"],
     "sessions": [
-      { "id": 2001, "date": "2026-12-15", "time": "10:00", "venue": "九份老街派出所集合", "tickets": [{ "type": "一般", "price": 1500, "status": "available", "remaining": 12 }] }
+      { "id": 2001, "date": "2026-12-15", "time": "10:00", "venue": "九份老街派出所集合", "city": "新北市", "tickets": [{ "type": "一般", "price": 1500, "status": "available", "remaining": 12 }] }
     ]
   },
   {
@@ -297,7 +297,7 @@
     "coverImage": "/images/events/event-21-cover.avif",
     "accessibilityFeatures": ["口述影像"],
     "sessions": [
-      { "id": 2101, "date": "2026-01-01", "time": "00:00", "venue": "數位資產庫", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 9999 }] }
+      { "id": 2101, "date": "2026-01-01", "time": "00:00", "venue": "數位資產庫", "city": "線上", "tickets": [{ "type": "一般", "price": 0, "status": "available", "remaining": 9999 }] }
     ]
   }
 ]

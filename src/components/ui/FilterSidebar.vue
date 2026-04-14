@@ -1,17 +1,21 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed, watch } from 'vue';
 import { Icon } from '@iconify/vue';
+
+const emit = defineEmits(['update:filters']);
 
 /**
  * @typedef {Object} myFilterItem
  * @property {string} label - 篩選標籤名稱
  * @property {string} icon - Iconify 圖標代碼
  * @property {boolean} isOpen - 是否展開
+ * @property {string[]} [selected] - 已選擇的選項
+ * @property {Object[]} [options] - 選項清單
  */
 
 /** @type {import('vue').Ref<myFilterItem[]>} */
 const filters = ref([
-  { label: '活動時間', icon: 'ph:calendar-blank', isOpen: false },
+  { label: '活動時間', icon: 'ph:calendar-blank', isOpen: true },
   { 
     label: '縣市', 
     icon: 'ph:map-pin', 
@@ -172,19 +176,116 @@ const filters = ref([
   },
 ]);
 
-/**
- * 切換篩選項目的展開狀態
- * @param {number} index - 項目索引
- */
+// --- 活動時間 相關狀態 ---
+const activeToggle = ref(null); // 'week', 'month', 'year'
+const selectedStartDate = ref(null);
+const selectedEndDate = ref(null);
+const currentViewDate = ref(new Date());
+
+const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
+
+const calendarDays = computed(() => {
+  const year = currentViewDate.value.getFullYear();
+  const month = currentViewDate.value.getMonth();
+  
+  const firstDayOfMonth = new Date(year, month, 1);
+  const lastDayOfMonth = new Date(year, month + 1, 0);
+  
+  const days = [];
+  
+  // 補足前一個月的天數
+  const firstDayWeekday = firstDayOfMonth.getDay();
+  for (let i = firstDayWeekday; i > 0; i--) {
+    days.push({
+      date: new Date(year, month, 1 - i),
+      isCurrentMonth: false
+    });
+  }
+  
+  // 當前月的天數
+  for (let i = 1; i <= lastDayOfMonth.getDate(); i++) {
+    days.push({
+      date: new Date(year, month, i),
+      isCurrentMonth: true
+    });
+  }
+  
+  // 補足後一個月的天數 (湊滿 42 天，即 6 週)
+  const remainingDays = 42 - days.length;
+  for (let i = 1; i <= remainingDays; i++) {
+    days.push({
+      date: new Date(year, month + 1, i),
+      isCurrentMonth: false
+    });
+  }
+  
+  return days;
+});
+
+const displayMonthYear = computed(() => {
+  const year = currentViewDate.value.getFullYear();
+  const month = currentViewDate.value.getMonth() + 1;
+  return `${year}年 ${month}月`;
+});
+
+// --- 活動時間 邏輯 ---
+const setToggleRange = (type) => {
+  activeToggle.value = type;
+  const start = new Date();
+  start.setHours(0, 0, 0, 0);
+  const end = new Date(start);
+  
+  if (type === 'week') {
+    end.setDate(start.getDate() + 7);
+  } else if (type === 'month') {
+    end.setMonth(start.getMonth() + 1);
+  } else if (type === 'year') {
+    end.setFullYear(start.getFullYear() + 1);
+  }
+  
+  selectedStartDate.value = start;
+  selectedEndDate.value = end;
+};
+
+const handleDateClick = (date) => {
+  activeToggle.value = null; // 手動選擇時取消 toggle 狀態
+  
+  if (!selectedStartDate.value || (selectedStartDate.value && selectedEndDate.value)) {
+    selectedStartDate.value = date;
+    selectedEndDate.value = null;
+  } else {
+    if (date < selectedStartDate.value) {
+      selectedEndDate.value = selectedStartDate.value;
+      selectedStartDate.value = date;
+    } else {
+      selectedEndDate.value = date;
+    }
+  }
+};
+
+const isInRange = (date) => {
+  if (!selectedStartDate.value || !selectedEndDate.value) return false;
+  return date >= selectedStartDate.value && date <= selectedEndDate.value;
+};
+
+const isSelected = (date) => {
+  return (selectedStartDate.value && date.getTime() === selectedStartDate.value.getTime()) ||
+         (selectedEndDate.value && date.getTime() === selectedEndDate.value.getTime());
+};
+
+const prevMonth = () => {
+  currentViewDate.value = new Date(currentViewDate.value.getFullYear(), currentViewDate.value.getMonth() - 1, 1);
+};
+
+const nextMonth = () => {
+  currentViewDate.value = new Date(currentViewDate.value.getFullYear(), currentViewDate.value.getMonth() + 1, 1);
+};
+
+// --- 通用篩選 邏輯 ---
 const toggleFilter = (index) => {
   filters.value[index].isOpen = !filters.value[index].isOpen;
 };
 
-/**
- * 切換選項選擇狀態
- * @param {number} filterIndex - 篩選群組索引
- * @param {Object} option - 選項物件
- */
 const toggleOption = (filterIndex, option) => {
   const filter = filters.value[filterIndex];
   if (!filter.selected) return;
@@ -192,11 +293,8 @@ const toggleOption = (filterIndex, option) => {
   const optionLabel = option.label;
 
   if (optionLabel === '全部') {
-    // 這裡需要處理同一個清單中有多個 '全部' 的情況 (例如音樂類型的編制)
-    // 但目前簡易處理：如果選了全部，就只留下全部
     filter.selected = ['全部'];
   } else {
-    // 移除 '全部'
     filter.selected = filter.selected.filter(item => item !== '全部');
     
     const index = filter.selected.indexOf(optionLabel);
@@ -206,12 +304,39 @@ const toggleOption = (filterIndex, option) => {
       filter.selected.push(optionLabel);
     }
     
-    // 如果都沒選，且該篩選器有 '全部' 選項，預設選 '全部'
     if (filter.selected.length === 0 && filter.options.some(opt => opt.label === '全部')) {
       filter.selected = ['全部'];
     }
   }
 };
+
+// --- 發送篩選更新 ---
+const collectFilters = () => {
+  const result = {
+    dateRange: {
+      start: selectedStartDate.value,
+      end: selectedEndDate.value
+    },
+    cities: filters.value.find(f => f.label === '縣市')?.selected || ['全部'],
+    excludeTickets: filters.value.find(f => f.label === '排除票種')?.selected || [],
+    features: filters.value.find(f => f.label === '親子與無障礙')?.selected || [],
+    categories: {
+      exhibition: filters.value.find(f => f.label === '展覽類型')?.selected || ['全部'],
+      traditional: filters.value.find(f => f.label === '傳統表演藝術類型')?.selected || ['全部'],
+      drama: filters.value.find(f => f.label === '戲劇類型')?.selected || ['全部'],
+      dance: filters.value.find(f => f.label === '舞蹈類型')?.selected || ['全部'],
+      music: filters.value.find(f => f.label === '音樂類型')?.selected || ['全部'],
+    }
+  };
+  emit('update:filters', result);
+};
+
+// 監聽所有變化
+watch(filters, collectFilters, { deep: true });
+watch([selectedStartDate, selectedEndDate], collectFilters);
+
+// 初始發送
+collectFilters();
 </script>
 
 <template>
@@ -219,11 +344,10 @@ const toggleOption = (filterIndex, option) => {
     <div v-for="(filter, index) in filters" :key="filter.label" class="filter-group">
       <div v-if="index > 0" class="filter-divider mx-3"></div>
       <button 
-        class="filter-header w-100 d-flex align-items-center justify-content-between border-0 bg-transparent py-2 ps-4 pe-2"
+        class="filter-header w-100 d-flex align-items-center justify-content-between border-0 bg-transparent py-2 px-4"
         @click="toggleFilter(index)"
       >
         <div class="d-flex align-items-center gap-2">
-          <Icon :icon="filter.icon" width="20" height="20" class="filter-icon" />
           <span class="filter-label text-nowrap">{{ filter.label }}</span>
         </div>
         <Icon 
@@ -234,10 +358,71 @@ const toggleOption = (filterIndex, option) => {
         />
       </button>
 
-      <!-- Placeholder for filter content when expanded -->
       <transition name="fade">
         <div v-if="filter.isOpen" class="filter-content ps-3 pe-2 pb-3">
-          <template v-if="filter.options">
+          <!-- 活動時間 自定義 UI -->
+          <template v-if="filter.label === '活動時間'">
+            <div class="date-filter-container px-2">
+              <div class="date-toggles d-flex gap-2 mb-3">
+                <button 
+                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  :class="{ active: activeToggle === 'week' }"
+                  @click="setToggleRange('week')"
+                >一週內</button>
+                <button 
+                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  :class="{ active: activeToggle === 'month' }"
+                  @click="setToggleRange('month')"
+                >一個月內</button>
+                <button 
+                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  :class="{ active: activeToggle === 'year' }"
+                  @click="setToggleRange('year')"
+                >一年內</button>
+              </div>
+
+              <!-- Mini Calendar -->
+              <div class="mini-calendar border rounded p-2">
+                <div class="calendar-nav d-flex justify-content-between align-items-center mb-2">
+                  <button class="btn btn-link p-0 text-dark" @click="prevMonth">
+                    <Icon icon="ph:caret-left" />
+                  </button>
+                  <span class="calendar-month-year small fw-bold">{{ displayMonthYear }}</span>
+                  <button class="btn btn-link p-0 text-dark" @click="nextMonth">
+                    <Icon icon="ph:caret-right" />
+                  </button>
+                </div>
+                <div class="calendar-grid">
+                  <div class="calendar-weekdays d-flex">
+                    <div v-for="day in weekDays" :key="day" class="weekday-cell text-center small text-muted">
+                      {{ day }}
+                    </div>
+                  </div>
+                  <div class="calendar-days d-flex flex-wrap">
+                    <div 
+                      v-for="(day, dIndex) in calendarDays" 
+                      :key="dIndex" 
+                      class="day-cell text-center small"
+                      :class="{ 
+                        'text-muted': !day.isCurrentMonth,
+                        'is-selected': isSelected(day.date),
+                        'is-in-range': isInRange(day.date)
+                      }"
+                      @click="handleDateClick(day.date)"
+                    >
+                      {{ day.date.getDate() }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div v-if="selectedStartDate" class="selected-range-info mt-2 text-muted small">
+                {{ selectedStartDate.toLocaleDateString() }} 
+                <span v-if="selectedEndDate"> - {{ selectedEndDate.toLocaleDateString() }}</span>
+              </div>
+            </div>
+          </template>
+
+          <template v-else-if="filter.options">
             <div class="options-list d-flex flex-column">
               <div 
                 v-for="(option, optIndex) in filter.options" 
@@ -271,9 +456,6 @@ const toggleOption = (filterIndex, option) => {
               </div>
             </div>
           </template>
-          <template v-else>
-            <p class="text-muted small ps-4 ms-2">篩選內容尚未實作</p>
-          </template>
         </div>
       </transition>
     </div>
@@ -289,20 +471,21 @@ const toggleOption = (filterIndex, option) => {
   padding: var(--aside-padding-x) var(--main-padding-y);
   padding-bottom: 16px;
   top: var(--component-navbar-height);
-    &::-webkit-scrollbar {
+  background-color: var(--background-default-default);
+
+  &::-webkit-scrollbar {
     width: 4px;
     background: transparent;
-    }
+  }
 
-    &::-webkit-scrollbar-thumb {
+  &::-webkit-scrollbar-thumb {
     background: transparent;
     border-radius: 4px;
-    }
+  }
 
-    /* 滑動時（hover 容器）才顯示 */
-    &:hover::-webkit-scrollbar-thumb {
+  &:hover::-webkit-scrollbar-thumb {
     background: var(--text-default-tertiary);
-    }
+  }
 }
 
 @include media-breakpoint-down(md) {
@@ -321,17 +504,10 @@ const toggleOption = (filterIndex, option) => {
     background-color: var(--background-default-secondary-hover) !important;
   }
 
-  .filter-icon {
-    color: var(--icon-default-tertiary);
-    opacity: 0.5;
-  }
-
   .filter-label {
     font-size: 16px;
-    letter-spacing: 0.16px;
     font-weight: 400;
     line-height: 1.5;
-    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
   }
 
   .arrow-icon {
@@ -346,8 +522,6 @@ const toggleOption = (filterIndex, option) => {
 }
 
 .filter-content {
-  background-color: transparent;
-
   .options-list {
     gap: 4px;
   }
@@ -363,10 +537,6 @@ const toggleOption = (filterIndex, option) => {
       margin-right: 4px;
       flex-shrink: 0;
     }
-
-    .option-label {
-      font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-    }
   }
 
   .item-clickable {
@@ -381,31 +551,65 @@ const toggleOption = (filterIndex, option) => {
       font-size: 16px;
       font-weight: 400;
       line-height: 1.5;
-      letter-spacing: 0.16px;
     }
   }
 
-  .region-header {
+  .region-header, .instruction-text {
     color: var(--text-default-secondary);
     margin-top: 4px;
-
     .option-label {
       font-size: 14px;
       font-weight: 700;
       line-height: 1.4;
-      letter-spacing: 0.42px;
     }
   }
+}
 
-  .instruction-text {
-    color: var(--text-default-secondary);
-    align-items: flex-start !important;
+// --- Date Filter Styles ---
+.date-toggles {
+  .btn {
+    font-size: 14px;
+    border-color: var(--border-default-default);
+    color: var(--text-default-default);
 
-    .option-label {
-      font-size: 14px;
-      font-weight: 700;
-      line-height: 1.4;
-      letter-spacing: 0.42px;
+    &:hover, &.active {
+      background-color: var(--background-brand-default);
+      color: var(--text-brand-on-brand);
+      border-color: var(--background-brand-default);
+    }
+  }
+}
+
+.mini-calendar {
+  background-color: var(--background-default-default);
+  
+  .calendar-nav .btn {
+    text-decoration: none;
+  }
+
+  .weekday-cell, .day-cell {
+    width: 14.28%;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+
+  .day-cell {
+    &:hover {
+      background-color: var(--background-default-secondary-hover);
+    }
+
+    &.is-selected {
+      background-color: var(--background-brand-default);
+      color: var(--text-brand-on-brand) !important;
+    }
+
+    &.is-in-range {
+      background-color: var(--background-brand-tertiary);
+      border-radius: 0;
     }
   }
 }
