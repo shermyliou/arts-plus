@@ -48,7 +48,7 @@ onMounted(() => {
           <div class="media-container">
             <img src="/images/char2.png" alt="" class="static-img" />
             <video
-              src="/images/char1.mp4"
+              src="/images/char2.mp4"
               class="hover-video"
               muted
               loop
@@ -196,7 +196,11 @@ onMounted(() => {
         <h2>最新消息</h2>
         <div class="d-flex flex-wrap justify-content-between">
           <div class="card-news" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/moca-news.jpg"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="">
               <div class="card-body p-3 d-flex flex-column gap-2">
                 <h5 class="card-title">年底暫別臺北當代藝術館</h5>
@@ -204,7 +208,7 @@ onMounted(() => {
                   臺北當代藝術館將於2027年1月起展開長達3年的古蹟大規模整修。暫別之前以「溫柔道別」為主題，規畫了5檔重量級展覽與街區藝術計畫。
                 </p>
                 <div class="author d-flex align-items-center gap-2">
-                  <img src="/images/event-1.jpg" alt="..." />
+                  <img src="/images/Card/moca.jpg" alt="..." />
                   <p class="m-0">臺北當代藝術館</p>
                 </div>
               </div>
@@ -212,15 +216,20 @@ onMounted(() => {
           </div>
 
           <div class="card-news" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/ncaf-news.jpg"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="">
               <div class="card-body p-3 d-flex flex-column gap-2">
                 <h5 class="card-title">跨域創新藝術專案申請</h5>
                 <p class="card-text line-clamp-4">
-                  財團法人國家文化藝術基金會獎勵文學、視覺藝術、音樂等多元藝術專案開始申請囉～申請期間2026年4月15 16:26 至 5月5日 23:59，千萬別錯過！
+                  財團法人國家文化藝術基金會獎勵文學、視覺藝術、音樂等多元藝術專案開始申請囉～申請期間2026年4月15
+                  16:26 至 5月5日 23:59，千萬別錯過！
                 </p>
                 <div class="author d-flex align-items-center gap-2">
-                  <img src="/images/event-1.jpg" alt="..." />
+                  <img src="/images/Card/ncaf.jpeg" alt="..." />
                   <p class="m-0">財團法人國家文化藝術基金會</p>
                 </div>
               </div>
@@ -228,7 +237,11 @@ onMounted(() => {
           </div>
 
           <div class="card-news" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/kpmc-news.jpg"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="">
               <div class="card-body p-3 d-flex flex-column gap-2">
                 <h5 class="card-title">2026 爵對有春</h5>
@@ -236,7 +249,7 @@ onMounted(() => {
                   由高雄流行音樂中心舉辦，以爵士音樂為主題。2座舞台、3大主題、4部電影、16組演出卡司，超過80攤特色市集，最適合全家大小出遊！
                 </p>
                 <div class="author d-flex align-items-center gap-2">
-                  <img src="/images/event-1.jpg" alt="..." />
+                  <img src="/images/Card/kpmc.jpg" alt="..." />
                   <p class="m-0">高雄流行音樂中心</p>
                 </div>
               </div>
@@ -244,7 +257,11 @@ onMounted(() => {
           </div>
 
           <div class="card-news" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/pact-news.jpg"
+              class="card-img-top"
+              alt="..."
+            />
             <div class="">
               <div class="card-body p-3 d-flex flex-column gap-2">
                 <h5 class="card-title">親子手作QQ動物執頭偶e</h5>
@@ -252,7 +269,7 @@ onMounted(() => {
                   週末不曉得帶小孩去哪裡放電？來臺北偶戲館手作「QQ動物執頭偶」，讓孩子創造屬於自己的第一個執頭偶，有獅子、大象、小豬，任君挑選～
                 </p>
                 <div class="author d-flex align-items-center gap-2">
-                  <img src="/images/event-1.jpg" alt="..." />
+                  <img src="/images/Card/pact.jpg" alt="..." />
                   <p class="m-0">臺北偶戲館</p>
                 </div>
               </div>
@@ -265,33 +282,61 @@ onMounted(() => {
         <h2>近期活動</h2>
         <div class="d-flex flex-wrap justify-content-between">
           <div class="card-events" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/events-01.jpg"
+              class="card-img-events"
+              alt="..."
+            />
             <div class="card-body p-3 d-flex flex-column gap-2">
-              <h5 class="card-title">親子音樂劇場 <br>《魔笛》</h5>
+              <div class="card-title">
+                <h6>親子音樂劇場</h6>
+                <h3>《誰偷走了我的字？》</h3>
+              </div>
               <p class="card-text">2026/4/12</p>
             </div>
           </div>
 
           <div class="card-events" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/events-02.jpg"
+              class="card-img-events"
+              alt="..."
+            />
             <div class="card-body p-3 d-flex flex-column gap-2">
-              <h5 class="card-title">果陀劇場 <br>《解憂雜貨店》</h5>
+              <div class="card-title">
+                <h6>果陀劇場</h6>
+                <h3>《解憂雜貨店》</h3>
+              </div>
               <p class="card-text">2026/4/24~6/21</p>
             </div>
           </div>
 
           <div class="card-events" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/events-03.jpg"
+              class="card-img-events"
+              alt="..."
+            />
             <div class="card-body p-3 d-flex flex-column gap-2">
-              <h5 class="card-title">果陀劇場 <br>《生命中最美好的5分鐘》</h5>
+              <div class="card-title">
+                <h6>果陀劇場</h6>
+                <h3>《生命中最美好的5分鐘》</h3>
+              </div>
               <p class="card-text">2026/5/23 ~7/12</p>
             </div>
           </div>
 
           <div class="card-events" style="width: 18rem">
-            <img src="/images/event-1.jpg" class="card-img-top" alt="..." />
+            <img
+              src="/images/Card/events-04.jpg"
+              class="card-img-events"
+              alt="..."
+            />
             <div class="card-body p-3 d-flex flex-column gap-2">
-              <h5 class="card-title">果陀劇場 <br>《深夜小狗神秘習題》</h5>
+              <div class="card-title">
+                <h6>果陀劇場</h6>
+                <h3>《深夜小狗神秘習題》</h3>
+              </div>
               <p class="card-text">2026/5/29~8/2</p>
             </div>
           </div>
@@ -376,7 +421,7 @@ onMounted(() => {
 
   object-position: top center;
 
-// 放大比例
+  // 放大比例
   transform: scale(1.7);
 
   transform-origin: top center;
@@ -419,7 +464,7 @@ onMounted(() => {
 
   // 下面的大字
   .big-title {
-    font-size: 40px; 
+    font-size: 40px;
     font-weight: 900;
     letter-spacing: 0.2em;
   }
@@ -470,11 +515,35 @@ onMounted(() => {
   cursor: pointer;
 }
 
+.card-news:hover {
+  background-color: #faf7f5;
+}
+
+.card-img-top {
+  height: 200px;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+.card-img-events {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
 .card-events {
   border-radius: 16px;
   border: solid #d2d2d2;
   overflow: hidden;
   cursor: pointer;
+
+  h6{
+    color: #8E8E93FF;
+  }
+}
+
+.card-events:hover {
+  background-color: #faf7f5;
 }
 
 .card-text {
