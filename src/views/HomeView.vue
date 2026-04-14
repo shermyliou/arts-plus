@@ -350,7 +350,7 @@ onMounted(() => {
           class="footer-container d-flex justify-content-between align-items-top w-100"
         >
           <div class="footer-logo">
-            <img src="/images/ArtPlusLogo.png" alt="ART+" />
+            <img src="/images/ArtPlusLogo.svg" alt="ART+" />
           </div>
 
           <div class="footer-links-group d-flex gap-5">
