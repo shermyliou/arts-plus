@@ -14,6 +14,12 @@ const emit = defineEmits(['close']);
 const userStore = useUserStore();
 const overlayRef = ref(null);
 
+const DEFAULT_AVATAR = '/images/avatars/default-avatar.avif';
+
+const handleAvatarError = (event) => {
+  event.target.src = DEFAULT_AVATAR;
+};
+
 const accounts = computed(() => {
   return userStore.users
     .filter(u => [11, 22].includes(u.id))
@@ -57,7 +63,7 @@ onUnmounted(() => {
   <div class="user-overlay-container" ref="overlayRef">
     <div class="user-card p-2 shadow">
       <!-- Account List -->
-      <div class="account-list mb-2">
+      <div class="account-list mb-3">
         <div 
           v-for="account in accounts" 
           :key="account.id" 
@@ -66,7 +72,12 @@ onUnmounted(() => {
           @click="selectUser(account.id)"
         >
           <div class="avatar-wrapper">
-            <img :src="account.avatar" alt="avatar" class="avatar-img" />
+            <img 
+              :src="account.avatar" 
+              alt="avatar" 
+              class="avatar-img" 
+              @error="handleAvatarError"
+            />
           </div>
           <div class="user-info">
             <div class="user-name text-nowrap">{{ account.name }}</div>
@@ -74,8 +85,10 @@ onUnmounted(() => {
           </div>
         </div>
       </div>
-      <div class="btn btn-text mb-2 ps-1">會員中心</div>
-      <div class="btn btn-text mb-2 ps-1" v-if="userStore.currentUser?.role === 'organizer'">主辦方後台</div>
+      <div class="mb-3">
+        <div class="btn btn-text ps-1">會員中心</div>
+        <div class="btn btn-text ps-1" v-if="userStore.currentUser?.role === 'organizer'">主辦方後台</div>
+      </div>
       <!-- Actions -->
       <div class="actions-row d-flex align-items-center justify-content-center">
         <button v-if="!userStore.isLoggedIn" class="btn btn-primary rounded-pill text-nowrap">登入</button>

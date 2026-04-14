@@ -10,13 +10,6 @@ import { useUserStore } from './useUserStore'
 function initializeEvents(rawData) {
   const weekDays = ['日', '一', '二', '三', '四', '五', '六'];
   const ageLimits = ['普遍級', '保護級', '輔導12級', '輔導15級', '限制級', '不適用'];
-  const counties = [
-    '臺北市', '新北市', '基隆市', '桃園市', '新竹市', '新竹縣', '宜蘭縣',
-    '苗栗縣', '臺中市', '彰化縣', '南投縣', '雲林縣',
-    '嘉義市', '嘉義縣', '臺南市', '高雄市', '屏東縣',
-    '花蓮縣', '臺東縣',
-    '澎湖縣', '金門縣', '連江縣'
-  ];
 
   return rawData.map(event => {
     // --- 1. 處理 Sessions 與 星期 ---
@@ -31,12 +24,15 @@ function initializeEvents(rawData) {
     const endDate = sortedDates[sortedDates.length - 1] || '';
 
     // --- 3. 自動計算 Price Range ---
-    // 從新的 tickets 結構中提取價格
     const allPrices = fixedSessions.flatMap(s => s.tickets.map(t => t.price));
     const minPrice = allPrices.length ? Math.min(...allPrices) : 0;
     const maxPrice = allPrices.length ? Math.max(...allPrices) : 0;
 
-    // --- 4. 處理 Comments ---
+    // --- 4. 處理縣市資訊 (從 sessions 提取所有唯一縣市) ---
+    const uniqueCities = [...new Set(fixedSessions.map(s => s.city).filter(Boolean))];
+    const city = uniqueCities.join('、');
+
+    // --- 5. 處理 Comments ---
     const fixedComments = (event.comments || []).map(comment => {
       const randomCommentRating = Math.floor(Math.random() * (5 - 3 + 1)) + 3;
       const baseDate = new Date(startDate || '2026-01-01');
@@ -54,7 +50,7 @@ function initializeEvents(rawData) {
       ? (fixedComments.reduce((acc, c) => acc + c.rating, 0) / fixedComments.length).toFixed(1) 
       : (Math.random() * (5 - 4) + 4).toFixed(1);
 
-    // 計算票務狀態 (根據所有場次的總餘票)
+    // 計算票務狀態
     const totalRemaining = fixedSessions.reduce((sum, s) => {
       return sum + s.tickets.reduce((tSum, t) => tSum + (t.remaining || 0), 0);
     }, 0);
@@ -62,8 +58,6 @@ function initializeEvents(rawData) {
 
     // 隨機分配分級 (若原始資料已有則保留)
     const ageLimit = event.ageLimit || ageLimits[Math.floor(Math.random() * ageLimits.length)];
-    // 隨機分配縣市 (若原始資料已有則保留)
-    const city = event.city || counties[Math.floor(Math.random() * counties.length)];
 
     // 抓取第一個場次的場館作為代表
     const venue = fixedSessions.length > 0 ? fixedSessions[0].venue : '暫無場館資訊';

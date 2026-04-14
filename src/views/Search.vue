@@ -8,6 +8,11 @@ import { useEventStore } from '@/stores/useEventStore';
 
 const eventStore = useEventStore();
 const searchQuery = ref('');
+const showCalendar = ref(false);
+
+const toggleCalendar = () => {
+  showCalendar.value = !showCalendar.value;
+};
 
 const tabs = computed(() => [
   { name: "全部", badgeCount: eventStore.events.length },
@@ -20,19 +25,88 @@ const tabs = computed(() => [
 ]);
 
 const activeTab = ref("全部");
+const sidebarFilters = ref(null);
+
+const handleFilterUpdate = (filters) => {
+  sidebarFilters.value = filters;
+};
 
 const filteredEvents = computed(() => {
   let results = eventStore.events;
 
+  // 1. Top Tab Filter (Major Category)
   if (activeTab.value !== '全部') {
     results = results.filter(e => e.majorCategory === activeTab.value);
   }
 
+  // 2. Search Query Filter
   if (searchQuery.value) {
     results = results.filter(e => e.title.includes(searchQuery.value));
   }
 
-  return results;
+  // 3. Sidebar Filters
+  if (sidebarFilters.value) {
+    const { dateRange, cities, categories, excludeTickets, features } = sidebarFilters.value;
+
+    // Date Range Filter
+    if (dateRange.start && dateRange.end) {
+      results = results.filter(e => {
+        const eStart = new Date(e.startDate);
+        const eEnd = new Date(e.endDate);
+        return eStart <= dateRange.end && eEnd >= dateRange.start;
+      });
+    } else if (dateRange.start) {
+      // Only start date selected (selecting range in progress)
+      results = results.filter(e => {
+        const eEnd = new Date(e.endDate);
+        return eEnd >= dateRange.start;
+      });
+    }
+
+    // City Filter
+    if (cities && !cities.includes('全部')) {
+      results = results.filter(e => {
+        // e.city might be "臺北市、新北市"
+        const eventCities = e.city.split('、');
+        return eventCities.some(c => cities.includes(c));
+      });
+    }
+
+    // Category Filters (Sub-categories from Sidebar)
+    const allSelectedCategories = [
+      ...categories.exhibition,
+      ...categories.traditional,
+      ...categories.drama,
+      ...categories.dance,
+      ...categories.music
+    ].filter(c => c !== '全部');
+
+    if (allSelectedCategories.length > 0) {
+      results = results.filter(e => allSelectedCategories.includes(e.category));
+    }
+    
+    // Exclude Ticket Status
+    if (excludeTickets.length > 0) {
+      if (excludeTickets.includes('排除已售完')) {
+        results = results.filter(e => e.ticketStatus !== '已售完');
+      }
+      // Note: Student and Accessibility ticket exclusion would require more data in events.json
+    }
+  }
+
+  // 4. Sorting
+  const sorted = [...results];
+  if (currentSort.value === '日期：近到遠') {
+    sorted.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+  } else if (currentSort.value === '日期：遠到近') {
+    sorted.sort((a, b) => new Date(b.startDate) - new Date(a.startDate));
+  } else if (currentSort.value === '價格：低到高') {
+    sorted.sort((a, b) => a.price.min - b.price.min);
+  } else if (currentSort.value === '價格：高到低') {
+    sorted.sort((a, b) => b.price.max - a.price.max);
+  }
+
+  return sorted;
 });
 
 const sortOptions = ref([
@@ -70,17 +144,12 @@ const formatDateRange = (start, end) => {
 </script>
 
 <template>
-  <div class="search-page-container d-flex">
+  <div class="search-page-container d-flex position-relative">
     <!-- Left Sidebar: Filters -->
-    <FilterSidebar class="sidebar"></FilterSidebar>
+    <FilterSidebar class="sidebar" @update:filters="handleFilterUpdate"></FilterSidebar>
 
     <!-- Main Content Area -->
     <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3 container-md ms-0">
-
-      <!-- Calendar View Section -->
-      <!-- <div class="position-fixed winherit"> -->
-      <!-- <CalendarView /> -->
-      <!-- </div> -->
 
       <!-- Fixed Header Section -->
       <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center">
@@ -93,33 +162,19 @@ const formatDateRange = (start, end) => {
 
         <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample"
           aria-labelledby="offcanvasExampleLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">篩選器</h5>
+          <div class="offcanvas-header border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="offcanvasExampleLabel">篩選器</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas-body">
-            <FilterSidebar />
+          <div class="offcanvas-body p-0">
+            <FilterSidebar @update:filters="handleFilterUpdate" />
+          </div>
+          <div class="p-3 border-top mt-auto d-md-none">
+            <button type="button" class="btn btn-primary w-100 rounded-pill py-3" data-bs-dismiss="offcanvas">
+              查看結果
+            </button>
           </div>
         </div>
-        <!-- Search Bar Section -->
-        <!-- <div class="row mb-4 justify-content-center sticky-top topnav"> -->
-        <!-- <div class="col-12 d-flex gap-2 align-items-center"> -->
-        <!-- Search Input Container -->
-        <!-- <div class="search-input-container flex-grow-1 d-flex align-items-center px-3 py-2"> -->
-        <!-- <Icon icon="ph:magnifying-glass" width="24" height="24" class="search-icon" /> -->
-        <!-- <input 
-                v-model="searchQuery"
-                type="text" 
-                class="search-input border-0 bg-transparent flex-grow-1 ms-2" 
-                placeholder="搜尋" 
-              /> -->
-        <!-- </div> -->
-        <!-- Search Button -->
-        <!-- <button class="btn btn-search rounded-pill px-4 py-2"> -->
-        <!-- 搜尋 -->
-        <!-- </button> -->
-        <!-- </div> -->
-        <!-- </div> -->
 
         <!-- Nav Tabs Section -->
         <ul class="nav nav-pills overflow-x-auto flex-shrink-1">
@@ -136,16 +191,16 @@ const formatDateRange = (start, end) => {
         <!-- Filter/Sort Section -->
         <div class="col-2 d-flex justify-content-end">
           <div class="dropdown">
-            <button class="btn btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
+            <button class="btn btn-outline-secondary bg-white btn-rect btn-sort-dropdown dropdown-toggle" type="button" id="sortDropdown"
               data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="sort-header">
-                <div class="sort-title-area">
+              <div class="sort-header d-flex">
+                <div class="sort-title-area d-flex align-items-center">
                   <div class="sort-icon-wrapper">
                     <Icon icon="ph:sort-ascending" width="20" height="20" class="sort-icon" />
                   </div>
                   <span class="sort-text">排序</span>
                 </div>
-                <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" />
+                <!-- <Icon icon="ph:caret-up" width="16" height="16" class="caret-icon" /> -->
               </div>
             </button>
             <ul class="dropdown-menu sort-dropdown-menu" aria-labelledby="sortDropdown">
@@ -160,8 +215,7 @@ const formatDateRange = (start, end) => {
         </div>
       </div>
 
-      <!-- Results Section (Scrollable Area) -->
-      <div class="results-scroll-area d-flex flex-column overflow-y-auto">
+      <div class="results-scroll-area d-flex flex-column">
         <div v-for="event in filteredEvents" :key="event.id">
           <HorizontalEventCard 
             :id="event.id"
@@ -170,13 +224,32 @@ const formatDateRange = (start, end) => {
             :rating="event.rating"
             :ticket-status="event.ticketStatus" 
             :time="formatDateRange(event.startDate, event.endDate)"
-            :location="`${event.city} ${event.venue}`" 
+            :city="event.city"
+            :location="event.venue" 
             :price-range="formatPrice(event.price)"
             :image="event.imageUrl" 
           />
         </div>
       </div>
     </div>
+
+    <!-- Calendar Overlay (Fixed to screen) -->
+    <Transition name="fade">
+      <div v-if="showCalendar" class="calendar-overlay">
+        <div class="container-sm me-0">
+          <CalendarView @close="showCalendar = false" />
+        </div>
+      </div>
+    </Transition>
+
+    <!-- Floating Action Button (Fixed to screen) -->
+    <button 
+      class="btn-calendar-fab"
+      @click="toggleCalendar"
+      :aria-label="showCalendar ? '關閉行事曆' : '開啟行事曆'"
+    >
+      <Icon :icon="showCalendar ? 'ph:x' : 'ph:calendar-blank'" width="24" height="24" />
+    </button>
   </div>
 </template>
 
@@ -207,8 +280,8 @@ const formatDateRange = (start, end) => {
   }
 
 .search-page-container {
-  // max-width: var(--main-container-max-width);
   height: 100vh;
+  overflow: hidden;
 }
 
 .search-content {
@@ -217,175 +290,69 @@ const formatDateRange = (start, end) => {
 }
 
 .results-scroll-area {
-  min-height: 0; // Essential for flex-grow with overflow
   gap: var(--main-gap-x);
+  padding-bottom: 80px; // Space for the FAB
+}
 
-  &::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
+.calendar-overlay {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  right: 0;
+  z-index: 1040;
+  padding: 0 24px;
+  pointer-events: none;
 
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 4px;
-  }
-
-  &:hover::-webkit-scrollbar-thumb {
-    background: var(--text-default-tertiary);
+  & > div {
+    pointer-events: auto;
   }
 }
 
-// Search Input (3004:18517)
-.search-input-container {
-  background-color: var(--background-default-default); // #fafaf9
-  border: 1px solid var(--border-default-default); // #d9d9d9 (close to #d1d1d6)
-  border-radius: var(--border-radius-pill);
-  min-height: 40px;
-
-  .search-icon {
-    color: var(--icon-default-tertiary); // #aeaeb2
-  }
-
-  .search-input {
-    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-    font-size: 16px;
-    font-weight: 400;
-    letter-spacing: 0.48px;
-    color: var(--text-default-default);
-    outline: none;
-
-    &::placeholder {
-      color: var(--text-default-tertiary); // #aeaeb2
-    }
-  }
-}
-
-// Search Button (3004:18517 / 3004:18518)
-.btn-search {
-  border: 1px solid var(--border-brand-secondary) !important; // #444
-  color: var(--text-brand-on-brand-secondary); // #413d3a
-  font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-  font-weight: 700;
-  font-size: 16px;
-  letter-spacing: 1.92px;
-  padding: 16px 28px !important;
-  line-height: 1.4;
-  white-space: nowrap;
-  background-color: transparent;
-
-  &:hover {
-    background-color: var(--background-default-default-hover);
-  }
-}
-
-// Sort Dropdown Button (3437:28340)
-.btn-sort-dropdown {
-  border: 1px solid var(--border-default-default) !important;
-  background-color: transparent;
-  border-radius: var(--border-radius-1);
-  padding: 0 !important;
-  width: 136px;
-  min-height: 40px;
-  overflow: hidden;
+.btn-calendar-fab {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: var(--background-brand-default); // #211f1e
+  color: var(--text-brand-on-brand);
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  transition: background-color 0.2s ease;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1050;
+  transition: transform 0.2s ease, background-color 0.2s ease;
 
   &:hover {
-    background-color: var(--background-default-secondary-hover);
+    background-color: var(--background-brand-hover);
+    transform: scale(1.05);
   }
 
-  &::after {
-    display: none; // Remove bootstrap default arrow
-  }
-
-  .sort-header {
-    width: 100%;
-    height: 40px;
-    padding: 8px 8px 8px 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    .sort-title-area {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-
-      .sort-icon-wrapper {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .sort-icon {
-        color: var(--text-default-default);
-      }
-
-      .sort-text {
-        font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 1.4;
-        letter-spacing: 0.14px;
-        color: var(--text-default-default);
-      }
-    }
-
-    .caret-icon {
-      color: var(--text-default-default);
-      margin-left: 12px;
-    }
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-.sort-dropdown-menu {
-  width: 136px;
-  padding: 0;
-  border: 1px solid var(--border-default-default);
-  border-radius: var(--border-radius-1);
-  margin-top: 4px;
-  box-shadow: none;
-  background-color: var(--background-default-default);
+// Fade transition
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-  &.show {
-    inset: 0px 0px auto auto !important;
-  }
-
-  .dropdown-item {
-    height: 28px;
-    padding: 0 8px;
-    display: flex;
-    align-items: center;
-    font-family: var(--sds-typography-family-sans, "Noto Sans TC", sans-serif);
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 1.4;
-    letter-spacing: 0.14px;
-    color: var(--text-default-default);
-
-    &::before {
-      content: '';
-      width: 24px;
-      height: 24px;
-      margin-right: 4px;
-      display: inline-block;
-      flex-shrink: 0;
-    }
-
-    &:hover {
-      background-color: var(--background-default-secondary-hover);
-    }
-
-    &.active {
-      background-color: var(--background-default-secondary-hover);
-      color: var(--text-default-default);
-    }
-  }
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateY(-20px);
 }
 
 .winherit {
   width: inherit;
+}
+
+.sort-text {
+  translate: 0 0.1em;
 }
 </style>
