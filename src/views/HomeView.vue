@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted } from "vue"; // 必須引入 onMounted
+import { RouterLink } from "vue-router";
 
 onMounted(() => {
   const cards = document.querySelectorAll(".character-card");
@@ -183,11 +184,13 @@ onMounted(() => {
         </div>
 
         <div class="category-item d-flex flex-column gap-3 align-items-center">
-          <img
-            src="/images/icon/IMG_1973.PNG"
-            class="icon-illustration"
-            alt=""
-          />
+          <RouterLink :to="map">
+            <img
+              src="/images/icon/IMG_1973.PNG"
+              class="icon-illustration"
+              alt=""
+            />
+          </RouterLink>
           <span class="icon-label">藝文地圖</span>
         </div>
       </div>
