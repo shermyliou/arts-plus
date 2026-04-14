@@ -243,6 +243,7 @@ const closeSearch = () => {
   display: flex;
   align-items: center;
   gap: 16px;
+  z-index: -1;
 }
 
 .nav-item-icon {
