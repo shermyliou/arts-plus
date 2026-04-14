@@ -363,19 +363,19 @@ collectFilters();
           <!-- 活動時間 自定義 UI -->
           <template v-if="filter.label === '活動時間'">
             <div class="date-filter-container px-2">
-              <div class="date-toggles d-flex gap-2 mb-3">
+              <div class="date-toggles d-flex gap-2 mb-3 flex-wrap">
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'week' }"
                   @click="setToggleRange('week')"
                 >一週內</button>
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'month' }"
                   @click="setToggleRange('month')"
                 >一個月內</button>
                 <button 
-                  class="btn btn-outline-secondary flex-grow-1 py-1 px-0" 
+                  class="btn btn-outline-secondary flex-shrink-1 py-1 px-2 text-nowrap" 
                   :class="{ active: activeToggle === 'year' }"
                   @click="setToggleRange('year')"
                 >一年內</button>
