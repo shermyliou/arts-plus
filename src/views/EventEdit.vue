@@ -88,9 +88,6 @@ const scrollToSection = (id) => {
     class="bg-body d-flex flex-column"
     style="height: 100vh; overflow: hidden"
   >
-    <nav class="flex-shrink-0">
-      <navbar />
-    </nav>
     <div class="d-flex flex-grow-1" style="min-height: 0">
       <aside class="flex-shrink-0">
         <SideBar />

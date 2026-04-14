@@ -6,6 +6,7 @@ import EventDetail from '@/views/EventDetail.vue'
 import OrganizerLayout from '@/components/common/OrganizerLayout.vue'
 import EventEdit from '@/views/EventEdit.vue'
 import BootstrapChecker from '@/views/BootstrapChecker.vue'
+import map from '@/views/map.vue'
 
 const routes = [
     { 
@@ -25,6 +26,10 @@ const routes = [
       children: [
         { path: '', component: EventEdit },
       ]
+    },
+    {
+      path: '/map',
+      component: map,
     }
   ]
 

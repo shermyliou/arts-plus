@@ -12,6 +12,12 @@ const emit = defineEmits(['close']);
 
 const overlayRef = ref(null);
 
+const DEFAULT_AVATAR = '/images/avatars/default-avatar.avif';
+
+const handleAvatarError = (event) => {
+  event.target.src = DEFAULT_AVATAR;
+};
+
 const notifications = ref([
   {
     id: 1,
@@ -86,7 +92,7 @@ onUnmounted(() => {
         <h3 class="m-0 title">通知</h3>
         <button class="btn-text-read p-0" @click="markAllAsRead">全部已讀</button>
       </div>
-      
+
       <div class="notification-list">
         <div 
           v-for="item in notifications" 
@@ -98,7 +104,12 @@ onUnmounted(() => {
             <div v-if="item.unread" class="unread-dot"></div>
           </div>
           <div class="avatar-wrapper me-3">
-            <img :src="item.avatar" alt="avatar" class="avatar-img" />
+            <img 
+              :src="item.avatar" 
+              alt="avatar" 
+              class="avatar-img" 
+              @error="handleAvatarError"
+            />
           </div>
           <div class="content-wrapper flex-grow-1 overflow-hidden">
             <div class="d-flex justify-content-between align-items-center mb-1">
@@ -120,7 +131,7 @@ onUnmounted(() => {
   right: 0;
   width: 480px;
   z-index: 1050;
-  
+
   @media (max-width: 576px) {
     width: calc(100vw - 40px);
     right: -10px;
@@ -151,7 +162,7 @@ onUnmounted(() => {
   color: #77706a;
   letter-spacing: 1.92px;
   cursor: pointer;
-  
+
   &:hover {
     color: var(--text-button-hover);
   }
@@ -166,11 +177,11 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--border-default-default);
   cursor: pointer;
   transition: background-color 0.2s;
-  
+
   &:hover {
     background-color: var(--background-default-default-hover);
   }
-  
+
   &:last-child {
     border-bottom: none;
   }

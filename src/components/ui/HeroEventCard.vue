@@ -43,6 +43,12 @@ defineProps({
     default: ''
   }
 })
+
+const DEFAULT_AVATAR = '/images/avatars/default-avatar.avif';
+
+const handleAvatarError = (event) => {
+  event.target.src = DEFAULT_AVATAR;
+};
 </script>
 
 <template>
@@ -82,7 +88,12 @@ defineProps({
       <div class="hero-event-card__actions">
         <div class="btn btn-outline-secondary rounded-pill hero-event-card__organizer">
           <div class="hero-event-card__avatar">
-            <img :src="organizerAvatar" :alt="organizerName" v-if="organizerAvatar" />
+            <img 
+              :src="organizerAvatar" 
+              :alt="organizerName" 
+              v-if="organizerAvatar" 
+              @error="handleAvatarError"
+            />
             <div class="hero-event-card__avatar-placeholder" v-else>
               <Icon icon="ph:user" />
             </div>

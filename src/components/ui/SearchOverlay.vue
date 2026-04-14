@@ -113,7 +113,10 @@ onUnmounted(() => {
   }
 
   @media (max-width: 992px) {
-    width: 400px;
+    width: calc(100vw - 48px);
+    top: 60px;
+    right: -140px;
+
   }
 }
 
@@ -169,7 +172,7 @@ onUnmounted(() => {
 
 .search-dropdown-content {
   background-color: var(--background-default-default);
-  border-radius: var(--border-radius-3);
+  border-radius: var(--border-radius-1);
 }
 
 .section-title {
