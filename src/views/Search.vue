@@ -149,10 +149,10 @@ const formatDateRange = (start, end) => {
     <FilterSidebar class="sidebar" @update:filters="handleFilterUpdate"></FilterSidebar>
 
     <!-- Main Content Area -->
-    <div class="search-content flex-grow-1 d-flex flex-column pt-4 px-4 overflow-y-auto g-3 container-md ms-0">
+    <div class="search-content flex-grow-1 d-flex flex-column px-4 overflow-y-auto g-3 container-md ms-0">
 
       <!-- Fixed Header Section -->
-      <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center">
+      <div class="fixed-header-section w-100 row g-0 flex-nowrap justify-content-between align-items-center sticky-top pt-4 pb-2">
 
         <button class="btn btn-outline-secondary w-auto text-nowrap sidebar-toggle" type="button" data-bs-toggle="offcanvas"
           data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
@@ -260,6 +260,8 @@ const formatDateRange = (start, end) => {
 
 .fixed-header-section {
   gap: var(--main-gap-x);
+  background-color: var(--background-default-default);
+  z-index: 1020;
 }
   
 @media (max-width: 768px) {
@@ -354,5 +356,12 @@ const formatDateRange = (start, end) => {
 
 .sort-text {
   translate: 0 0.1em;
+}
+
+#offcanvasExample {
+  &.show {
+    padding-top: 72px;
+    width: auto;
+  }
 }
 </style>
