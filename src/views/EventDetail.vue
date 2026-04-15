@@ -1,5 +1,7 @@
 <script setup>
-import { ref } from 'vue'; 
+import { ref, onMounted } from 'vue'; 
+import { useRoute } from 'vue-router';
+import { useEventStore } from '@/stores/useEventStore';
 import HeroEventCard from '@/components/ui/HeroEventCard.vue';
 import EventLayout from '@/components/common/EventLayout.vue';
 import BookingCard from '@/components/ui/BookingCard.vue';
@@ -8,8 +10,20 @@ import EventNavTabs from '@/components/ui/EventNavTabs.vue';
 import VenueSelector from '@/components/ui/VenueSelector.vue';
 import NewsMarquee from '@/components/ui/NewsMarquee.vue';
 
+const route = useRoute();
+const eventStore = useEventStore();
+const eventId = parseInt(route.params.id);
+const event = eventStore.events.find(e => e.id === eventId);
+
+onMounted(() => {
+  if (event) {
+    document.title = `${event.title}｜Arts+`;
+  }
+});
+
 // 引入活動海報圖片 
-const eventPoster = '/images/event-dog.jpeg'
+const eventPoster = event?.imageUrl || '/images/event-dog.jpeg'
+const eventTitle = event?.title || '果陀劇場《深夜小狗神秘習題》'
 
 // 選中的分頁名稱
 const activeTab = ref('購票資訊');
@@ -56,7 +70,7 @@ const reviews = [
           <!-- HeroEventCard  -->
           <HeroEventCard 
             :image="eventPoster" 
-            title="果陀劇場《深夜小狗神秘習題》"
+            :title="eventTitle"
             :score="4.3"
             :reviewCount="16"
           />
