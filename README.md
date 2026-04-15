@@ -1,11 +1,11 @@
-# Art Plus 藝文活動平台
+# Arts Plus 藝文活動平台
 
 台灣藝文活動瀏覽與購票示範網站，使用 Vue 3 + Bootstrap 5 建構，
 並實作三層設計 token 系統（Primitive / Semantic / Component）與 Bootstrap 變數覆寫。
 
 ![首頁截圖](./public/screenshot-home.png)
 
-🔗 [Live Demo](https://art-plus-sigma.vercel.app/#/)
+🔗 [Live Demo](https://arts-plus-sigma.vercel.app/#/)
 🎨 [Figma Prototype](https://figma.com/你的連結)
 📁 [Behance](https://behance.net/你的連結)
 
@@ -44,8 +44,8 @@ src/
 
 ## 安裝與執行
 
-git clone https://github.com/你的帳號/art-plus.git
-cd art-plus
+git clone https://github.com/你的帳號/arts-plus.git
+cd arts-plus
 npm install
 npm run dev
 

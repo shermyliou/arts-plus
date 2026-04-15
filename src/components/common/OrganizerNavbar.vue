@@ -37,7 +37,7 @@ const closeSearch = () => {
   <nav class="navbar navbar-expand-lg custom-navbar brand-50 fixed-top">
     <div class="container-fluid p-0 d-flex align-items-center position-relative h-100">
       <a class="navbar-brand me-auto animate-entrance d-inline-flex align-items-start" href="#" style="animation-delay: 0s">
-        <img src="/images/ArtPlusLogo.svg" alt="ArtPlus" />
+        <img src="/images/ArtsPlusLogo.svg" alt="ArtsPlus" />
         <span class="badge bg-primary ms-2">主辦方</span>
       </a>
 
