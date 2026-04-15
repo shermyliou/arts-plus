@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import SideBar from "../components/common/SideBar.vue";
+import FloatingNavTabs from "@/components/ui/FloatingNavTabs.vue";
 
 const showCard = ref(false);
 const showWord = ref(true);
@@ -77,6 +78,7 @@ function handleDeny() {
         </div>
       </div>
     </Transition>
+    <FloatingNavTabs />
   </div>
 </template>
 

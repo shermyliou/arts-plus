@@ -3,6 +3,12 @@
 @import 'abstracts/mixin';
 
 // Global resets & font smoothing
+* {
+  // Scrollbar for Firefox
+  scrollbar-width: thin;
+  scrollbar-color: var(--text-brand-secondary) var(--background-brand-secondary);
+}
+
 body {
   // 基本平滑化
   -webkit-font-smoothing: antialiased;
@@ -11,6 +17,25 @@ body {
   
   // Windows Chrome 進階優化
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.01); // 讓文字邊緣較圓潤
+}
+
+// Scrollbar for Chrome, Safari, and Edge
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-brand-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--text-brand-secondary);
+  border-radius: var(--border-radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-brand-tertiary);
 }
 
 h1, h2, h3, h4, h5, h6 {

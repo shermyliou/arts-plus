@@ -184,7 +184,7 @@ onMounted(() => {
         </div>
 
         <div class="category-item d-flex flex-column gap-3 align-items-center">
-          <RouterLink :to="map">
+          <RouterLink to="/map">
             <img
               src="/images/icon/IMG_1973.PNG"
               class="icon-illustration"
@@ -556,6 +556,7 @@ onMounted(() => {
 
 .line-clamp-4 {
   display: -webkit-box;
+  line-clamp: 4;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
   overflow: hidden;

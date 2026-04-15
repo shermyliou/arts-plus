@@ -62,7 +62,7 @@ const closeSearch = () => {
                 v-if="isSearchVisible"
                 v-model="searchQuery"
                 type="text" 
-                placeholder="搜尋" 
+                placeholder="今天想看些什麼？" 
                 class="search-input-field flex-grow-1"
                 @keyup.enter="handleSearch(searchQuery)"
                 ref="searchInput"
@@ -143,10 +143,9 @@ const closeSearch = () => {
 
 .search-wrapper {
   border-radius: 50px;
-  border: #000000 1px solid;
+  border: 1px solid var(--border-brand-default);
   width: 200px;
   height: 40px;
-  color: #888888;
   display: flex;
   align-items: center;
   transition: width 0.3s ease, background-color 0.3s ease, left 0.3s ease, right 0.3s ease;

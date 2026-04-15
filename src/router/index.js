@@ -30,6 +30,7 @@ const routes = [
     {
       path: '/map',
       component: map,
+      name: 'map'
     }
   ]
 
