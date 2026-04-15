@@ -1,8 +1,14 @@
 <script setup>
 import SideBar from "../components/common/SideBar.vue";
-import { ref, onBeforeUnmount } from "vue";
+import { ref, onBeforeUnmount, onMounted } from "vue";
 import { Icon } from "@iconify/vue";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
+
+const eventTitle = ref("果陀劇場《解憂雜貨店》2026歡迎再次來信");
+
+onMounted(() => {
+  document.title = `編輯${eventTitle.value}｜Arts+`;
+});
 import StarterKit from "@tiptap/starter-kit";
 import { TextStyle } from "@tiptap/extension-text-style";
 import { Color } from "@tiptap/extension-color";

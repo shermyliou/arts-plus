@@ -353,7 +353,7 @@ onMounted(() => {
           class="footer-container d-flex justify-content-between align-items-top w-100"
         >
           <div class="footer-logo">
-            <img src="/images/ArtPlusLogo.svg" alt="ART+" />
+            <img src="/images/ArtsPlusLogo.svg" alt="ARTS+" />
           </div>
 
           <div class="footer-links-group d-flex gap-5">
@@ -374,7 +374,7 @@ onMounted(() => {
       <div
         class="footer-bottom d-flex align-items-center justify-content-center"
       >
-        <p class="m-0">© Copyright 2026. ART+ All Right Reserved</p>
+        <p class="m-0">© Copyright 2026. ARTS+ All Right Reserved</p>
       </div>
     </footer>
   </div>

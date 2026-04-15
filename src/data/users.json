@@ -2,7 +2,7 @@
   {
     "id": 10,
     "nickname": "藝文主辦王小明",
-    "email": "wang.organizer@artplus.com",
+    "email": "wang.organizer@artsplus.com",
     "password": "password123",
     "points": 500,
     "gender": "男",
@@ -20,7 +20,7 @@
   {
     "id": 11,
     "nickname": "展演中心大雅",
-    "email": "taya.art@artplus.com",
+    "email": "taya.art@artsplus.com",
     "password": "password123",
     "points": 800,
     "gender": "女",
