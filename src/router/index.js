@@ -9,35 +9,64 @@ import BootstrapChecker from '@/views/BootstrapChecker.vue'
 import map from '@/views/map.vue'
 
 const routes = [
-    { 
-      path: '/',
-      component: PublicLayout,
-      meta: { title: "Art+" },
-      children: [
-        { path: '', component: HomeView, name: 'home' },
-        { path: 'search', component: Search },
-        { path: 'event/:id', component: EventDetail },
-        { path: 'bootstrap', component: BootstrapChecker },
-      ]
-    },
-    {
-      path: '/organizer',
-      component: OrganizerLayout,
-      children: [
-        { path: '', component: EventEdit },
-      ]
-    },
-    {
-      path: '/map',
-      component: map,
-      name: 'map'
-    }
-  ]
-
+  {
+    path: '/',
+    component: PublicLayout,
+    children: [
+      {
+        path: '',
+        component: HomeView,
+        name: 'home',
+        meta: { title: '首頁｜Arts+' }
+      },
+      {
+        path: 'search',
+        component: Search,
+        name: 'search',
+        meta: { title: 'Arts+搜尋結果' } // Dynamic title will be handled in component or guard
+      },
+      {
+        path: 'event/:id',
+        component: EventDetail,
+        name: 'event-detail',
+        meta: { title: 'Arts+' } // Dynamic title
+      },
+      {
+        path: 'bootstrap',
+        component: BootstrapChecker,
+        name: 'bootstrap-checker',
+        meta: { title: 'Bootstrap檢查器｜Arts+' }
+      },
+    ]
+  },
+  {
+    path: '/organizer',
+    component: OrganizerLayout,
+    children: [
+      {
+        path: '',
+        component: EventEdit,
+        name: 'event-edit',
+        meta: { title: '編輯活動｜Arts+主辦方' } // Dynamic title
+      },
+    ]
+  },
+  {
+    path: '/map',
+    component: map,
+    name: 'map',
+    meta: { title: '藝文地圖｜Arts+' }
+  }
+]
 
 const router = createRouter({
   history: createWebHashHistory(),
   routes,
+})
+
+router.afterEach((to) => {
+  const defaultTitle = 'Arts+'
+  document.title = to.meta.title || defaultTitle
 })
 
 export default router
