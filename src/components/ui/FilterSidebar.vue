@@ -473,20 +473,6 @@ collectFilters();
   padding-bottom: 16px;
   top: var(--component-navbar-height);
   background-color: var(--background-default-default);
-
-  &::-webkit-scrollbar {
-    width: 4px;
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background: transparent;
-    border-radius: 4px;
-  }
-
-  &:hover::-webkit-scrollbar-thumb {
-    background: var(--text-default-tertiary);
-  }
 }
 
 @include media-breakpoint-down(md) {
