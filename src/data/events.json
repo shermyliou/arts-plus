@@ -13,12 +13,28 @@
     "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯", "助聽系統"],
     "sessions": [
       { 
-        "id": 101, "date": "2026-04-16", "time": "14:00", "venue": "衛武營國家藝術文化中心", "city": "高雄市",
+        "id": 101, "date": "2026-04-16", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
         "tickets": [
           { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
           { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
         ],
         "overallSeatStatus": 160
+      },
+      { 
+        "id": 102, "date": "2026-04-17", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
+        ],
+        "overallSeatStatus": 4
+      },
+      { 
+        "id": 103, "date": "2026-04-18", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
+        ],
+        "overallSeatStatus": 20
       }
     ],
     "comments": [{ "id": 1, "user": "John", "content": "敘事手法非常特別！" }]
@@ -37,7 +53,7 @@
     "accessibilityFeatures": ["無障礙入口", "電梯", "輪椅"],
     "sessions": [
       { 
-        "id": 201, "date": "2026-04-19", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
+        "id": 201, "date": "2026-04-18", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 350, "status": "available", "remaining": 400 }],
         "overallSeatStatus": 400
       }
@@ -58,7 +74,17 @@
     "accessibilityFeatures": ["助聽系統", "口述影像", "無障礙座位"],
     "sessions": [
       { 
-        "id": 301, "date": "2026-04-22", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
+        "id": 301, "date": "2026-04-16", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
+        "overallSeatStatus": 3
+      },
+      { 
+        "id": 301, "date": "2026-04-18", "time": "14:00", "venue": "國家音樂廳", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
+        "overallSeatStatus": 3
+      },
+      { 
+        "id": 301, "date": "2026-04-19", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
         "overallSeatStatus": 3
       }
