@@ -7,68 +7,69 @@
 - If Figma data is missing or ambiguous, ask for clarification before generating code.
 
 ## Project Structure
-ART-PLUS
-/src
- ┣ assets
- ┃ ┣ images
- ┃ ┃ ┣ event-1.jpg
- ┃ ┃ ┣ event-2.jpg
- ┃ ┃ ┗ 解憂雜貨店_橫式Banner(台中歌劇院).jpg
- ┃ ┗ styles
- ┃ ┃ ┣ abstracts
- ┃ ┃ ┃ ┣ _fonts.scss
- ┃ ┃ ┃ ┗ _mixin.scss
- ┃ ┃ ┣ overrides
- ┃ ┃ ┃ ┣ _badge.scss
- ┃ ┃ ┃ ┣ _button.scss
- ┃ ┃ ┃ ┣ _nav.scss
- ┃ ┃ ┃ ┣ _navtabs.scss
- ┃ ┃ ┃ ┗ _page.scss
- ┃ ┃ ┣ tokens
- ┃ ┃ ┃ ┣ _component.scss
- ┃ ┃ ┃ ┣ _primitive.scss
- ┃ ┃ ┃ ┗ _semantic.scss
- ┃ ┃ ┣ main.scss
- ┃ ┃ ┗ _animations.scss
- ┣ components
- ┃ ┣ common
- ┃ ┃ ┣ EventLayout.vue
- ┃ ┃ ┣ OrganizerLayout.vue
- ┃ ┃ ┣ OrganizerNavbar.vue
- ┃ ┃ ┣ PublicLayout.vue
- ┃ ┃ ┣ PublicNavbar.vue
- ┃ ┃ ┗ SideBar.vue
- ┃ ┗ ui
- ┃ ┃ ┣ BookingCard.vue
- ┃ ┃ ┣ CalendarView.vue
- ┃ ┃ ┣ EventCard.vue
- ┃ ┃ ┣ EventNavTabs.vue
- ┃ ┃ ┣ FilterSidebar.vue
- ┃ ┃ ┣ FloatingNavTabs.vue
- ┃ ┃ ┣ HeroEventCard.vue
- ┃ ┃ ┣ HorizontalEventCard.vue
- ┃ ┃ ┣ NewsMarquee.vue
- ┃ ┃ ┣ NotificationOverlay.vue
- ┃ ┃ ┣ ReviewCard.vue
- ┃ ┃ ┣ SearchOverlay.vue
- ┃ ┃ ┣ UserOverlay.vue
- ┃ ┃ ┗ VenueSelector.vue
- ┣ data
- ┃ ┣ events.json
- ┃ ┗ users.json
- ┣ router
- ┃ ┗ index.js
- ┣ stores
- ┃ ┣ useEventStore.js
- ┃ ┗ useUserStore.js
- ┣ views
- ┃ ┣ BootstrapChecker.vue
- ┃ ┣ EventDetail.vue
- ┃ ┣ EventEdit.vue
- ┃ ┣ HomeView.vue
- ┃ ┗ Search.vue
- ┣ App.vue
- ┗ main.js
+```text
+ART-PLUS/
+├── .gemini/
+│   ├── GEMINI.md
+│   └── settings.json
+├── public/
+│   ├── images/
+│   └── screenshot-home.png
+├── src/
+│   ├── assets/
+│   │   ├── images/
+│   │   └── styles/
+│   │       ├── abstracts/
+│   │       ├── overrides/
+│   │       ├── tokens/
+│   │       ├── _animations.scss
+│   │       └── main.scss
+│   ├── components/
+│   │   ├── common/
+│   │   │   ├── EventLayout.vue
+│   │   │   ├── OrganizerLayout.vue
+│   │   │   ├── OrganizerNavbar.vue
+│   │   │   ├── PublicLayout.vue
+│   │   │   ├── PublicNavbar.vue
+│   │   │   ├── SideBar.vue
+│   │   │   └── navbar.vue
+│   │   └── ui/
+│   │       ├── BookingCard.vue
+│   │       ├── CalendarView.vue
+│   │       ├── EventCard.vue
+│   │       ├── EventNavTabs.vue
+│   │       ├── FilterSidebar.vue
+│   │       ├── FloatingNavTabs.vue
+│   │       ├── HeroEventCard.vue
+│   │       ├── HorizontalEventCard.vue
+│   │       ├── NewsMarquee.vue
+│   │       ├── NotificationOverlay.vue
+│   │       ├── ReviewCard.vue
+│   │       ├── SearchOverlay.vue
+│   │       ├── UserOverlay.vue
+│   │       └── VenueSelector.vue
+│   ├── data/
+│   │   ├── events.json
+│   │   └── users.json
+│   ├── router/
+│   │   └── index.js
+│   ├── stores/
+│   │   ├── useEventStore.js
+│   │   └── useUserStore.js
+│   ├── views/
+│   │   ├── Basic.vue
+│   │   ├── BootstrapChecker.vue
+│   │   ├── EventDetail.vue
+│   │   ├── EventEdit.vue
+│   │   ├── HomeView.vue
+│   │   ├── Search.vue
+│   │   └── map.vue
+│   ├── App.vue
+│   └── main.js
+├── index.html
+├── package.json
+└── vite.config.js
+```
 
 ## Coding Style
 - Use 2 spaces for indentation.
