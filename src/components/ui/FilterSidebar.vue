@@ -89,7 +89,7 @@ const filters = ref([
     label: '展覽類型', 
     icon: 'ph:palette', 
     isOpen: false,
-    selected: ['全部'],
+    selected: [],
     options: [
       { label: '全部', type: 'item' },
       { label: '繪畫', type: 'item' },
@@ -106,7 +106,7 @@ const filters = ref([
     label: '傳統表演藝術類型', 
     icon: 'ph:mask-happy', 
     isOpen: false,
-    selected: ['全部'],
+    selected: [],
     options: [
       { label: '全部', type: 'item' },
       { label: '布袋戲', type: 'item' },
@@ -121,7 +121,7 @@ const filters = ref([
     label: '戲劇類型', 
     icon: 'ph:theater-masks', 
     isOpen: false,
-    selected: ['全部'],
+    selected: [],
     options: [
       { label: '全部', type: 'item' },
       { label: '現代戲劇', type: 'item' },
@@ -140,7 +140,7 @@ const filters = ref([
     label: '舞蹈類型', 
     icon: 'ph:figure-simple-dancing', 
     isOpen: false,
-    selected: ['全部'],
+    selected: [],
     options: [
       { label: '全部', type: 'item' },
       { label: '現代舞', type: 'item' },
@@ -154,7 +154,7 @@ const filters = ref([
     label: '音樂類型', 
     icon: 'ph:music-notes', 
     isOpen: false,
-    selected: ['全部'],
+    selected: [],
     options: [
       { label: '全部', type: 'item' },
       { label: '流行音樂', type: 'item' },
@@ -293,7 +293,11 @@ const toggleOption = (filterIndex, option) => {
   const optionLabel = option.label;
 
   if (optionLabel === '全部') {
-    filter.selected = ['全部'];
+    if (filter.selected.includes('全部')) {
+      filter.selected = [];
+    } else {
+      filter.selected = ['全部'];
+    }
   } else {
     filter.selected = filter.selected.filter(item => item !== '全部');
     
@@ -304,7 +308,8 @@ const toggleOption = (filterIndex, option) => {
       filter.selected.push(optionLabel);
     }
     
-    if (filter.selected.length === 0 && filter.options.some(opt => opt.label === '全部')) {
+    // Auto-select '全部' ONLY for specific filters that require it (like '縣市')
+    if (filter.selected.length === 0 && filter.label === '縣市') {
       filter.selected = ['全部'];
     }
   }

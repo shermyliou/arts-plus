@@ -13,12 +13,28 @@
     "accessibilityFeatures": ["無障礙座位", "輪椅", "電梯", "助聽系統"],
     "sessions": [
       { 
-        "id": 101, "date": "2026-04-16", "time": "14:00", "venue": "衛武營國家藝術文化中心", "city": "高雄市",
+        "id": 101, "date": "2026-04-16", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
         "tickets": [
           { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
           { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
         ],
         "overallSeatStatus": 160
+      },
+      { 
+        "id": 102, "date": "2026-04-17", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
+        ],
+        "overallSeatStatus": 4
+      },
+      { 
+        "id": 103, "date": "2026-04-18", "time": "19:00", "venue": "國家歌劇院", "city": "台北市",
+        "tickets": [
+          { "type": "一般", "price": 2000, "status": "available", "remaining": 150 },
+          { "type": "輪椅", "price": 750, "status": "available", "remaining": 10 }
+        ],
+        "overallSeatStatus": 20
       }
     ],
     "comments": [{ "id": 1, "user": "John", "content": "敘事手法非常特別！" }]
@@ -37,7 +53,7 @@
     "accessibilityFeatures": ["無障礙入口", "電梯", "輪椅"],
     "sessions": [
       { 
-        "id": 201, "date": "2026-04-19", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
+        "id": 201, "date": "2026-04-18", "time": "09:00", "venue": "華山1914文創園區", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 350, "status": "available", "remaining": 400 }],
         "overallSeatStatus": 400
       }
@@ -53,12 +69,22 @@
     "organizer": { "name": "牛耳藝術", "phone": "(02)6636-5168", "link": "/organizer/3" },
     "original_image": "/images/events/event-3-main.avif",
     "original_coverImage": "/images/events/event-3-cover.avif",
-    "image": "https://images.unsplash.com/photo-1514320299443-30064973347c?auto=format&fit=crop&w=800&q=80",
-    "coverImage": "https://images.unsplash.com/photo-1514320299443-30064973347c?auto=format&fit=crop&w=1200&q=80",
+    "image": "https://images.unsplash.com/photo-1516280440614-37939bbdd4f1?auto=format&fit=crop&w=800&q=80",
+    "coverImage": "https://images.unsplash.com/photo-1516280440614-37939bbdd4f1?auto=format&fit=crop&w=1200&q=80",
     "accessibilityFeatures": ["助聽系統", "口述影像", "無障礙座位"],
     "sessions": [
       { 
-        "id": 301, "date": "2026-04-22", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
+        "id": 301, "date": "2026-04-16", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
+        "overallSeatStatus": 3
+      },
+      { 
+        "id": 301, "date": "2026-04-18", "time": "14:00", "venue": "國家音樂廳", "city": "臺北市",
+        "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
+        "overallSeatStatus": 3
+      },
+      { 
+        "id": 301, "date": "2026-04-19", "time": "19:30", "venue": "國家音樂廳", "city": "臺北市",
         "tickets": [{ "type": "一般", "price": 4800, "status": "limited", "remaining": 3 }],
         "overallSeatStatus": 3
       }
@@ -171,7 +197,7 @@
     "id": 10,
     "title": "淡水河岸歷史散步導覽",
     "majorCategory": "藝文小旅遊",
-    "category": "導覽",
+    "category": "小旅遊",
     "organizer": { "name": "新北市文化局", "phone": "(02)2960-3456", "link": "/organizer/10" },
     "original_image": "/images/events/event-10-main.avif",
     "original_coverImage": "/images/events/event-10-cover.avif",
