@@ -77,16 +77,43 @@ const filteredEvents = computed(() => {
     }
 
     // Category Filters (Sub-categories from Sidebar)
-    const allSelectedCategories = [
-      ...categories.exhibition,
-      ...categories.traditional,
-      ...categories.drama,
-      ...categories.dance,
-      ...categories.music
-    ].filter(c => c !== '全部');
+    const { exhibition, traditional, drama, dance, music } = categories;
+    const hasCategoryFilter = [exhibition, traditional, drama, dance, music].some(arr => arr.length > 0);
 
-    if (allSelectedCategories.length > 0) {
-      results = results.filter(e => allSelectedCategories.includes(e.category));
+    if (hasCategoryFilter) {
+      results = results.filter(e => {
+        // 展覽類型 (藝文展覽)
+        if (exhibition.length > 0 && e.majorCategory === '藝文展覽') {
+          if (exhibition.includes('全部')) return true;
+          return exhibition.includes(e.category);
+        }
+
+        // 藝文演出系列
+        if (e.majorCategory === '藝文演出') {
+          // 傳統表演藝術
+          if (traditional.length > 0 && (e.category === '傳統藝術' || e.category === '戲曲' || traditional.includes(e.category))) {
+            if (traditional.includes('全部')) return true;
+            return traditional.includes(e.category);
+          }
+          // 戲劇
+          if (drama.length > 0 && (e.category === '戲劇' || drama.includes(e.category))) {
+            if (drama.includes('全部')) return true;
+            return drama.includes(e.category);
+          }
+          // 舞蹈
+          if (dance.length > 0 && (e.category === '舞蹈' || dance.includes(e.category))) {
+            if (dance.includes('全部')) return true;
+            return dance.includes(e.category);
+          }
+          // 音樂
+          if (music.length > 0 && (e.category === '音樂' || music.includes(e.category))) {
+            if (music.includes('全部')) return true;
+            return music.includes(e.category);
+          }
+        }
+
+        return false;
+      });
     }
     
     // Exclude Ticket Status
