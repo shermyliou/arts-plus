@@ -18,11 +18,12 @@ const days = ['星期日', '星期一', '星期二', '星期三', '星期四', '
  */
 const weekDates = computed(() => {
   const dates = [];
-  const curr = new Date(currentDate.value);
-  const first = curr.getDate() - curr.getDay(); // 本周第一天 (週日)
+  const baseDate = new Date(currentDate.value);
+  // 取得本周週日
+  const first = baseDate.getDate() - baseDate.getDay();
   
   for (let i = 0; i < 7; i++) {
-    const day = new Date(curr.setDate(first + i));
+    const day = new Date(baseDate.getFullYear(), baseDate.getMonth(), first + i);
     dates.push(day);
   }
   return dates;
@@ -46,10 +47,13 @@ const isToday = (date) => {
 };
 
 /**
- * 格式化日期為 YYYY-MM-DD
+ * 格式化日期為 YYYY-MM-DD (本地時間)
  */
 const formatDate = (date) => {
-  return date.toISOString().split('T')[0];
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
 };
 
 // 切換功能
